@@ -1,44 +1,40 @@
-const uuid = require("uuid");
+const Student = require("./models/Student");
 
 module.exports = {
 	addStudent: async function(studentObj) {
-		let newId = "student_" + uuid.v4();
-    console.log(newId);
-		// await db.set(newId, studentObj);
+    const newStudent = new Student({
+      first_name: studentObj.first_name,
+      last_name: studentObj.last_name,
+      grade: studentObj.grade,
+      school: studentObj.school
+    });
+
+    await newStudent.save();
 	},
   
 	getStudentsList: async function() {
-		// let studentKeys = await db.list("student_");
-    let studentKeys = [];
-		let students = [];
-		
-		for (let i = 0; i < studentKeys.length; i++) {
-			let currentKey = studentKeys[i];
-			// let currentStudent = await db.get(currentKey);
-      let currentStudent = {};
-			currentStudent["id"] = currentKey;
-
-			students.push(currentStudent);
-		}
-
-		return students;
+	  return await Student.find({});
 	},
 
 	getStudentById: async function(studentId) {
-		// let student = await db.get(studentId);
-    let student = {};
-		student["id"] = studentId;
-
-		return student;
+    return await Student.findOne({
+      _id: studentId
+    });
 	},
 
 	editStudentById: async function(studentId, newStudentObj) {
-		// await db.set(studentId, newStudentObj);
-    console.log("edit student");
+    await Student.findOneAndUpdate({
+      _id: studentId
+    },
+    newStudentObj,
+    {
+      runValidators: true
+    });
 	},
 
 	deleteStudentById: async function(studentId) {
-		// await db.delete(studentId);
-    console.log("delete student");
+    await Student.findOneAndRemove({
+      _id: studentId
+    });
 	}
 }

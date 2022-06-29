@@ -1,4 +1,7 @@
 const express = require('express');
+const mongoose = require("mongoose");
+const configKeys = require("./config/keys");
+
 const hostname = 'localhost';
 const port = 8080;
 
@@ -10,6 +13,19 @@ let app = express();
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+const dbStr = configKeys.mongoURI;
+const dbSettings = {
+	useNewUrlParser: true,
+  useUnifiedTopology: true,
+  dbName: "student_profiles",
+  useFindAndModify: false
+}
+
+// connect to mongodb
+mongoose.connect(dbStr, dbSettings)
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
 
 app.get('/', index.getHomePage);
 app.get('/add', student.addStudentPage);

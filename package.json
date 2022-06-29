@@ -9,9 +9,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "global": "^4.4.0",
-    "uuid": "^8.3.2"
+    "mongoose": "^5"
   }
 }
