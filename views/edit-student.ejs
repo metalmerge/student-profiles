@@ -1,0 +1,41 @@
+<%- include('partials/header') %>
+<div class="container">
+<% if (add || student) { %>
+	<form method="post" action="/<%=add ? 'add' : `edit/${student.id}`%>">
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="first-name">First Name</label>
+				<input type="text" class="form-control" name="first_name" value="<%=student.first_name%>" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="last-name">Last Name</label>
+				<input type="text" class="form-control" name="last_name" value="<%=student.last_name%>" required>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="grade">Grade</label>
+				<input type="number" class="form-control" name="grade" value="<%=student.grade%>" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="school">School</label>
+				<select name="school" class="form-control" required>
+				<% if (!add) { %>
+					<option selected><%= student.school %></option>
+				<% } %>
+					<option>Berea-Midpark High School</option>
+					<option>Solon High School</option>
+					<option>Lakewood High School</option>
+					<option>Westlake High School</option>
+				</select>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> Student</button>
+	</form>
+<% } else { %>
+	<p class="text-center">Student Not Found.</p>
+<% } %>
+</div>
+</div>
+</body>
+</html>

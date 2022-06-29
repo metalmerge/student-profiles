@@ -44,7 +44,4 @@ Some additional, nice to have features might include:
 - List of programs the student has been involved in
   - See HyTech Programs.xlsx
 - An area to optionally include more details about the student
-  - Interests, hobbies, dream career, etc. 
- 
- 
- 
+  - Interests, hobbies, dream career, etc.
