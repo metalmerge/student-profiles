@@ -22,6 +22,7 @@ const StudentSchema = new Schema({
   id_number: {
     type: String,
     required: true
+<<<<<<< HEAD
   },
   email: {
     type: String,
@@ -31,6 +32,8 @@ const StudentSchema = new Schema({
     type: String,
     enum: ["active", "inactive"],
     required: true
+=======
+>>>>>>> 6452635 (Student ID added)
   }
 });
 
