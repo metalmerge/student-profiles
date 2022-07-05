@@ -7,14 +7,14 @@ module.exports = {
       last_name: studentObj.last_name,
       grade: studentObj.grade,
       school: studentObj.school,
-      id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`
+      email: studentObj.email,
+      id_number: `${studentObj.last_name}.${await module.exports.getLastNameCount(studentObj.last_name)}`
     });
 
     await newStudent.save();
 	},
   getLastNameCount: async function(lastName) {
-	  return await Student.find({last_name : lastName}).count() 
-    // + 1 
+	  return await Student.find({last_name : lastName}).count() + 1 
 	},
 	getStudentsList: async function() {
 	  return await Student.find({});
