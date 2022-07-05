@@ -15,8 +15,7 @@ module.exports = {
     await newStudent.save();
 	},
   getLastNameCount: async function(lastName) {
-	  return await Student.find({last_name : lastName}).count() 
-    // + 1 
+	  return await Student.find({last_name : lastName}).count() + 1 
 	},
 	getStudentsList: async function() {
 	  return await Student.find({});
