@@ -8,7 +8,7 @@
 				<input type="text" class="form-control" name="first_name" value="<%=student.first_name%>" required>
 			</div>
 			<div class="form-group col-md-6">
-				<label for="last-name">Lat Name</label>
+				<label for="last-name">Last Name</label>
 				<input type="text" class="form-control" name="last_name" value="<%=student.last_name%>" required>
 			</div>
 			<div class="form-group col-md-6" <% if (add) { %> style="display: none" <%}%>>
@@ -19,42 +19,48 @@
 				<label for="email">Email</label>
 				<input type="email" class="form-control" name="email" value="<%=student.email%>" required>
 			</div>
+			<div class="form-group col-md-6">
+				<label for="phone-number">Email</label>
+				<input type="text" class="form-control" name="phone_number" value="<%=student.phone-number%>" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="DOB">Email</label>
+				<input type="text" class="form-control" name="date_of_birth" value="<%=student.DOB%>" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="gEmail">Email</label>
+				<input type="text" class="form-control" name="guardian_email " value="<%=student.gEmail%>" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="DOB">Email</label>
+				<input type="text" class="form-control" name="date of birth" value="<%=student.DOB%>" required>
+			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="grade">Grade</label>
 				<select name="grade" class="form-control" required>
-				<% if (!add) { %>
-					<option selected><%= student.grade %></option>
-				<% } %>
-					<option>6th</option>
-					<option>7th</option>
-					<option>8th</option>
-					<option>9th</option>
-					<option>10th</option>
-					<option>11th</option>
-					<option>12th</option>
-					<option>College Freshman</option>
-					<option>College Sophomore</option>
-					<option>College Junior</option>
-					<option>College Senior</option>
+					<% let grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "College Freshman", "College Sophmore", "College Junior", "College Senior"]; %>
+					<% for (let i = 0; i < grades.length; i++) { %>
+						<option <% if (student.grade == grades[i]) { %> selected <% } %>><%= grades[i] %></option>
+					<% } %>
 				</select>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="school">School</label>
 				<select name="school" class="form-control" required>
-				<% if (!add) { %>
-					<option selected><%= student.school %></option>
-				<% } %>
-					<option>Berea-Midpark High School</option>
-					<option>Solon High School</option>
-					<option>Lakewood High School</option>
-					<option>Westlake High School</option>
+					<% let schools = ["Berea-Midpark High School", "Solon High School", "Lakewood High School", "Westlake High School"]; %>
+					<% for (let i = 0; i < schools.length; i++) { %>
+						<option <% if (student.school == schools[i]) { %> selected <% } %>><%= schools[i] %></option>
+					<% } %>
 				</select>
 			</div>
 	</div>
 		<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> Student</button>
 	</form>
+	<% if (student.status == "inactive") { %>
+		<a href="/reactivate/<%= student.id %>" class="btn btn-info float-left">Reactivate</a>
+	<% } %>
 <% } else { %>
 	<p class="text-center">Student Not Found.</p>
 <% } %>
