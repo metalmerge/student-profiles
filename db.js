@@ -6,12 +6,15 @@ module.exports = {
       first_name: studentObj.first_name,
       last_name: studentObj.last_name,
       grade: studentObj.grade,
-      school: studentObj.school
+      school: studentObj.school,
+      id_number: `${lastName}.${getLastNameCount(studentObj.last_name)}`
     });
 
     await newStudent.save();
 	},
-  
+  getLastNameCountt: async function(lastName) {
+	  return await Student.find({last_name : lastName});
+	},
 	getStudentsList: async function() {
 	  return await Student.find({});
 	},
