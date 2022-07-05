@@ -12,7 +12,7 @@ module.exports = {
 
     await newStudent.save();
 	},
-  getLastNameCountt: async function(lastName) {
+  getLastNameCount: async function(lastName) {
 	  return await Student.find({last_name : lastName}).count();
 	},
 	getStudentsList: async function() {
