@@ -11,7 +11,6 @@
 				<label for="last-name">Lat Name</label>
 				<input type="text" class="form-control" name="last_name" value="<%=student.last_name%>" required>
 			</div>
-<<<<<<< HEAD
 			<div class="form-group col-md-6" <% if (add) { %> style="display: none" <%}%>>
 				<label for="id-number">Student ID</label>
 				<input type="text" class="form-control" name="id_number" value="<%=student.id_number%>" readonly required>
@@ -45,12 +44,15 @@
 				<input type="text" class="form-control" name="interests/hobies" value="<%=student.interests%>" required>
 			</div>
 
-=======
-			<div class="form-group col-md-6">
+
+			
+
+			<div class="form-group col-md-6" <% if (add) { display: none }%>>
+
 				<label for="id-number">Student ID</label>
 				<input type="text" class="form-control" name="id_number" value="<%=student.id_number%>" readonly required>
 			</div>
->>>>>>> 5b0d6c8 (Student ID added)
+
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
@@ -70,7 +72,6 @@
 						<option <% if (student.school == schools[i]) { %> selected <% } %>><%= schools[i] %></option>
 					<% } %>
 				</select>
-
 			</div>
 	</div>
 		<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> Student</button>
