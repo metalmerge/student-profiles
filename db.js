@@ -7,6 +7,7 @@ module.exports = {
       last_name: studentObj.last_name,
       grade: studentObj.grade,
       school: studentObj.school,
+<<<<<<< HEAD
       email: studentObj.email,
       phone_number: studentObj.phone_number,
       date_of_birth: studentObj.DOB,
@@ -17,6 +18,9 @@ module.exports = {
       id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
       status: "active"
       
+=======
+      id_number: `${studentObj.last_name}.${ await getLastNameCount(studentObj.last_name)}`
+>>>>>>> 2b64eb3 (fix)
     });
     console.log(newStudent)
     await newStudent.save();
