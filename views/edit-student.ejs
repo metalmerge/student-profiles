@@ -55,6 +55,9 @@
 	</div>
 		<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> Student</button>
 	</form>
+	<% if (student.status == "inactive") { %>
+		<a href="/reactivate/<%= student.id %>" class="btn btn-info float-left">Reactivate</a>
+	<% } %>
 <% } else { %>
 	<p class="text-center">Student Not Found.</p>
 <% } %>

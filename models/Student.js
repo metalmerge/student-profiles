@@ -26,6 +26,11 @@ const StudentSchema = new Schema({
   email: {
     type: String,
     required: true
+  },
+  status: {
+    type: String,
+    enum: ["active", "inactive"],
+    required: true
   }
 });
 
