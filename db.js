@@ -23,6 +23,7 @@ module.exports = {
 	},
   getLastNameCount: async function(lastName) {
     return await Student.find({last_name : lastName}).countDocuments() + 1 
+	  
 	},
 	getStudentsList: async function() {
 	  return await Student.find({});
