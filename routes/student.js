@@ -37,7 +37,20 @@ module.exports = {
 
 	deleteStudent: async function (request, response) {
 		let studentId = request.params.id;
-		await db.deleteStudentById(studentId);
+		let studentObj = await db.getStudentById(studentId);
+
+		studentObj['status'] = 'inactive';
+		await db.editStudentById(studentId, studentObj);
+
+		response.redirect('/');
+	},
+
+	reactivateStudent: async function (request, response) {
+		let studentId = request.params.id;
+		let studentObj = await db.getStudentById(studentId);
+
+		studentObj['status'] = 'active';
+		await db.editStudentById(studentId, studentObj);
 
 		response.redirect('/');
 	}

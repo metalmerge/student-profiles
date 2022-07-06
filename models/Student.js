@@ -12,11 +12,24 @@ const StudentSchema = new Schema({
     required: true
   },
   grade: {
-    type: Number,
+    type: String,
     required: true
   },
   school: {
     type: String,
+    required: true
+  },
+  id_number: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  status: {
+    type: String,
+    enum: ["active", "inactive"],
     required: true
   }
 });
