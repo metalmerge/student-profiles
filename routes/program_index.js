@@ -6,7 +6,6 @@ module.exports = {
 		let renderData = {
 			programs: programList
 		}
-
 		response.render('program_index', renderData);
 	},
 	
