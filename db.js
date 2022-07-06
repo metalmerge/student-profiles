@@ -7,37 +7,22 @@ module.exports = {
       last_name: studentObj.last_name,
       grade: studentObj.grade,
       school: studentObj.school,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
       email: studentObj.email,
+      phone_number: studentObj.phone_number,
+      date_of_birth: studentObj.DOB,
+      guardian_phone_number: studentObj.gPhone,
+      guardian_email: studentObj.gEmail,
+      notes: studentObj.notes,
+      hobies_or_interests: studentObj.interests,
       id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
       status: "active"
-=======
-      id_number: `${studentObj.last_name}.${getLastNameCount(studentObj.last_name)}`
->>>>>>> 3bd975b (fix)
-=======
-      id_number: `${studentObj.last_name}.${ await getLastNameCount(studentObj.last_name)}`
->>>>>>> 2b64eb3 (fix)
-=======
-      id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`
->>>>>>> 755d8a5 (fix)
-=======
-      id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
-      status: "active"
->>>>>>> f81c606 (Changed delete and added reactivate button)
-=======
-      id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
-      status: "active"
->>>>>>> d37fc96 (Changed delete and added reactivate button)
+      
     });
-
+    console.log(newStudent)
     await newStudent.save();
 	},
   getLastNameCount: async function(lastName) {
-	  return await Student.find({last_name : lastName}).countDocuments() + 1 
+    return await Student.find({last_name : lastName}).countDocuments() + 1 
 	},
 	getStudentsList: async function() {
 	  return await Student.find({});
