@@ -43,6 +43,7 @@ module.exports = {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     return await Student.find({last_name : lastName}).countDocuments() + 1 
 =======
 	  return await Student.find({last_name : lastName}).count();
@@ -54,6 +55,9 @@ module.exports = {
 =======
 	  return await Student.find({last_name : lastName}).count() + 1 
 >>>>>>> 7e5bfc6 (fixes for Joe)
+=======
+	  return await Student.find({last_name : lastName}).countDocuments() + 1 
+>>>>>>> cf1ced5 (countDocuments)
 	},
 	getStudentsList: async function() {
 	  return await Student.find({});
