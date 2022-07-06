@@ -41,6 +41,11 @@ module.exports = {
 
 		studentObj['status'] = 'inactive';
 		await db.editStudentById(studentId, studentObj);
+<<<<<<< HEAD
+=======
+		
+		//await db.deleteStudentById(studentId);
+>>>>>>> f81c606 (Changed delete and added reactivate button)
 
 		response.redirect('/');
 	},
