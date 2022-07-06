@@ -22,11 +22,7 @@
 				<td><%= students[i].id_number %></td>
 				<td>
 					<a href="/edit/<%= students[i].id %>" class="btn btn-sm btn-success">Edit</a>
-					<% if (students[i].status == "active") { %>
-						<a href="/delete/<%= students[i].id %>" class="btn btn-sm btn-danger">Delete</a>
-					<% } else if (students[i].status == "inactive") { %>
-						<a href="/reactivate/<%= students[i].id %>" class="btn btn-sm btn-danger">Reactivate</a>
-					<% } %>
+					<a href="/delete/<%= students[i].id %>" class="btn btn-sm btn-danger">Delete</a>
 				</td>
 			</tr>
 		<% } %>
