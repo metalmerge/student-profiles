@@ -32,9 +32,12 @@ const StudentSchema = new Schema({
   status: {
     type: String,
 <<<<<<< HEAD
+<<<<<<< HEAD
     enum: ["active", "inactive"],
 =======
 >>>>>>> f81c606 (Changed delete and added reactivate button)
+=======
+>>>>>>> d37fc96 (Changed delete and added reactivate button)
     required: true
 =======
 >>>>>>> 6452635 (Student ID added)
