@@ -7,16 +7,22 @@ module.exports = {
       last_name: studentObj.last_name,
       grade: studentObj.grade,
       school: studentObj.school,
-
       email: studentObj.email,
+      phone_number: studentObj.phone_number,
+      date_of_birth: studentObj.DOB,
+      guardian_phone_number: studentObj.gPhone,
+      guardian_email: studentObj.gEmail,
+      notes: studentObj.notes,
+      hobies_or_interests: studentObj.interests,
       id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
       status: "active"
+      
     });
-
+    console.log(newStudent)
     await newStudent.save();
 	},
   getLastNameCount: async function(lastName) {
-	  return await Student.find({last_name : lastName}).countDocuments() + 1 
+    return await Student.find({last_name : lastName}).countDocuments() + 1 
 	},
 	getStudentsList: async function() {
 	  return await Student.find({});
