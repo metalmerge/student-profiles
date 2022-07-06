@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+<div class="container">
+<% if (add || program) { %>
+	<form method="post" action="/<%=add ? 'add' : `edit/${program.id}`%>">
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="title">Title</label>
+				<input type="text" class="form-control" name="title" value="<%=program.title%>" required>
+			</div>
+		</div>
+        
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="min_grade_level">Minimum Grade Level</label>
+				<select name="min_grade_level" class="form-control" required>
+					<% let min_grade_levels = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "College Freshman", "College Sophmore", "College Junior", "College Senior"] %>
+					<% for (let i = 0; i < min_grade_levels.length; i++) { %>
+						<option <% if (program.min_grade_level == min_grade_levels[i]) { %> selected <% } %>><%= min_grade_levels[i] %></option>
+					<% } %>
+				</select>
+			</div>
+	</div>
+		<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> program</button>
+	</form>
+<% } else { %>
+	<p class="text-center">Program Not Found.</p>
+<% } %>
+</div>
+</div>
+</body>
+</html>
