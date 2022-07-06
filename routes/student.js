@@ -43,12 +43,17 @@ module.exports = {
 		await db.editStudentById(studentId, studentObj);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		
 		//await db.deleteStudentById(studentId);
 >>>>>>> f81c606 (Changed delete and added reactivate button)
 =======
 >>>>>>> 8face17 (Inactive students no longer show up on index)
+=======
+		
+		//await db.deleteStudentById(studentId);
+>>>>>>> d37fc96 (Changed delete and added reactivate button)
 
 		response.redirect('/');
 	},
