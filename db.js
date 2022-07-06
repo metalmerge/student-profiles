@@ -11,6 +11,7 @@ module.exports = {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       email: studentObj.email,
       id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
       status: "active"
@@ -27,6 +28,10 @@ module.exports = {
       id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
       status: "active"
 >>>>>>> f81c606 (Changed delete and added reactivate button)
+=======
+      id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
+      status: "active"
+>>>>>>> d37fc96 (Changed delete and added reactivate button)
     });
 
     await newStudent.save();
