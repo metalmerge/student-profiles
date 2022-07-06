@@ -23,6 +23,7 @@ const StudentSchema = new Schema({
     type: String,
     required: true
 <<<<<<< HEAD
+<<<<<<< HEAD
   },
   email: {
     type: String,
@@ -34,6 +35,12 @@ const StudentSchema = new Schema({
     required: true
 =======
 >>>>>>> 6452635 (Student ID added)
+=======
+  },
+  status: {
+    type: String,
+    required: true
+>>>>>>> 4e59264 (Changed delete and added reactivate button)
   }
 });
 
