@@ -18,6 +18,10 @@ const StudentSchema = new Schema({
   school: {
     type: String,
     required: true
+  },
+  id_number: {
+    type: String,
+    required: true
   }
 });
 
