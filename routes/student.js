@@ -41,8 +41,6 @@ module.exports = {
 
 		studentObj['status'] = 'inactive';
 		await db.editStudentById(studentId, studentObj);
-		
-		//await db.deleteStudentById(studentId);
 
 		response.redirect('/');
 	},
