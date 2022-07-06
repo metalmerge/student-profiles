@@ -25,7 +25,10 @@ const StudentSchema = new Schema({
   },
   status: {
     type: String,
+<<<<<<< HEAD
     enum: ["active", "inactive"],
+=======
+>>>>>>> f81c606 (Changed delete and added reactivate button)
     required: true
   }
 });
