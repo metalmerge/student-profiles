@@ -44,6 +44,7 @@ module.exports = {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		
 		//await db.deleteStudentById(studentId);
@@ -54,6 +55,8 @@ module.exports = {
 		
 		//await db.deleteStudentById(studentId);
 >>>>>>> d37fc96 (Changed delete and added reactivate button)
+=======
+>>>>>>> 2adc381 (Inactive students no longer show up on index)
 
 		response.redirect('/');
 	},
