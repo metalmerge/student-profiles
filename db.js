@@ -22,6 +22,10 @@ module.exports = {
       status: "active"
       
     });
+    console.log("student guardian email from new student")
+    console.log(newStudent.guardianEmail)
+    console.log("guardian email from studentObj")
+    console.log(studentObj.guardianEmail)
     console.log(newStudent)
     await newStudent.save();
 	},
