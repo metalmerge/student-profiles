@@ -79,6 +79,7 @@
 	<br><br>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<div class="ui-container">
 			<form action="/<%= add ? "/addImage" : `edit/${student.id}` %>" class ="ui-form" method = "POST">
 				<div class="ui-field">
@@ -95,16 +96,25 @@
 		<div class="ui container">
 			<form action="/addImage" class ="ui form" method = "POST">
 				<div class="ui field">
+=======
+		<div class="ui-container">
+			<form action="/addImage" class ="ui-form" method = "POST">
+				<div class="ui-field">
+>>>>>>> a67bb90 (Fixed bug where students wasn't defined in index.ejs)
 					<label for="img">Upload Image Of Yourself</label>
 					<br><br>
-					<input type="file"name="img"id="">
+					<input type="file" name="img" value="<%= student.img %>">
 				</div>
-				<div class="ui field">
+				<div class="ui-field">
 				</div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> a833067 (not working, something in index ??)
 =======
 >>>>>>> 459cd9c (not working, something in index ??)
+=======
+				<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> Student</button>
+>>>>>>> a67bb90 (Fixed bug where students wasn't defined in index.ejs)
 			</form>
 		</div>	
 		</form>
@@ -112,11 +122,14 @@
 	  </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 459cd9c (not working, something in index ??)
 		<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> Student</button>
 >>>>>>> a833067 (not working, something in index ??)
+=======
+>>>>>>> a67bb90 (Fixed bug where students wasn't defined in index.ejs)
 	</form>
 	<% if (student.status == "inactive") { %>
 		<a href="/reactivate/<%= student.id %>" class="btn btn-info float-left">Reactivate</a>
