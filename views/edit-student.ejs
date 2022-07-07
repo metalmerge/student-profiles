@@ -32,12 +32,13 @@
 			</div>
 			<div class="form-group col-md-6">
 				<label for="school">School</label>
-				<select name="school" class="form-control" required>
-					<% let schools = ["Berea-Midpark High School", "Solon High School", "Lakewood High School", "Westlake High School"]; %>
-					<% for (let i = 0; i < schools.length; i++) { %>
-						<option <% if (student.school == schools[i]) { %> selected <% } %>><%= schools[i] %></option>
-					<% } %>
-				</select>
+				<% let schools = ["Berea-Midpark High School", "Solon High School", "Lakewood High School", "Westlake High School"]; %>
+                <input list="school_options" id="school" name="school" required <% if (!add) { %> value="<%= student.school %>" <% } %>/>
+                    <datalist id="school_options">
+                        <% for (let i = 0; i < schools.length; i++) { %>
+                            <option value="<%= schools[i] %>">
+                        <% } %>
+                    </datalist>
 			</div>
 	</div>
 		<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> Student</button>
