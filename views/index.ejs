@@ -15,20 +15,21 @@
 		</thead>
 		<tbody>
 		<% for (let i = 0; i < students.length; i++) { %>
-			<a href= "/view/<%= students[i].id %>">
-			<tr >
-				<td><%= students[i].first_name %></td>
-				<td><%= students[i].last_name %></td>
-				<td><%= students[i].school %></td>
-				<td><%= students[i].grade %></td>
-				<td><%= students[i].email %></td>
-				<td><%= students[i].id_number %></td>
-				<td>
-				</a>
-					<a href="/edit/<%= students[i].id %>" class="btn btn-sm btn-success">Edit</a>
-					<a href="/delete/<%= students[i].id %>" class="btn btn-sm btn-danger">Delete</a>
-				</td>
-			</tr>
+				<tr>
+					<td><%= students[i].first_name %></td>
+					<td><%= students[i].last_name %></td>
+					<td><%= students[i].school %></td>
+					<td><%= students[i].grade %></td>
+					<td><%= students[i].email %></td>
+					<td><%= students[i].id_number %></td>
+					<td>
+					
+						<a href="/edit/<%= students[i].id %>" class="btn btn-sm btn-success">Edit</a>
+						<a href="/delete/<%= students[i].id %>" class="btn btn-sm btn-danger">Delete</a>
+						<a href="/view/<%= students[i].id %>" class="btn btn-info">View</a>
+					</td>
+				</tr>
+			
 		<% } %>
 		</tbody>
 	</table>
