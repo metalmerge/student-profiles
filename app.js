@@ -35,6 +35,8 @@ app.get('/reactivate/:id', student.reactivateStudent);
 app.post('/add', student.addStudent);
 app.post('/edit/:id', student.editStudent);
 
+app.get('/next-grade', student.increaseStudentGrades);
+
 function listenCallback() {
 	console.log(`Server Running on http://${hostname}:${port}`);
 }

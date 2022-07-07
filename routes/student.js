@@ -1,3 +1,4 @@
+const { response } = require("express");
 const db = require("../db");
 
 module.exports = {
@@ -51,6 +52,22 @@ module.exports = {
 
 		studentObj['status'] = 'active';
 		await db.editStudentById(studentId, studentObj);
+
+		response.redirect('/');
+	},
+
+	increaseStudentGrades: async function (request, response) {
+		let grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "College Freshman", "College Sophmore", "College Junior", "College Senior"];
+		let students = await db.getStudentsList();
+
+		for (let i = 0; i < students.length; i++) {
+			let currentGradeIndex = grades.indexOf(students[i].grade);
+			if (currentGradeIndex < 10) {
+				let studentObj = students[i];
+				studentObj['grade'] = grades[currentGradeIndex + 1];
+				await db.editStudentById(studentObj.id, studentObj);
+			}
+		}
 
 		response.redirect('/');
 	}
