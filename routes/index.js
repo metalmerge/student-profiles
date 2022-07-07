@@ -52,6 +52,7 @@ module.exports = {
 				activeStudents.push(studentList[i]);
 			}
 		}
+<<<<<<< HEAD
 
 		let filteredStudents = [];
 		for (let i = 0; i < activeStudents.length; i++) {
@@ -67,6 +68,9 @@ module.exports = {
 			path: filteredGrade,
 			students: filteredStudents
 		}
+=======
+		console.log(renderData);
+>>>>>>> a833067 (not working, something in index ??)
 		response.render('index', renderData);
 	}
 };
