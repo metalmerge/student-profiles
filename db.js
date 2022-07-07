@@ -40,9 +40,9 @@ module.exports = {
 	},
 
 	editStudentById: async function(studentId, newStudentObj) {
-    let studentSchool = studentObj.school
-    if (studentObj.school == "other"){
-      studentSchool = studentObj.other_school 
+    let studentSchool = studentId.school
+    if (studentId.school == "other"){
+      studentSchool = studentId.other_school 
     }
     await Student.findOneAndUpdate({
       _id: studentId
