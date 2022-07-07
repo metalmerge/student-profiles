@@ -9,7 +9,6 @@ module.exports = {
 				activeStudents.push(studentList[i]);
 			}
 		}
-
 		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
 			ignorePunctuation: true
 		}));
