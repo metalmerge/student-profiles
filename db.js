@@ -13,9 +13,9 @@ module.exports = {
       school: studentObj.school,
       email: studentObj.email,
       phone_number: studentObj.phone_number,
-      date_of_birth: studentObj.DOB,
-      guardian_phone_number: studentObj.guardian_phone,
-      guardian_email: studentObj.guardian_email,
+      dateOfBirth: studentObj.dateOfBirth,
+      guardianPhone: studentObj.guardianPhone,
+      guardianEmail: studentObj.guardianEmail,
       notes: studentObj.notes,
       hobies_or_interests: studentObj.interests,
       id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
@@ -40,9 +40,9 @@ module.exports = {
 	},
 
 	editStudentById: async function(studentId, newStudentObj) {
-    let studentSchool = studentId.school
-    if (studentId.school == "other"){
-      studentSchool = studentId.other_school 
+    let studentSchool = studentObj.school
+    if (studentObj.school == "other"){
+      studentSchool = studentObj.other_school 
     }
     await Student.findOneAndUpdate({
       _id: studentId
