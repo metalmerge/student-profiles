@@ -16,7 +16,7 @@ module.exports = {
       interestsAndHobies: studentObj.interestsAndHobies,
       id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
       status: "active",
-      avatar: studentObj.img
+      img: studentObj.img
     });
     await newStudent.save();
     let format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

@@ -97,7 +97,7 @@
 				<div class="ui field">
 =======
 		<div class="ui-container">
-			<form action="/addImage" class ="ui-form" method = "POST">
+			<form action="/<%= add ? "/addImage" : `edit/${student.id}` %>" class ="ui-form" method = "POST">
 				<div class="ui-field">
 >>>>>>> a67bb90 (Fixed bug where students wasn't defined in index.ejs)
 					<label for="img">Upload Image Of Yourself</label>
