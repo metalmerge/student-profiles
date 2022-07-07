@@ -15,17 +15,13 @@ module.exports = {
       phone_number: studentObj.phone_number,
       dateOfBirth: studentObj.dateOfBirth,
       guardianPhone: studentObj.guardianPhone,
-      guardianEmail: studentObj.guardianEmail,
+      gEmail: studentObj.gEmail,
       notes: studentObj.notes,
       hobies_or_interests: studentObj.interests,
       id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
       status: "active"
       
     });
-    console.log("student guardian email from new student")
-    console.log(newStudent.guardianEmail)
-    console.log("guardian email from studentObj")
-    console.log(studentObj.guardianEmail)
     console.log(newStudent)
     await newStudent.save();
 	},
@@ -55,6 +51,7 @@ module.exports = {
     {
       runValidators: true
     });
+    console.log(newStudentObj)
 	},
 
 	deleteStudentById: async function(studentId) {
