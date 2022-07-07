@@ -17,7 +17,7 @@ module.exports = {
 			path: 'none',
 			students: activeStudents
 		}
-
+		console.log(renderData);
 		response.render('index', renderData);
 		
 	},
