@@ -54,8 +54,7 @@ app.post('/addImage',async(req, res, next) => {
   }
 });
 function saveImage(Student, imgEncoded) {
-  if (imgEncoded == null) return;
-
+  if(imgEncoded == null) return;
   const img = JSON.parse(imgEncoded);
 
   if (img != null && imageMimeTypes.includes(img.type)) {

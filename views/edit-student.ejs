@@ -73,6 +73,7 @@
 				</div>
 			</div>
 			<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> Student</button>
+
 	</div>
 	<br><br>
 		<div class="ui-container">
@@ -89,6 +90,8 @@
 		</form>
 		</div>
 	  </div>
+		<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> Student</button>
+	</form>
 	<% if (student.status == "inactive") { %>
 		<a href="/reactivate/<%= student.id %>" class="btn btn-info float-left">Reactivate</a>
 	<% } %>
