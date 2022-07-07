@@ -16,7 +16,7 @@ module.exports = {
       interestsAndHobies: studentObj.interestsAndHobies,
       id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
       status: "active",
-      img: studentObj.img
+      avatar: studentObj.img
     });
     await newStudent.save();
 	},
