@@ -9,7 +9,6 @@ module.exports = {
 				result.push(studentList[i]);
 			}
 		}
-
 		let renderData = {
 			students: result
 		}
