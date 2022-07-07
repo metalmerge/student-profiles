@@ -33,15 +33,15 @@ const StudentSchema = new Schema({
     type: String,
     required: true
   },
-  date_of_birth: {
+  dateOfBirth: {
     type: String,
     required: true
   },
-  guardian_email: {
+  guardianEmail: {
     type: String,
-    required: true
+    required: false
   },
-  guardian_phone: {
+  guardianPhone: {
     type: String,
     required: true
   },
