@@ -63,6 +63,7 @@ function saveImage(Student, imgEncoded) {
     Student.imgType = img.type;
   }
 }
+<<<<<<< HEAD
 
 app.post('/addImage',async(req, res, next) => {
   const {img} = req.body;
@@ -94,6 +95,8 @@ app.get('/program_add', program.addProgramPage);
 app.get('/program_edit/:id', program.editProgramPage);
 app.post('/program_add', program.addProgram);
 app.post('/program_edit/:id', program.editProgram);
+=======
+>>>>>>> 459cd9c (not working, something in index ??)
 
 function listenCallback() {
 	console.log(`Server Running on http://${hostname}:${port}`);
