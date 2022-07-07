@@ -69,7 +69,7 @@ module.exports = {
 			path: filteredGrade,
 			students: filteredStudents
 		}
-
+		console.log(renderData);
 		response.render('index', renderData);
 	}
 };
