@@ -56,13 +56,17 @@ module.exports = {
 		response.redirect('/');
 	},
 
+	//Currently doesn't account for:
+	//People who skip a year or get held back
+	//People who are in college for anything other than 4 years
+	//People who drop out
 	increaseStudentGrades: async function (request, response) {
-		let grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "College Freshman", "College Sophmore", "College Junior", "College Senior"];
+		let grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "Out of High School", "College Freshman", "College Sophmore", "College Junior", "College Senior", "Out of College"];
 		let students = await db.getStudentsList();
 
 		for (let i = 0; i < students.length; i++) {
 			let currentGradeIndex = grades.indexOf(students[i].grade);
-			if (currentGradeIndex < 10) {
+			if (currentGradeIndex < grades.length && currentGradeIndex != 7) { //Won't increment if out of high school or college
 				let studentObj = students[i];
 				studentObj['grade'] = grades[currentGradeIndex + 1];
 				await db.editStudentById(studentObj.id, studentObj);
