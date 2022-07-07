@@ -6,6 +6,7 @@ module.exports = {
     if (studentObj.school == "other"){
       studentSchool = studentObj.other_school
     }
+    console.log(studentObj.gEmail)
     const newStudent = new Student({
       first_name: studentObj.first_name,
       last_name: studentObj.last_name,
