@@ -6,8 +6,9 @@ const hostname = 'localhost';
 const port = 8080;
 
 const index = require('./routes/index');
+const program_index = require('./routes/program_index');
 const student = require('./routes/student');
-const program = require('./program/student');
+const program = require('./routes/program');
 
 let app = express();
 
