@@ -23,19 +23,32 @@ const StudentSchema = new Schema({
     type: String,
     required: true
   },
+  phone_number: {
+    type: String,
+    required: true
+  },
+  date_of_birth: {
+    type: String,
+    required: true
+  },
+  guardian_email: {
+    type: String,
+    required: true
+  },
+  guardian_phone: {
+    type: String,
+    required: true
+  },
+  notes: {
+    type: String,
+    required: true
+  },
+  interestsAndHobies: {
+    type: String,
+    required: false
+  },
   status: {
     type: String,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    enum: ["active", "inactive"],
-=======
->>>>>>> f81c606 (Changed delete and added reactivate button)
-=======
->>>>>>> d37fc96 (Changed delete and added reactivate button)
-=======
-    enum: ["active", "inactive"],
->>>>>>> 4f0f649 (slight tweaks)
     required: true
   }
 });
