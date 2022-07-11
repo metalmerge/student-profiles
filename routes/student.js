@@ -66,9 +66,13 @@ module.exports = {
 
 		for (let i = 0; i < students.length; i++) {
 			let currentGradeIndex = grades.indexOf(students[i].grade);
-			if (currentGradeIndex < grades.length && currentGradeIndex != 7) { //Won't increment if out of high school or college
+			if (currentGradeIndex < grades.length && students[i].grade != 'Out of High School') { //Won't increment if out of high school or college
 				let studentObj = students[i];
-				studentObj['grade'] = grades[currentGradeIndex + 1];
+				if (studentObj.grade == '12th') {
+					studentObj['grade'] = 'College Freshman';
+				} else {
+					studentObj['grade'] = grades[currentGradeIndex + 1];
+				}
 				await db.editStudentById(studentObj.id, studentObj);
 			}
 		}
