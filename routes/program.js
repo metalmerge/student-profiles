@@ -1,9 +1,11 @@
-const db = require("../database/program_db");
-
+const db = require("../database/program_db")
+const student_db = require("../database/db")
 module.exports = {
-	addProgramPage: function (request, response) {
+	addProgramPage: async function (request, response) {
+		let studentList = await student_db.getStudentsList();
 		let renderData = {
 			program: {},
+			students: studentList,
 			add: true
 		};
 
