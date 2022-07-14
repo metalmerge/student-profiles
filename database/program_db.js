@@ -1,4 +1,4 @@
-const program = require("./models/Program");
+const program = require("../models/Program");
 
 module.exports = {
 	addProgram: async function(programObj) {

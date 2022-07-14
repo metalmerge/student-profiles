@@ -1,5 +1,5 @@
 const { response } = require("express");
-const db = require("../db");
+const db = require("../database/db");
 
 module.exports = {
 	addStudentPage: function (request, response) {
