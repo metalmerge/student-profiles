@@ -1,4 +1,4 @@
-const db = require("../program_db");
+const db = require("../database/program_db");
 
 module.exports = {
 	getProgramPage: async function (request, response) {
