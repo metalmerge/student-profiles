@@ -51,7 +51,7 @@
 				<label for="student_list">Students Involved</label>
 				<select class="form-control" name="student_list" multiple>
 					<% for (let i = 0; i < students.length; i++) { %>
-						<option><%= students[i].first_name %> <%= students[i].last_name %></option>
+						<option><%= students[i].id_number %></option>
 					<% } %>
 				</select>
 			</div>
