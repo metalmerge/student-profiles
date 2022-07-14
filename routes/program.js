@@ -1,5 +1,5 @@
-const db = require("../program_db")
-const student_db = require("../db")
+const db = require("../database/program_db")
+const student_db = require("../database/db")
 
 
 module.exports = {

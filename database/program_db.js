@@ -1,7 +1,9 @@
-const program = require("./models/Program");
+const program = require("../models/Program");
 
 module.exports = {
 	addProgram: async function(programObj) {
+    console.log(programObj.student_list)
+    console.log(typeof programObj.student_list)
     const newprogram = new program({
         title: programObj.title,
         description: programObj.description,
