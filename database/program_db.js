@@ -16,7 +16,7 @@ module.exports = {
     await newprogram.save();
 	},
   getTitleCount: async function(currentTitle) {
-	  return await Student.find({title : currentTitle}).countDocuments() + 1 
+	  return await program.find({title : currentTitle}).countDocuments() + 1 
 	},
 	getProgramsList: async function() {
 	  return await program.find({});

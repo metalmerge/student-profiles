@@ -62,6 +62,9 @@
 		</div>
 		<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> program</button>
 	</form>
+	<% if (program.status == "inactive") { %>
+		<a href="/program_reactivate/<%= program.id %>" class="btn btn-info float-left">Reactivate</a>
+	<% } %>
 <% } else { %>
 	<p class="text-center">Program Not Found.</p>
 <% } %>

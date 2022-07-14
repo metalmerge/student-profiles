@@ -41,6 +41,8 @@ app.get('/filter/:grade', index.filter);
 app.post('/add', student.addStudent);
 app.post('/edit/:id', student.editStudent);
 
+app.get('/program_delete/:id', program.deleteProgram);
+app.get('/program_reactivate/:id', program.reactivateProgram);
 app.get('/program', program_index.getProgramPage);
 app.get('/program_add', program.addProgramPage);
 app.get('/program_edit/:id', program.editProgramPage);
