@@ -32,7 +32,7 @@ module.exports = {
 		let programId = request.params.id;
 		await db.editProgramById(programId, request.body);
 
-		response.redirect('/');
+		response.redirect('/program');
 	},
 
 };
