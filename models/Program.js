@@ -37,10 +37,6 @@ const ProgramSchema = new Schema({
     required: true
   },
   student_list: {
-    type: [String],
     // enum:[id_number, note],
-    required: true
-  }
-});
 
 module.exports = Program = mongoose.model("programs", ProgramSchema);
