@@ -54,6 +54,7 @@ module.exports = {
 			view: false,
 			countries: countries,
 			programs: programList,
+			add: false
 		};
 	editStudent: async function (request, response) {
 		let studentId = request.params.id;
