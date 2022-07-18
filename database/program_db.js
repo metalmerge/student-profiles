@@ -12,6 +12,7 @@ module.exports = {
         max_grade_level: programObj.max_grade_level,
         program_id_number: `${programObj.title}.${ await module.exports.getTitleCount(programObj.title)}`,
         student_list: programObj.student_list,
+        note: programObj.note,
         status: "active"
       });
     await newprogram.save()
