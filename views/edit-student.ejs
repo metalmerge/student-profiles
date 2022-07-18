@@ -1,7 +1,6 @@
 <%- include('partials/header') %>
 <div class="container">
 	<script>
-        function noteReveal() {
 			var sel = document.getElementById('program_list')
 			var student_id_number = sel.options[sel.selectedIndex].text
 			document.getElementById('note').disabled = false
@@ -10,13 +9,6 @@
         }
     </script>
 <% if (add || student) { %>
-	<% if (view) { %>
-		<a href="/edit/<%= student.id %>" class="btn btn-sm btn-success float-center">Edit</a>
-		<a href="/delete/<%= student.id %>" class="btn btn-sm btn-danger float-center">Delete</a>
-	<% } %>
-	<form method="post" action="/<%=add ? 'add' : `edit/${student.id}`%>">
-		<div class="form-row">
-			<div class="form-group col-md-6">
 				<label for="first-name">First Name</label>
 				<input type="text" class="form-control" name="first_name" value="<%=student.first_name%>" required <% if (view) { %> readonly <% } %>>
 			</div>
@@ -91,6 +83,10 @@
 					<option><%= programs[i].program_id_number %></option>
 				<% } %>
 			</select>
+		</div>
+		<div class="form-group col-md-6" id="note_div">
+			<label for="note">Note</label>
+			<input type="note" class="form-control" name="note" id="note" value="<%=student.note%>">
 		</div>
 	</div>
 		<div class="form-row">
