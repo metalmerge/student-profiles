@@ -56,6 +56,10 @@ const StudentSchema = new Schema({
     type: [Object],
     required: true
   },
+  note: {
+    type: String,
+    required: false
+  },
   status: {
     type: String,
     enum: ["active", "inactive"],
