@@ -37,12 +37,6 @@ const ProgramSchema = new Schema({
     type: String,
     required: true
   },
-  student_list: {
-    type: [String], 
-    // [Student.id_number],
-    // enum:[id_number, note],
-    required: true
-  },
   status: {
     type: String,
     enum: ["active", "inactive"],
