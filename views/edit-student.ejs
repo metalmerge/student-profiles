@@ -1,10 +1,10 @@
 <%- include('partials/header') %>
 <div class="container">
-	<script>
+	<!-- <script>
 		function noteReveal() {
 			// document.getElementById('program_list').value
 			$(".note_div").css("display", "block");
-		} 
+		}  -->
 	</script>
 <% if (add || student) { %>
 	<form method="post" action="/<%=add ? 'add' : `edit/${student.id}`%>">
@@ -50,10 +50,6 @@
 					<option><%= programs[i].program_id_number %></option>
 				<% } %>
 			</select>
-		</div>
-		<div class="form-group col-md-6" id="note_div">
-			<label for="note">Note</label>
-			<input type="note" class="form-control" name="note" id="note" value="<%=student.note%>">
 		</div>
 	</div>
 		<div class="form-row">

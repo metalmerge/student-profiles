@@ -29,13 +29,10 @@ const StudentSchema = new Schema({
     required: true
   },
   program_list: {
-    type: [[Program.program_id_number, String]],
+    type: [Program.program_id_number],
+    // type: [[Program.program_id_number, String]],
     // enum:[id_number, note],
     required: true
-  },
-  note: {
-    type: String,
-    required: false
   },
   status: {
     type: String,

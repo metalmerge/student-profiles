@@ -1,4 +1,4 @@
-const program = require("../models/Program")
+const Program = require("../models/Program")
 
 module.exports = {
 	addProgram: async function(programObj) {
@@ -17,21 +17,21 @@ module.exports = {
     await newprogram.save()
 	},
   getTitleCount: async function(currentTitle) {
-	  return await program.find({title : currentTitle}).countDocuments() + 1 
+	  return await Program.find({title : currentTitle}).countDocuments() + 1 
 	},
   
 	getProgramsList: async function() {
-	  return await program.find({});
+	  return await Program.find({});
 	},
 
 	getProgramById: async function(programId) {
-    return await program.findOne({
+    return await Program.findOne({
       _id: programId
     });
 	},
 
 	editProgramById: async function(programId, newprogramObj) {
-    await program.findOneAndUpdate({
+    await Program.findOneAndUpdate({
       _id: programId
     },
     newprogramObj,
