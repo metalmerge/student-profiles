@@ -2,7 +2,7 @@ const Program = require("../models/Program")
 
 module.exports = {
 	addProgram: async function(programObj) {
-    const newprogram = new program({
+    const newprogram = new Program({
         title: programObj.title,
         description: programObj.description,
         location: programObj.location,
