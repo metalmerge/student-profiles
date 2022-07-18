@@ -17,6 +17,8 @@
 				<label for="last-name">Last Name</label>
 				<input type="text" class="form-control" name="last_name" value="<%=student.last_name%>" required <% if (view) { %> readonly <% } %>>
 			</div>
+		</div>
+		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="email">Email</label>
 				<input type="email" class="form-control" name="email" value="<%=student.email%>" required <% if (view) { %> readonly <% } %>>
@@ -55,8 +57,6 @@
 					<% } %>
 				</datalist>
 			</div>
-		</div>
-		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="grade">Grade</label>
 				<select name="grade" class="form-control" required <% if (view) { %> readonly <% } %>>
