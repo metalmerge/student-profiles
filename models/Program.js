@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Student = require("../models/Student");
 
 const ProgramSchema = new Schema({
   title: {
@@ -34,6 +35,11 @@ const ProgramSchema = new Schema({
   },
   program_id_number: {
     type: String,
+    required: true
+  },
+  student_list: {
+    type: [Student.id_number],
+    // enum:[id_number, note],
     required: true
   },
   status: {

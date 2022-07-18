@@ -1,4 +1,5 @@
 const Student = require("../models/Student");
+const student = require("../routes/student");
 
 module.exports = {
 	addStudent: async function(studentObj) {
@@ -9,7 +10,7 @@ module.exports = {
       school: studentObj.school,
       email: studentObj.email,
       id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
-      student_list: programObj.student_list,
+      student_list: studentObj.student_list,
       status: "active"
     });
 
