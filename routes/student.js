@@ -1,12 +1,15 @@
 const { response } = require("express");
 const db = require("../database/db");
+const program_db = require("../database/program_db");
 
 module.exports = {
-	addStudentPage: function (request, response) {
+	addStudentPage: async function (request, response) {
+		let programList = await program_db.getProgramsList();
 		let renderData = {
 			student: {},
 			add: true,
-			view: false
+			view: false,
+			programs: programList,
 		};
 
 		response.render('edit-student', renderData);
@@ -18,7 +21,8 @@ module.exports = {
 		let renderData = {
 			student: studentObj,
 			add: false,
-			view: true
+			view: true,
+			programs: programList,
 		};
 
 		response.render('edit-student', renderData);
@@ -33,11 +37,13 @@ module.exports = {
 	editStudentPage: async function (request, response) {
 		let studentId = request.params.id;
 		let studentObj = await db.getStudentById(studentId);
+		let programList = await program_db.getProgramsList();
 
 		let renderData = {
 			student: studentObj,
 			add: false,
-			view: false
+			view: false,
+			programs: programList,
 		};
 
 		response.render('edit-student', renderData);

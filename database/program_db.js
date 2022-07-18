@@ -13,6 +13,7 @@ module.exports = {
         min_grade_level: programObj.min_grade_level,
         max_grade_level: programObj.max_grade_level,
         program_id_number: `${programObj.title}.${ await module.exports.getTitleCount(programObj.title)}`,
+        program_list: programObj.program_list,
         status: "active"
       });
 
@@ -22,6 +23,7 @@ module.exports = {
   getTitleCount: async function(currentTitle) {
 	  return await Program.find({title : currentTitle}).countDocuments() + 1 
 	},
+  
 	getProgramsList: async function() {
 	  return await Program.find({});
 	},
