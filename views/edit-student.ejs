@@ -1,11 +1,5 @@
 <%- include('partials/header') %>
 <div class="container">
-	<!-- <script>
-		function noteReveal() {
-			// document.getElementById('program_list').value
-			$(".note_div").css("display", "block");
-		}  -->
-	</script>
 <% if (add || student) { %>
 	<form method="post" action="/<%=add ? 'add' : `edit/${student.id}`%>">
 		<div class="form-row">
