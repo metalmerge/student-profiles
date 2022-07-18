@@ -13,7 +13,14 @@
 				return false;
 			}
 		}
-	</script>
+        function noteReveal() {
+			var sel = document.getElementById('student_list')
+			var student_id_number = sel.options[sel.selectedIndex].text
+			document.getElementById('note').disabled = false
+			document.getElementById('note').style.display = "block"
+			document.getElementById('note_label').style.display = "block"
+        }
+    </script>
 <% if (add || program) { %>
 	<form method="post" action="/<%=add ? 'program_add' : `program_edit/${program.id}`%>" onsubmit="return validateForm()">
 		<div class="form-row">
