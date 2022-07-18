@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Program = require("../models/Program");
 
 // Create Schema
 const StudentSchema = new Schema({
@@ -25,6 +26,12 @@ const StudentSchema = new Schema({
   },
   email: {
     type: String,
+    required: true
+  },
+  program_list: {
+    type: [String],
+    // type: [[Program.program_id_number, String]],
+    // enum:[id_number, note],
     required: true
   },
   status: {
