@@ -21,9 +21,11 @@ module.exports = {
 	editProgramPage: async function (request, response) {
 		let programId = request.params.id;
 		let programObj = await db.getProgramById(programId);
+		let studentList = await student_db.getStudentsList();
 
 		let renderData = {
 			program: programObj,
+			students: studentList,
 			add: false
 		};
 
@@ -37,4 +39,23 @@ module.exports = {
 		response.redirect('/program');
 	},
 
+	deleteProgram: async function (request, response) {
+		let programId = request.params.id;
+		let programObj = await db.getProgramById(programId);
+
+		programObj['status'] = 'inactive';
+		await db.editProgramById(programId, programObj);
+
+		response.redirect('/program');
+	},
+
+	reactivateProgram: async function (request, response) {
+		let programId = request.params.id;
+		let programObj = await db.getProgramById(programId);
+
+		programObj['status'] = 'active';
+		await db.editProgramById(programId, programObj);
+
+		response.redirect('/program');
+	},
 };
