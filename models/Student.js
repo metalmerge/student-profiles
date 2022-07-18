@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Program = require("../models/Program");
+// const Program = require("../models/Program");
 
 // Create Schema
 const StudentSchema = new Schema({
@@ -64,6 +64,10 @@ const StudentSchema = new Schema({
   program_list: {
     type: [Object],
     required: true
+  },
+  note: {
+    type: String,
+    required: false
   },
   status: {
     type: String,
