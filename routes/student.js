@@ -51,15 +51,10 @@ module.exports = {
 
 		let renderData = {
 			student: studentObj,
-			add: false,
 			view: false,
 			countries: countries,
 			programs: programList,
 		};
-
-		response.render('edit-student', renderData);
-	},
-
 	editStudent: async function (request, response) {
 		let studentId = request.params.id;
 		await db.editStudentById(studentId, request.body);
