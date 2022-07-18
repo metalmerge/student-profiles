@@ -2,14 +2,17 @@ const countries = require("countries-list").countries;
 const { response } = require("express");
 const db = require("../database/db");
 const moment = require('moment');
+const program_db = require("../database/program_db");
 
 module.exports = {
-	addStudentPage: function (request, response) {
+	addStudentPage: async function (request, response) {
+		let programList = await program_db.getProgramsList();
 		let renderData = {
 			student: {},
 			add: true,
 			view: false,
-			countries: countries
+			countries: countries,
+			programs: programList,
 		};
 
 		response.render('edit-student', renderData);
@@ -25,7 +28,8 @@ module.exports = {
 			student: studentObj,
 			add: false,
 			view: true,
-			countries: countries
+			countries: countries,
+			programs: programList,
 		};
 
 		response.render('edit-student', renderData);
@@ -40,6 +44,7 @@ module.exports = {
 	editStudentPage: async function (request, response) {
 		let studentId = request.params.id;
 		let studentObj = await db.getStudentById(studentId);
+		let programList = await program_db.getProgramsList();
 
 		let dateOfBirth = moment.utc(studentObj.dateOfBirth);
 		studentObj['dateOfBirthFormatted'] = dateOfBirth.format('YYYY[-]MM[-]DD');
@@ -48,7 +53,8 @@ module.exports = {
 			student: studentObj,
 			add: false,
 			view: false,
-			countries: countries
+			countries: countries,
+			programs: programList,
 		};
 
 		response.render('edit-student', renderData);
