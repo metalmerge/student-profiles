@@ -1,4 +1,4 @@
-const program = require("../models/Program");
+const program = require("../models/Program")
 
 module.exports = {
 	addProgram: async function(programObj) {
@@ -11,9 +11,10 @@ module.exports = {
         min_grade_level: programObj.min_grade_level,
         max_grade_level: programObj.max_grade_level,
         program_id_number: `${programObj.title}.${ await module.exports.getTitleCount(programObj.title)}`,
-        student_list: programObj.student_list
+        student_list: programObj.student_list,
+        status: "active"
       });
-    await newprogram.save();
+    await newprogram.save()
 	},
   getTitleCount: async function(currentTitle) {
 	  return await program.find({title : currentTitle}).countDocuments() + 1 
