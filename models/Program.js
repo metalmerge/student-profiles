@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-// const Student = require("../models/Student");
+const Student = require("../models/Student");
 
 const ProgramSchema = new Schema({
   title: {
@@ -38,8 +38,7 @@ const ProgramSchema = new Schema({
     required: true
   },
   student_list: {
-    type: [String], 
-    // [Student.id_number],
+    type: [Student.id_number],
     // enum:[id_number, note],
     required: true
   },
