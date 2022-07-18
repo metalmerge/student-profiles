@@ -43,6 +43,7 @@ module.exports = {
 			student: studentObj,
 			view: false,
 			programs: programList,
+			add: false
 		};
 	editStudent: async function (request, response) {
 		let studentId = request.params.id;
