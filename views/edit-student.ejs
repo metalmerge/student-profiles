@@ -109,16 +109,12 @@
 			<input type="text" class="form-control" name="id_number" value="<%=student.id_number%>" readonly required>
 		</div>
 	</div>
-	<% if (!view) { %>
-		<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> Student</button>
-	<% } %>
 	</form>
 	<% if (student.status == "inactive") { %>
 		<a class="float-right" href="/reactivate/<%= student.id %>" class="btn btn-info float-left">Reactivate</a>
 	<% } %>
 <% } else { %>
 	<p class="text-center">Student Not Found.</p>
-<% } %>
 </div>
 <script>
 	function formatPhoneNumber(element) {
