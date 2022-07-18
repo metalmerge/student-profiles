@@ -37,7 +37,6 @@ const ProgramSchema = new Schema({
     required: true
   },
   student_list: {
-    type: [Object],
     required: true
   },
   note: {
@@ -45,10 +44,3 @@ const ProgramSchema = new Schema({
     required: false
   },
   status: {
-    type: String,
-    enum: ["active", "inactive"],
-    required: true
-  }
-});
-
-module.exports = Program = mongoose.model("programs", ProgramSchema);
