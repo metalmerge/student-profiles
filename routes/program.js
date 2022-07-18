@@ -1,11 +1,9 @@
 const db = require("../database/program_db")
 const student_db = require("../database/db")
 module.exports = {
-	addProgramPage: async function (request, response) {
-		let studentList = await student_db.getStudentsList();
+	addProgramPage: function (request, response) {
 		let renderData = {
 			program: {},
-			students: studentList,
 			add: true
 		};
 
