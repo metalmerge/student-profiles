@@ -1,5 +1,4 @@
 const Student = require("../models/Student");
-const student = require("../routes/student");
 
 module.exports = {
 	addStudent: async function(studentObj) {
