@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-// const Program = require("../models/Program");
 
-// Create Schema
 const StudentSchema = new Schema({
   first_name: {
     type: String,
