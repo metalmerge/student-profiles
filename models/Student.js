@@ -49,11 +49,11 @@ const StudentSchema = new Schema({
   },
   interestsAndHobies: {
     type: String,
-    enum: ["active", "inactive"],
     required: false
   },
   status: {
     type: String,
+    enum: ["active", "inactive"],
     required: true
   }
 });
