@@ -43,6 +43,9 @@ const StudentSchema = new Schema({
     required: true
   },
   note: {
+    type: String,
+    required: true
+  },
   guardianPhone: {
     type: String,
     required: true
