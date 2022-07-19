@@ -22,16 +22,36 @@ const StudentSchema = new Schema({
     type: String,
     required: true
   },
+  phone_number: {
+    type: String,
+    required: true
+  },
+  dateOfBirth: {
+    type: String,
+    required: true
+  },
+  guardianEmail: {
+    type: String,
+    required: false
+  },
   email: {
     type: String,
     required: true
   },
   program_list: {
     type: [String],
-   
     required: true
   },
   note: {
+  guardianPhone: {
+    type: String,
+    required: true
+  },
+  notes: {
+    type: String,
+    required: true
+  },
+  interestsAndHobies: {
     type: String,
     required: false
   },
