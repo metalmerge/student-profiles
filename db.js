@@ -16,9 +16,9 @@ module.exports = {
       phone_number: studentObj.phone_number,
       dateOfBirth: studentObj.dateOfBirth,
       guardianPhone: studentObj.guardianPhone,
-      guardianEmail: studentObj.gEmail,
+      guardianEmail: studentObj.guardianEmail,
       notes: studentObj.notes,
-      hobies_or_interests: studentObj.interests,
+      interestsAndHobies: studentObj.interestsAndHobies,
       id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
       status: "active"
       
