@@ -2,6 +2,11 @@ const Student = require("../models/Student");
 
 module.exports = {
 	addStudent: async function(studentObj) {
+    let studentSchool = studentObj.school
+    if (studentObj.school == "other"){
+      studentSchool = studentObj.other_school
+    }
+    console.log(studentObj.gEmail)
     const newStudent = new Student({
       first_name: studentObj.first_name,
       last_name: studentObj.last_name,
@@ -18,6 +23,7 @@ module.exports = {
       status: "active"
       
     });
+    console.log(newStudent)
     await newStudent.save();
 	},
   getLastNameCount: async function(lastName) {
@@ -45,7 +51,7 @@ module.exports = {
     {
       runValidators: true
     });
-    
+    console.log(newStudentObj)
 	},
 
 	deleteStudentById: async function(studentId) {
