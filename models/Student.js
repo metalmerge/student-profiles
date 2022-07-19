@@ -30,8 +30,7 @@ const StudentSchema = new Schema({
   },
   program_list: {
     type: [String],
-    // type: [[Program.program_id_number, String]],
-    // enum:[id_number, note],
+   
     required: true
   },
   note: {

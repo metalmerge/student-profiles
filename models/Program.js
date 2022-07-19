@@ -16,11 +16,11 @@ const ProgramSchema = new Schema({
     required: true
   },
   start_date: {
-    type: String,
+    type: Date,
     required: true
   },
   end_date: {
-    type: String,
+    type: Date,
     required: true
   },
   min_grade_level: {
@@ -39,8 +39,6 @@ const ProgramSchema = new Schema({
   },
   student_list: {
     type: [String],
-    // type: [Student.id_number],
-    // enum:[id_number, note],
     required: true
   },
   note: {
