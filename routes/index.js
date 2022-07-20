@@ -17,6 +17,7 @@ module.exports = {
 			path: 'none',
 			students: activeStudents
 		}
+
 		response.render('index', renderData);
 		
 	},
@@ -52,12 +53,14 @@ module.exports = {
 				activeStudents.push(studentList[i]);
 			}
 		}
+
 		let filteredStudents = [];
 		for (let i = 0; i < activeStudents.length; i++) {
 			if (activeStudents[i].grade == filteredGrade) {
 				filteredStudents.push(activeStudents[i]);
 			}
 		}
+
 		filteredStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
 			ignorePunctuation: true
 		}));
@@ -66,6 +69,7 @@ module.exports = {
 			path: filteredGrade,
 			students: filteredStudents
 		}
+
 		response.render('index', renderData);
 	}
 };
