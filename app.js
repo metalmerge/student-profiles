@@ -33,19 +33,8 @@ mongoose.connect(dbStr, dbSettings)
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
-app.get('/', index.getHomePage);
-app.post('/addImage',async(req,res,next)=>{
-  const {img} = req.body;
-  const Student = new Student()
-  saveImage(Student,img)  
-  try{
-    const newStudent = await Student.save();
-    res.redirect('/')
-  }catch(err){
-    console.log(err);
-  }
-});
-app.get('/add', student.addStudentPage);
+app.get('/', index.getHomePage)
+t('/add', student.addStudentPage);
 app.get('/edit/:id', student.editStudentPage);
 app.get('/delete/:id', student.deleteStudent);
 app.get('/reactivate/:id', student.reactivateStudent);
@@ -53,13 +42,24 @@ app.get('/next-grade', student.increaseStudentGrades);
 app.get('/filter/:grade', index.filter);
 app.post('/add', student.addStudent);
 app.post('/edit/:id', student.editStudent);
+app.post('/addImage',async(req, res, next) => {
+  const {img} = req.body;
+  const Student = new Student();
+  saveImage(Student, img);
+  try{
+    const newStudent = await Student.save();
+    res.redirect('/')
+  } catch(err) {
+    console.log(err);
+  }
+});
 function saveImage(Student, imgEncoded) {
-  if(imgEncoded == null) return;
+  if (imgEncoded == null) return;
 
   const img = JSON.parse(imgEncoded);
 
-  if (im != null&&imageMimeTypes.includes(img.type)){
-    Student.img = new Buffer.from(img.data,'base64');
+  if (img != null && imageMimeTypes.includes(img.type)) {
+    Student.img = new Buffer.from(img.data, 'base64');
     Student.imgType = img.type;
   }
 }
@@ -74,7 +74,6 @@ app.post('/addImage',async(req, res, next) => {
     console.log(err);
   }
 });
-
 function saveImage(Student, imgEncoded) {
   if (imgEncoded == null) return;
 
