@@ -2,15 +2,25 @@ const Student = require("../models/Student");
 
 module.exports = {
 	addStudent: async function(studentObj) {
+    guardianPhoneDeformated = studentObj.guardianPhone.replace('(',"")
+    guardianPhoneDeformated = guardianPhoneDeformated.replace(')',"")
+    guardianPhoneDeformated = guardianPhoneDeformated.replace('-',"")
+    guardianPhoneDeformated = guardianPhoneDeformated.replace('-',"")
+    guardianPhoneDeformated = guardianPhoneDeformated.replace('+',"")
+    studentPhoneDeformated = studentObj.phone_number.replace('(',"")
+    studentPhoneDeformated = studentPhoneDeformated.replace(')',"")
+    studentPhoneDeformated = studentPhoneDeformated.replace('-',"")
+    studentPhoneDeformated = studentPhoneDeformated.replace('-',"")
+    studentPhoneDeformated = studentPhoneDeformated.replace('+',"")
     const newStudent = new Student({
       first_name: studentObj.first_name,
       last_name: studentObj.last_name,
       grade: studentObj.grade,
       school: studentObj.school,
       email: studentObj.email,
-      phone_number: studentObj.phone_number,
+      phone_number: studentPhoneDeformated,
       dateOfBirth: studentObj.dateOfBirth,
-      guardianPhone: studentObj.guardianPhone,
+      guardianPhone: guardianPhoneDeformated,
       guardianEmail: studentObj.guardianEmail,
       notes: studentObj.notes,
       interestsAndHobies: studentObj.interestsAndHobies,
@@ -18,6 +28,7 @@ module.exports = {
       status: "active"
       
     });
+    console.log(newStudent)
     await newStudent.save();
 	},
   getLastNameCount: async function(lastName) {
