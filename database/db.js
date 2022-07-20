@@ -2,7 +2,6 @@ const Student = require("../models/Student");
 
 module.exports = {
 	addStudent: async function(studentObj) {
-<<<<<<< HEAD
     const newStudent = new Student({
       first_name: studentObj.first_name,
       last_name: studentObj.last_name,
@@ -20,7 +19,6 @@ module.exports = {
       img: studentObj.img
     });
     await newStudent.save();
-=======
     let format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(studentObj.email.toLowerCase().match(format) && studentObj.guardianEmail.toLowerCase().match(format)) {
       const newStudent = new Student({
@@ -40,7 +38,6 @@ module.exports = {
       });
       await newStudent.save();
   }
->>>>>>> fcae273953e4bb617e1188e3ade9b8e6f602d629
 	},
   getLastNameCount: async function(lastName) {
     return await Student.find({last_name : lastName}).countDocuments() + 1 

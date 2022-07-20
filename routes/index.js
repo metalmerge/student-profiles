@@ -52,7 +52,6 @@ module.exports = {
 				activeStudents.push(studentList[i]);
 			}
 		}
-<<<<<<< HEAD
 
 		let filteredStudents = [];
 		for (let i = 0; i < activeStudents.length; i++) {
@@ -60,8 +59,6 @@ module.exports = {
 				filteredStudents.push(activeStudents[i]);
 			}
 		}
-<<<<<<< HEAD
-
 		filteredStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
 			ignorePunctuation: true
 		}));
@@ -70,12 +67,6 @@ module.exports = {
 			path: filteredGrade,
 			students: filteredStudents
 		}
-=======
-		console.log(renderData);
->>>>>>> a833067 (not working, something in index ??)
-=======
-		console.log(renderData);
->>>>>>> 459cd9c (not working, something in index ??)
 		response.render('index', renderData);
 	}
 };
