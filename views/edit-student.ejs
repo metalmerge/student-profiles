@@ -1,7 +1,5 @@
 <%- include('partials/header') %>
 <div class="container">
-<title>Edit Student</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 <% if (add || student) { %>
 	<form method="post" action="/<%=add ? 'add' : `edit/${student.id}`%>">
 		<div class="form-row">
@@ -20,41 +18,21 @@
 				<input type="email" class="form-control" name="email" value="<%=student.email%>" required>
 			</div>
 			<div class="form-group col-md-6">
+				<label for="guardianEmail">Guardian Email</label>
+				<input type="email" class="form-control" name="guardianEmail" value="<%=student.guardianEmail%>" required>
+			</div>
+			<div class="form-group col-md-6">
 				<label for="phone_number">Phone Number</label>
-				<input type="tel" id="tel" class="form-control" oninput="myFunction2()" name="phone_number" pattern ="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="###-###-####" value="<%=student.phone_number%>" required>
+				<input type="tel" class="form-control" name="phone_number" pattern ="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="###-###-####" value="<%=student.phone_number%>" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="guardianPhone">Guardian Phone Number</label>
+				<input type="tel" class="form-control" name="guardianPhone" pattern ="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="###-###-####" value="<%=student.guardianPhone%>" required>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="dateOfBirth">Date Of Birth</label>
 				<input type="date" class="form-control" name="dateOfBirth" value="<%=student.dateOfBirth%>" required>
 			</div>
-			<div class="form-group col-md-6">
-				<label for="guardianEmail">Guardian Email</label>
-				<input type="email" class="form-control" name="guardianEmail" value="<%=student.guardianEmail%>" required>
-			</div>
-			<div class="form-group col-md-6">
-				<label for="guardianPhone">Guardian Phone Number</label>
-				<input type="tel" id="tel2" class="form-control" oninput="myFunction()" name="guardianPhone" pattern ="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="###-###-####" value="<%=student.guardianPhone%>" required>
-			</div>
-			<script>
-				function myFunction2() {
-					let tel = document.getElementById('tel').value;
-					if (tel.length == 3) {
-						document.getElementById('tel').value = tel +  "-";
-					}
-					if (tel.length == 7) {
-						document.getElementById('tel').value += "-"
-					}
-				}
-				function myFunction() {
-					let tel = document.getElementById('tel2').value;
-					if (tel.length == 3) {
-						document.getElementById('tel2').value = tel +  "-";
-					}
-					if (tel.length == 7) {
-						document.getElementById('tel2').value += "-"
-					}
-				}
-			</script>
 			<div class="form-group col-md-6">
 				<label for="notes">Notes</label>
 				<input type="text" class="form-control" name="notes" value="<%=student.notes%>" required>
@@ -92,23 +70,7 @@
 					<input type="text" class="form-control" name="id_number" value="<%=student.id_number%>" readonly required>
 				</div>
 			</div>
-	</div>
-	<br><br>	
-		<div class="ui container">
-			<form action="/addImage" class ="ui form" method = "POST">
-				<div class="ui field">
-					<label for="img">Upload Image Of Yourself</label>
-					<br><br>
-					<input type="file"name="img"id="">
-				</div>
-				<div class="ui field">
-				</div>
-			</form>
-		</div>	
-		</form>
-		</div>
-	  </div>
-		<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> Student</button>
+			<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> Student</button>
 	</form>
 	<% if (student.status == "inactive") { %>
 		<a href="/reactivate/<%= student.id %>" class="btn btn-info float-left">Reactivate</a>
