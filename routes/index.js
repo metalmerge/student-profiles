@@ -58,7 +58,6 @@ module.exports = {
 				filteredStudents.push(activeStudents[i]);
 			}
 		}
-
 		filteredStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
 			ignorePunctuation: true
 		}));
