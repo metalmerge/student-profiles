@@ -31,6 +31,7 @@ module.exports = {
         status: "active",
       
     });
+    console.log(newStudent)
     await newStudent.save();
 	}},
   getLastNameCount: async function(lastName) {
