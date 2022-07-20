@@ -2,27 +2,24 @@ const Student = require("../models/Student");
 
 module.exports = {
 	addStudent: async function(studentObj) {
-    if(studentObj.email.toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    )) {
-    const newStudent = new Student({
-      first_name: studentObj.first_name,
-      last_name: studentObj.last_name,
-      grade: studentObj.grade,
-      school: studentObj.school,
-      email: studentObj.email,
-      phone_number: studentObj.phone_number,
-      dateOfBirth: studentObj.dateOfBirth,
-      guardianPhone: studentObj.guardianPhone,
-      guardianEmail: studentObj.guardianEmail,
-      notes: studentObj.notes,
-      interestsAndHobies: studentObj.interestsAndHobies,
-      id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
-      status: "active"
-      
-    });
-    await newStudent.save();
+    let format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(studentObj.email.toLowerCase().match(format) && studentObj.guardianEmail.toLowerCase().match(format)) {
+      const newStudent = new Student({
+        first_name: studentObj.first_name,
+        last_name: studentObj.last_name,
+        grade: studentObj.grade,
+        school: studentObj.school,
+        email: studentObj.email,
+        phone_number: studentObj.phone_number,
+        dateOfBirth: studentObj.dateOfBirth,
+        guardianPhone: studentObj.guardianPhone,
+        guardianEmail: studentObj.guardianEmail,
+        notes: studentObj.notes,
+        interestsAndHobies: studentObj.interestsAndHobies,
+        id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
+        status: "active"
+      });
+      await newStudent.save();
   }
 	},
   getLastNameCount: async function(lastName) {
@@ -39,17 +36,20 @@ module.exports = {
 	},
 
 	editStudentById: async function(studentId, newStudentObj) {
-    let studentSchool = studentId.school
-    if (studentId.school == "other"){
-      studentSchool = studentId.other_school 
+    let format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(newStudentObj.email.toLowerCase().match(format) && newStudentObj.guardianEmail.toLowerCase().match(format)) {
+      let studentSchool = studentId.school
+      if (studentId.school == "other"){
+        studentSchool = studentId.other_school 
+      }
+      await Student.findOneAndUpdate({
+        _id: studentId
+      },
+      newStudentObj,
+      {
+        runValidators: true
+      });
     }
-    await Student.findOneAndUpdate({
-      _id: studentId
-    },
-    newStudentObj,
-    {
-      runValidators: true
-    });
 	},
 
 	deleteStudentById: async function(studentId) {
