@@ -12,6 +12,7 @@ const student = require('./routes/student');
 const imageMimeTypes = ['image/jpeg','image/png','image/gif'];
 const program = require('./routes/program');
 
+
 let app = express();
 
 app.set('view engine', 'ejs');
@@ -34,7 +35,8 @@ mongoose.connect(dbStr, dbSettings)
   .catch(err => console.log(err));
 
 app.get('/', index.getHomePage)
-t('/add', student.addStudentPage);
+('/add', student.addStudentPage);
+app.get('/add', student.addStudentPage);
 app.get('/edit/:id', student.editStudentPage);
 app.get('/delete/:id', student.deleteStudent);
 app.get('/reactivate/:id', student.reactivateStudent);
@@ -84,6 +86,31 @@ function saveImage(Student, imgEncoded) {
     Student.imgType = img.type;
   }
 }
+
+app.post('/addImage',async(req, res, next) => {
+  const {img} = req.body;
+  const Student = new Student();
+  saveImage(Student, img);
+  try{
+    const newStudent = await Student.save();
+    res.redirect('/')
+  } catch(err) {
+    console.log(err);
+  }
+});
+
+function saveImage(Student, imgEncoded) {
+  if (imgEncoded == null) return;
+
+  const img = JSON.parse(imgEncoded);
+
+  if (img != null && imageMimeTypes.includes(img.type)) {
+    Student.img = new Buffer.from(img.data, 'base64');
+    Student.imgType = img.type;
+  }
+}
+
+
 app.get('/program_delete/:id', program.deleteProgram);
 app.get('/program_reactivate/:id', program.reactivateProgram);
 app.get('/program', program_index.getProgramPage);
