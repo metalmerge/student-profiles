@@ -46,8 +46,7 @@ module.exports = {
 	editStudent: async function (request, response) {
 		let studentId = request.params.id;
 		await db.editStudentById(studentId, request.body);
-
-		response.redirect('/');
+		await module.exports.viewStudentPage(request, response)
 	},
 
 	deleteStudent: async function (request, response) {
