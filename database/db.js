@@ -3,6 +3,16 @@ const Student = require("../models/Student");
 module.exports = {
 	addStudent: async function(studentObj) {
     let format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    guardianPhoneDeformated = studentObj.guardianPhone.replace('(',"")
+    guardianPhoneDeformated = guardianPhoneDeformated.replace(')',"")
+    guardianPhoneDeformated = guardianPhoneDeformated.replace('-',"")
+    guardianPhoneDeformated = guardianPhoneDeformated.replace('-',"")
+    guardianPhoneDeformated = guardianPhoneDeformated.replace('+',"")
+    studentPhoneDeformated = studentObj.phone_number.replace('(',"")
+    studentPhoneDeformated = studentPhoneDeformated.replace(')',"")
+    studentPhoneDeformated = studentPhoneDeformated.replace('-',"")
+    studentPhoneDeformated = studentPhoneDeformated.replace('-',"")
+    studentPhoneDeformated = studentPhoneDeformated.replace('+',"")
     if(studentObj.email.toLowerCase().match(format) && studentObj.guardianEmail.toLowerCase().match(format)) {
       const newStudent = new Student({
         first_name: studentObj.first_name,
@@ -10,9 +20,9 @@ module.exports = {
         grade: studentObj.grade,
         school: studentObj.school,
         email: studentObj.email,
-        phone_number: studentObj.phone_number,
+        phone_number: studentPhoneDeformated,
         dateOfBirth: studentObj.dateOfBirth,
-        guardianPhone: studentObj.guardianPhone,
+        guardianPhone: guardianPhoneDeformated,
         guardianEmail: studentObj.guardianEmail,
         notes: studentObj.notes,
         interestsAndHobies: studentObj.interestsAndHobies,
@@ -21,6 +31,7 @@ module.exports = {
         status: "active",
       
     });
+    console.log(newStudent)
     await newStudent.save();
 	}},
   getLastNameCount: async function(lastName) {
