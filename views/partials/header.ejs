@@ -76,11 +76,29 @@
 				opacity: 0;
 				pointer-events: none;
 			}
+
+			#smaller-box {
+				height: 100%;
+				width: 0;
+				position: fixed;
+				z-index: 1;
+			  	top: 0;
+			  	left: 0;
+			  	background-color: rgb(168, 161, 161);
+			  	overflow-x: hidden;
+			  	transition: 0.5s;
+			  	padding-top: 60px;
+				opacity: 0;
+				pointer-events: visible;
+				margin-left: 250px;
+			}
 			</style>
 	</head>
 	<body>
 		<div class="page-wrapper">
-			<div class="big-box" id="big-box" onmousedown="exitNav(event)"></div>
+			<div class="big-box" id="big-box" onmousedown="exitNav(event)">
+				<div id="smaller-box" onclick="closeNav()"></div>
+			</div>
 			<div id="mySidenav" class="sidenav">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 				<a href="/">Students List</a>
@@ -97,10 +115,19 @@
 			  function openNav() {
 				document.getElementById('mySidenav').style.width = "250px";
 				document.getElementById('big-box').style.opacity = "25%";
+				document.getElementById('smaller-box').style.width = "100%";
 			  }
 			  
 			  function closeNav() {
 				document.getElementById('mySidenav').style.width = "0";
 				document.getElementById('big-box').style.opacity = "0";
+				document.getElementById('smaller-box').style.width = "0";
 			  }
+
+			  /*function exitNav(event) {
+				console.log(':)');
+				if (event.clientX > 250) {
+					closeNav();
+				}
+			  }*/
 			  </script>
