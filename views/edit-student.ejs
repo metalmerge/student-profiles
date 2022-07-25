@@ -28,11 +28,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelIn
 			</div>
 			<div class="form-group col-md-6">
 				<label for="phone_number">Phone Number</label>
-				<input type="tel" class="form-control" name="phone_number" pattern ="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="###-###-####" value="<%=student.phone_number%>" required>
+				<input oninput="formatPhoneNumber()" id="phoneNumber" type="tel" class="form-control" name="phone_number" pattern ="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}" placeholder="###-###-####" value="<% if (student.phone_number) { %>(<%=student.phone_number.substring(0, 3)%>) <%=student.phone_number.substring(3, 6)%>-<%=student.phone_number.substring(6)%><% } %>" maxlength="14" required>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="guardianPhone">Guardian Phone Number</label>
-				<input type="tel" class="form-control" name="guardianPhone" pattern ="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="###-###-####" value="<%=student.guardianPhone%>" required>
+				<input oninput="formatGuardianPhoneNumber()" id="guardianPhoneNumber" type="tel" class="form-control" name="guardianPhone" pattern ="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}" placeholder="###-###-####" value="<% if (student.guardianPhone) { %>(<%=student.guardianPhone.substring(0, 3)%>) <%=student.guardianPhone.substring(3, 6)%>-<%=student.guardianPhone.substring(6)%><% } %>" maxlength="14" required>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="notes">Notes</label>
@@ -84,6 +84,53 @@ href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelIn
 	<p class="text-center">Student Not Found.</p>
 <% } %>
 </div>
+<script>
+	function formatPhoneNumber() {
+		let phoneNumber = document.getElementById('phoneNumber').value;
+
+		let nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+		let phoneNumberNums = '';
+		for (let i = 0; i < phoneNumber.length; i++) {
+			if (nums.includes(phoneNumber.charAt(i))) {
+				phoneNumberNums += phoneNumber.charAt(i);
+			}
+		}
+
+		let phoneNumberFormatted = phoneNumberNums;
+
+		if (phoneNumberNums.length >= 3) {
+			phoneNumberFormatted = '(' + phoneNumberNums.substring(0, 3) + ') ' + phoneNumberNums.substring(3);
+		}
+		if (phoneNumberNums.length >= 6) {
+			phoneNumberFormatted = "(" + phoneNumberNums.substring(0, 3) + ') ' + phoneNumberNums.substring(3, 6) + '-' + phoneNumberNums.substring(6);
+		}
+
+		document.getElementById('phoneNumber').value = phoneNumberFormatted;
+	}
+
+	function formatGuardianPhoneNumber() {
+		let phoneNumber = document.getElementById('guardianPhoneNumber').value;
+
+		let nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+		let phoneNumberNums = '';
+		for (let i = 0; i < phoneNumber.length; i++) {
+			if (nums.includes(phoneNumber.charAt(i))) {
+				phoneNumberNums += phoneNumber.charAt(i);
+			}
+		}
+
+		let phoneNumberFormatted = phoneNumberNums;
+
+		if (phoneNumberNums.length >= 3) {
+			phoneNumberFormatted = '(' + phoneNumberNums.substring(0, 3) + ') ' + phoneNumberNums.substring(3);
+		}
+		if (phoneNumberNums.length >= 6) {
+			phoneNumberFormatted = "(" + phoneNumberNums.substring(0, 3) + ') ' + phoneNumberNums.substring(3, 6) + '-' + phoneNumberNums.substring(6);
+		}
+
+		document.getElementById('guardianPhoneNumber').value = phoneNumberFormatted;
+	}
+</script>
 </div>
 </body>
 </html>
