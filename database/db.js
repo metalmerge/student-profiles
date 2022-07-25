@@ -3,16 +3,16 @@ const Student = require("../models/Student");
 module.exports = {
 	addStudent: async function(studentObj) {
     let format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    guardianPhoneDeformated = studentObj.guardianPhone.replace('(',"")
-    guardianPhoneDeformated = guardianPhoneDeformated.replace(')',"")
-    guardianPhoneDeformated = guardianPhoneDeformated.replace('-',"")
-    guardianPhoneDeformated = guardianPhoneDeformated.replace('-',"")
-    guardianPhoneDeformated = guardianPhoneDeformated.replace('+',"")
-    studentPhoneDeformated = studentObj.phone_number.replace('(',"")
-    studentPhoneDeformated = studentPhoneDeformated.replace(')',"")
-    studentPhoneDeformated = studentPhoneDeformated.replace('-',"")
-    studentPhoneDeformated = studentPhoneDeformated.replace('-',"")
-    studentPhoneDeformated = studentPhoneDeformated.replace('+',"")
+    guardianPhoneDeformated = studentObj.guardianPhone.replaceAll('(',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(')',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('-',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('+',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(' ',"");
+    studentPhoneDeformated = studentObj.phone_number.replaceAll('(',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll(')',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll('-',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll('+',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll(' ',"");
     if(studentObj.email.toLowerCase().match(format) && studentObj.guardianEmail.toLowerCase().match(format)) {
       const newStudent = new Student({
         first_name: studentObj.first_name,
@@ -31,7 +31,6 @@ module.exports = {
         status: "active",
       
     });
-    console.log(newStudent)
     await newStudent.save();
 	}},
   getLastNameCount: async function(lastName) {
@@ -52,6 +51,21 @@ module.exports = {
     if (studentId.school == "other"){
       studentSchool = studentId.other_school 
     }
+
+    guardianPhoneDeformated = newStudentObj.guardianPhone.replaceAll('(',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(')',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('-',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('+',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(' ',"");
+    studentPhoneDeformated = newStudentObj.phone_number.replaceAll('(',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll(')',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll('-',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll('+',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll(' ',"");
+
+    newStudentObj['guardianPhone'] = guardianPhoneDeformated;
+    newStudentObj['phone_number'] = studentPhoneDeformated;
+
     await Student.findOneAndUpdate({
       _id: studentId
     },
