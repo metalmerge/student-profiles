@@ -72,7 +72,7 @@
 				<label for="student_list">Students Involved</label>
 				<select class="form-control" name="student_list" id="student_list" multiple onchange="noteReveal()">
 					<% for (let i = 0; i < students.length; i++) { %>
-						<option><%= students[i] %></option>
+						<option><%= students[i].first_name%> - <%= students[i].id %> </option>
 					<% } %>
 				</select>
 			</div>
