@@ -27,7 +27,7 @@
                 <td><%= programs[i].max_grade_level %></td>
 				<td>
 					<% for (let j = 0; j < programs[i].student_list.length; j++) { %>
-                        <a href="/view/<%= programs[i].student_list[j] %>"><%= programs[i].student_list[j]['first_name'] %></a>
+                        <a href="/view/<%= programs[i].student_list[j].substring(programs[i].student_list[j].indexOf("-") + 2) %>"><%= programs[i].student_list[j].substring(0,programs[i].student_list[j].indexOf("-") - 1) %></a>
                     <% } %>
 				</td>
 				<td>

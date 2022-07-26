@@ -96,7 +96,7 @@
 			<label for="program_list">Programs Involved In</label>
 			<select class="form-control" name="program_list" id="program_list" multiple onchange="noteReveal()">
 				<% for (let i = 0; i < programs.length; i++) { %>
-					<option><%= programs[i] %></option>
+					<option><%= programs[i].title %> - <%= programs[i].id %></option>
 				<% } %>
 			</select>
 		</div>
