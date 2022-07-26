@@ -66,7 +66,7 @@
 				<td><%= students[i].email %></td>
 				<td><%= students[i].id_number %></td>
 				<td>
-					<% for (let j = 0; j < Object.keys(students[i].program_list).length; j++) { %>
+					<% for (let j = 0; j < students[i].program_list.length; j++) { %>
                         <a href="/view/<%= students[i].program_list[j] %>"><%= students[i].program_list[j] %></a>
                     <% } %>
 				</td>
