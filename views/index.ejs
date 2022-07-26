@@ -72,7 +72,7 @@
 					<td><%= students[i].id_number %></td>
 				<td>
 					<% for (let j = 0; j < students[i].program_list.length; j++) { %>
-                        <a href="/view/<%= students[i].program_list[j] %>"><%= students[i].program_list[j] %></a>
+						<a href="/view/<%= students[i].program_list[j].substring(students[i].program_list[j].indexOf("-") + 2) %>"><%= students[i].program_list[j].substring(0,students[i].program_list[j].indexOf("-") - 1) %></a>
                     <% } %>
 				</td>
 			</tr>
