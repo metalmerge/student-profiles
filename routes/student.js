@@ -17,7 +17,7 @@ module.exports = {
 	viewStudentPage: async function (request, response) {
 		let studentId = request.params.id;
 		let studentObj = await db.getStudentById(studentId);
-		
+		let programList = await program_db.getProgramsList();
 		let renderData = {
 			student: studentObj,
 			add: false,
