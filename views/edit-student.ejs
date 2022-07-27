@@ -1,8 +1,5 @@
 <%- include('partials/header') %>
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
-/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 <div class="container">
 <% if (add || student) { %>
@@ -32,11 +29,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelIn
 			</div>
 			<div class="form-group col-md-2">
 				<label>Country</label>
-				<input name="countryCode-phone" class="form-control" list="countryCodes" id="countryCode-phone" onchange="changeCountryCodeToNum(this)" required <% if (view) { %> readonly <% } %> />
+				<input name="countryCode" class="form-control" list="countryCodes" id="countryCode-phone" value="<%= student.countryCode %>" required <% if (view) { %> readonly <% } %> />
 				<datalist id="countryCodes">
-					<% const codes = {'Afghanistan (+93)': '+93', 'Albania (+355)': '+355', 'Algeria (+213)': '+213', 'American Samoa (+1-684)': '+1-684', 'Andorra (+376)': '+376', 'Angola (+244)': '+244', 'Anguilla (+1-264)': '+1-264', 'Antarctica (+672)': '+672'}; %>
-					<% for (const country in codes) { %>
-						<option><%= country %></option>
+					<% for (const country in countries) { %>
+						<option value="+<%= countries[country].phone %>"><%= countries[country].name %></option>
 					<% } %>
 				</datalist>
 			</div>
@@ -46,7 +42,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelIn
 			</div>
 			<div class="form-group col-md-2">
 				<label>Country</label>
-				<input name="countryCode-phone" class="form-control" list="countryCodes" id="countryCode-guardianPhone" onchange="changeCountryCodeToNum(this)" required <% if (view) { %> readonly <% } %> />
+				<input name="countryCodeGuardian" class="form-control" list="countryCodes" id="countryCode-guardianPhone" value="<%= student.countryCodeGuardian %>" required <% if (view) { %> readonly <% } %> />
 			</div>
 			<div class="form-group col-md-4">
 				<label for="guardianPhone">Guardian Phone Number</label>
@@ -105,7 +101,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelIn
 <% } %>
 </div>
 <script>
-	const codes = {'Afghanistan': '+93', 'Albania': '+355', 'Algeria': '+213', 'American Samoa': '+1-684', 'Andorra': '+376', 'Angola': '+244', 'Anguilla': '+1-264', 'Antarctica': '+672'};
 	function formatPhoneNumber(element) {
 		let phoneNumber = element.value;
 
@@ -127,13 +122,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelIn
 		}
 
 		element.value = phoneNumberFormatted;
-	}
-
-	function changeCountryCodeToNum(element) {
-		let country = element.value.split('(')[0].slice(0, -1);
-		console.log(country);
-		element.value = codes[country];
-		element.blur();
 	}
 </script>
 </div>
