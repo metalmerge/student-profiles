@@ -38,6 +38,10 @@ const StudentSchema = new Schema({
     type: String,
     required: true
   },
+  program_list: {
+    type: [String],
+    required: true
+  },
   guardianPhone: {
     type: String,
     required: true
