@@ -10,6 +10,10 @@
         }
     </script>
 <% if (add || student) { %>
+	<% if (view) { %>
+		<a href="/edit/<%= student.id %>" class="btn btn-sm btn-success float-center">Edit</a>
+		<a href="/delete/<%= student.id %>" class="btn btn-sm btn-danger float-center">Delete</a>
+	<% } %>
 				<label for="first-name">First Name</label>
 				<input type="text" class="form-control" name="first_name" value="<%=student.first_name%>" required <% if (view) { %> readonly <% } %>>
 			</div>
