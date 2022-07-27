@@ -48,7 +48,7 @@
 			<div class="form-group col-md-6">
 				<label for="school" class="form-label">School</label>
 				<% let schools = ["Berea-Midpark High School", "Solon High School", "Lakewood High School", "Westlake High School"]; %>
-				<input id="school"  class="form-control" name="school" list="school_options" required <% if (!add) { %> value="<%= student.school %>" <% } %>/>
+				<input id="school"  class="form-control" name="school" list="school_options" required <% if (!add) { %> value="<%= student.school %>" <% } %> <% if (view) { %> readonly <% } %>/>
 				<datalist id="school_options">
 					<% for (let i = 0; i < schools.length; i++) { %>
 						<option value="<%= schools[i] %>">
