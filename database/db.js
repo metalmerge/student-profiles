@@ -20,7 +20,6 @@ module.exports = {
         program_list: studentObj.program_list,
         note: studentObj.note,
         status: "active",
-      
     });
     await newStudent.save();
 	}},
