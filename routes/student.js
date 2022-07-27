@@ -9,7 +9,7 @@ module.exports = {
 			student: {},
 			add: true,
 			view: false,
-			programs: programList,
+			programs: module.exports.activePrograms(programList),
 		};
 
 		response.render('edit-student', renderData);
@@ -22,7 +22,7 @@ module.exports = {
 			student: studentObj,
 			add: false,
 			view: true,
-			programs: programList,
+			programs: studentObj.program_list,
 		};
 
 		response.render('edit-student', renderData);
@@ -42,7 +42,7 @@ module.exports = {
 		let renderData = {
 			student: studentObj,
 			view: false,
-			programs: programList,
+			programs: module.exports.activePrograms(programList),
 			add: false
 		};
 		response.render('edit-student', renderData);
@@ -71,6 +71,15 @@ module.exports = {
 		await db.editStudentById(studentId, studentObj);
 
 		response.redirect('/');
+	},
+	activePrograms: function(programList) {
+		let activePrograms = [];
+		for (let i = 0; i < programList.length; i++) {
+			if (programList[i].status == "active") {
+				activePrograms.push(programList[i]);
+			}
+		}
+		return activePrograms
 	},
 
 	//Currently doesn't account for:
