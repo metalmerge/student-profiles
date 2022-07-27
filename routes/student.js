@@ -24,6 +24,7 @@ module.exports = {
 		let dateOfBirth = moment.utc(studentObj.dateOfBirth);
 		studentObj['dateOfBirthFormatted'] = dateOfBirth.format('YYYY[-]MM[-]DD');
 		
+		let programList = await program_db.getProgramsList();
 		let renderData = {
 			student: studentObj,
 			add: false,
@@ -55,7 +56,9 @@ module.exports = {
 			countries: countries,
 			programs: programList,
 			add: false
-		};
+		}
+	},
+	
 	editStudent: async function (request, response) {
 		let studentId = request.params.id;
 		await db.editStudentById(studentId, request.body);
