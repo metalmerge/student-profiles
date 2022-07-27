@@ -45,6 +45,19 @@ module.exports = {
 
 		response.redirect('/program');
 	},
+	viewProgramPage: async function (request, response) {
+		let programId = request.params.id;
+		let programObj = await db.getProgramById(programId);
+		let studentList = await student_db.getStudentsList();
+		let renderData = {
+			program: programObj,
+			add: false,
+			view: true,
+			students: studentList,
+		};
+
+		response.render('edit-program', renderData);
+	},
 
 	deleteProgram: async function (request, response) {
 		let programId = request.params.id;
