@@ -12,7 +12,7 @@ module.exports = {
 			add: true,
 			view: false,
 			countries: countries,
-			programs: programList,
+			programs: module.exports.activePrograms(programList),
 		};
 
 		response.render('edit-student', renderData);
@@ -30,7 +30,7 @@ module.exports = {
 			add: false,
 			view: true,
 			countries: countries,
-			programs: programList,
+			programs: studentObj.program_list,
 		};
 
 		response.render('edit-student', renderData);
@@ -54,7 +54,7 @@ module.exports = {
 			student: studentObj,
 			view: false,
 			countries: countries,
-			programs: programList,
+			programs: module.exports.activePrograms(programList),
 			add: false
 		}
 
@@ -85,6 +85,15 @@ module.exports = {
 		await db.editStudentById(studentId, studentObj);
 
 		response.redirect('/');
+	},
+	activePrograms: function(programList) {
+		let activePrograms = [];
+		for (let i = 0; i < programList.length; i++) {
+			if (programList[i].status == "active") {
+				activePrograms.push(programList[i]);
+			}
+		}
+		return activePrograms
 	},
 
 	increaseStudentGrades: async function (request, response) {

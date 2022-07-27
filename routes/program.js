@@ -6,7 +6,7 @@ module.exports = {
 		let studentList = await student_db.getStudentsList();
 		let renderData = {
 			program: {},
-			students: studentList,
+			students: module.exports.activeStudents(studentList),
 			add: true
 		};
 
@@ -32,7 +32,7 @@ module.exports = {
 
 		let renderData = {
 			program: programObj,
-			students: studentList,
+			students: module.exports.activeStudents(studentList),
 			add: false
 		};
 
@@ -53,7 +53,7 @@ module.exports = {
 			program: programObj,
 			add: false,
 			view: true,
-			students: studentList,
+			students: programObj.student_list,
 		};
 
 		response.render('edit-program', renderData);
@@ -77,5 +77,14 @@ module.exports = {
 		await db.editProgramById(programId, programObj);
 
 		response.redirect('/program');
+	},
+	activeStudents: function(studentList) {
+		let activeStudents = [];
+		for (let i = 0; i < studentList.length; i++) {
+			if (studentList[i].status == "active") {
+				activeStudents.push(studentList[i]);
+			}
+		}
+		return activeStudents
 	},
 };
