@@ -16,9 +16,9 @@ module.exports = {
 			}
 		}
 		let renderData = {
-			programs: activeProgram,
+			programs: student.activePrograms(programList),
 		}
-		response.render('program_index', renderData);
+		response.render('program_index', renderData)
 
 	},
 	
