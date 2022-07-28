@@ -18,7 +18,7 @@ module.exports = {
 		let studentId = request.params.id;
 		let studentObj = await db.getStudentById(studentId);
 
-		let dateOfBirth = moment(studentObj.dateOfBirth);
+		let dateOfBirth = moment.utc(studentObj.dateOfBirth);
 		studentObj['dateOfBirthFormatted'] = dateOfBirth.format('YYYY[-]MM[-]DD');
 		
 		let renderData = {
@@ -41,7 +41,7 @@ module.exports = {
 		let studentId = request.params.id;
 		let studentObj = await db.getStudentById(studentId);
 
-		let dateOfBirth = moment(studentObj.dateOfBirth);
+		let dateOfBirth = moment.utc(studentObj.dateOfBirth);
 		studentObj['dateOfBirthFormatted'] = dateOfBirth.format('YYYY[-]MM[-]DD');
 
 		let renderData = {
@@ -56,11 +56,6 @@ module.exports = {
 
 	editStudent: async function (request, response) {
 		let studentId = request.params.id;
-
-		//Fixes weird time zone issue
-		let dateOfBirth = moment(request.body.dateOfBirth);
-		request.body['dateOfBirth'] = dateOfBirth;
-
 		await db.editStudentById(studentId, request.body);
 		await module.exports.viewStudentPage(request, response)
 	},
