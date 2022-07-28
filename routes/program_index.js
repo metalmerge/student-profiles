@@ -1,18 +1,12 @@
-const db = require("../database/program_db");
-
+const db = require("../database/program_db")
+const student = require("./student")
 module.exports = {
 	getProgramPage: async function (request, response) {
 		let programList = await db.getProgramsList();
-		let activeProgram = [];
-		for (let i = 0; i < programList.length; i++) {
-			if (programList[i].status == "active") {
-				activeProgram.push(programList[i]);
-			}
-		}
 		let renderData = {
-			programs: activeProgram,
+			programs: student.activePrograms(programList),
 		}
-		response.render('program_index', renderData);
+		response.render('program_index', renderData)
 
 	},
 	

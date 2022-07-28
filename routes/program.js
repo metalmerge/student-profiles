@@ -40,7 +40,6 @@ module.exports = {
 	viewProgramPage: async function (request, response) {
 		let programId = request.params.id;
 		let programObj = await db.getProgramById(programId);
-		let studentList = await student_db.getStudentsList();
 		let renderData = {
 			program: programObj,
 			add: false,
