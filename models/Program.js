@@ -36,10 +36,6 @@ const ProgramSchema = new Schema({
     type: String,
     required: true
   },
-  student_list: {
-    type: [Object],
-    required: true
-  },
   status: {
     type: String,
     enum: ["active", "inactive"],

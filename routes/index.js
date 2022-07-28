@@ -1,19 +1,35 @@
-const db = require("../database/db");
-const program = require("./program")
+const db = require("../database/db")
+const prorgam_db = require("../database/program_db")
+const programFile = require("./program")
+const applicationFile = require("./application");
+const program_db = require("../database/program_db");
+
 module.exports = {
 	getHomePage: async function (request, response) {
-		let studentList = await db.getStudentsList();
-		let activeStudents = program.activeStudents(studentList) 
+		let studentList = await db.getStudentsList()
+		let activeStudents = programFile.activeStudents(studentList) 
+		let activeApplications = await applicationFile.activeApplications()
+		let programTitles = []
+		for (let i = 0; i < activeStudents.length; i++) {
+			for (let j = 0; j < activeApplications.length; j++) { 
+				if (activeApplications[j].student == activeStudents[i].id) { 
+					let programObj =  await program_db.getProgramById(activeApplications[j].program)
+					programTitles.push(programObj.title)
+				} 
+			} 
+		}
 		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
 			ignorePunctuation: true
 		}));
-
+		
 		let renderData = {
 			path: 'none',
 			students: activeStudents,
+			applications: activeApplications,
+			titles: programTitles,
 		}
 
-		response.render('index', renderData);
+		response.render('index', renderData)
 		
 	},
 
@@ -25,6 +41,16 @@ module.exports = {
 				activeStudents.push(studentList[i]);
 			}
 		}
+		let activeApplications = await applicationFile.activeApplications()
+		let programTitles = []
+		for (let i = 0; i < activeStudents.length; i++) {
+			for (let j = 0; j < activeApplications.length; j++) { 
+				if (activeApplications[j].student == activeStudents[i].id) { 
+					let programObj =  await program_db.getProgramById(activeApplications[j].program)
+					programTitles.push(programObj.title)
+				} 
+			} 
+		}
 
 		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
 			ignorePunctuation: true
@@ -32,7 +58,9 @@ module.exports = {
 
 		let renderData = {
 			path: 'none',
-			students: activeStudents
+			students: activeStudents,
+			applications: applicationFile.activeApplications(),
+			titles: programTitles,
 		}
 		
 		response.render('index', renderData);
@@ -55,14 +83,25 @@ module.exports = {
 				filteredStudents.push(activeStudents[i]);
 			}
 		}
-
+		let activeApplications = await applicationFile.activeApplications()
+		let programTitles = []
+		for (let i = 0; i < activeStudents.length; i++) {
+			for (let j = 0; j < activeApplications.length; j++) { 
+				if (activeApplications[j].student == activeStudents[i].id) { 
+					let programObj =  await program_db.getProgramById(activeApplications[j].program)
+					programTitles.push(programObj.title)
+				} 
+			} 
+		}
 		filteredStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
 			ignorePunctuation: true
 		}));
 
 		let renderData = {
 			path: filteredGrade,
-			students: filteredStudents
+			students: filteredStudents,
+			applications: applicationFile.activeApplications(),
+			titles: programTitles,
 		}
 
 		response.render('index', renderData);
