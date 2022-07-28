@@ -27,7 +27,7 @@ const StudentSchema = new Schema({
     required: true
   },
   dateOfBirth: {
-    type: String,
+    type: Date,
     required: true
   },
   guardianEmail: {
@@ -36,10 +36,6 @@ const StudentSchema = new Schema({
   },
   email: {
     type: String,
-    required: true
-  },
-  program_list: {
-    type: [String],
     required: true
   },
   guardianPhone: {
@@ -53,10 +49,6 @@ const StudentSchema = new Schema({
   interestsAndHobies: {
     type: String,
     required: false
-  },
-  program_list: {
-    type: [Object],
-    required: true
   },
   status: {
     type: String,

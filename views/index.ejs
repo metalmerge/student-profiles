@@ -61,6 +61,7 @@
 			</tr>
 		</thead>
 		<tbody>
+		<% let count = 0; %>
 		<% for (let i = 0; i < students.length; i++) { %>
 			<tr ondblclick="window.location='/view/<%= students[i].id %>';">
 				
@@ -71,8 +72,11 @@
 					<td><%= students[i].email %></td>
 					<td><%= students[i].id_number %></td>
 				<td>
-					<% for (let j = 0; j < students[i].program_list.length; j++) { %>
-						<a href="/view_program/<%= students[i].program_list[j].substring(students[i].program_list[j].indexOf("-") + 2) %>"><%= students[i].program_list[j].substring(0,students[i].program_list[j].indexOf("-") - 1) %></a>
+					<% for (let j = 0; j < applications.length; j++) { %>
+						<% if (applications[j].student == students[i].id) { %>
+							<a href="/view/<%= applications[j].program %>"><%= titles[count] %> </a>
+							<% count++ %> 
+						<% } %>
                     <% } %>
 				</td>
 			</tr>
