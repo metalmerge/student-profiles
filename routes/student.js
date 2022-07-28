@@ -1,6 +1,7 @@
 const countries = require("countries-list").countries;
 const { response } = require("express");
 const db = require("../database/db");
+const moment = require('moment');
 
 module.exports = {
 	addStudentPage: function (request, response) {
@@ -16,6 +17,9 @@ module.exports = {
 	viewStudentPage: async function (request, response) {
 		let studentId = request.params.id;
 		let studentObj = await db.getStudentById(studentId);
+
+		let dateOfBirth = moment(studentObj.dateOfBirth);
+		studentObj['dateOfBirthFormatted'] = dateOfBirth.format('YYYY[-]MM[-]DD');
 		
 		let renderData = {
 			student: studentObj,
@@ -37,6 +41,9 @@ module.exports = {
 		let studentId = request.params.id;
 		let studentObj = await db.getStudentById(studentId);
 
+		let dateOfBirth = moment(studentObj.dateOfBirth);
+		studentObj['dateOfBirthFormatted'] = dateOfBirth.format('YYYY[-]MM[-]DD');
+
 		let renderData = {
 			student: studentObj,
 			add: false,
@@ -49,6 +56,11 @@ module.exports = {
 
 	editStudent: async function (request, response) {
 		let studentId = request.params.id;
+
+		//Fixes weird time zone issue
+		let dateOfBirth = moment(request.body.dateOfBirth);
+		request.body['dateOfBirth'] = dateOfBirth;
+
 		await db.editStudentById(studentId, request.body);
 		await module.exports.viewStudentPage(request, response)
 	},
