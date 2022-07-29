@@ -20,10 +20,11 @@ module.exports = {
 	editProgramPage: async function (request, response) {
 		let programId = request.params.id;
 		let programObj = await db.getProgramById(programId);
-		
+		let studentList = await student_db.getStudentsList();
 		let renderData = {
 			program: programObj,
-			students: await applicationFile.getApplicationsByProgramId(programId),
+			students: await module.exports.activeStudents(studentList),
+			//await applicationFile.getApplicationsByProgramId(programId),
 			add: false,
 			view: false
 		};
@@ -58,15 +59,17 @@ module.exports = {
 	},
 
 	editProgram: async function (request, response) {
-		let programId = request.params.id
-		// let studentIds = request.body.student_list
-		
-		// let applicationList = await application_db.getApplicationsList()
-		// for(let i = 0; i < applicationList.length; i++) {
-		// 	await application_db.deleteApplicationByProgramId(programId)
+		// let programId = request.params.id
+		// let studentIds = []
+		// for(let i = 0; i < request.body.student_list.length; i++) {
+		// 	studentIds.push(request.body.student_list[i])
 		// }
-		// for(let j = 0; j < studentIds.length; j++) {
-		// 	await application_db.addApplication(studentIds[j], programId)
+		// let applicationList = await application_db.getApplicationsList()
+		// // for(let i = 0; i < applicationList.length; i++) {
+		// 	await application_db.deleteApplicationByProgramId(programId)
+		// // }
+		// for(let i = 0; i < studentIds.length; i++) {
+		// 	await application_db.addApplication(studentIds[i], programId)
 		// }
 		await db.editProgramById(programId, request.body);
 		await module.exports.viewProgramPage(request, response)
