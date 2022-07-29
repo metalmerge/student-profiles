@@ -32,11 +32,12 @@ module.exports = {
 	editStudentPage: async function (request, response) {
 		let studentId = request.params.id;
 		let studentObj = await db.getStudentById(studentId);
-
+		let programList = await program_db.getProgramsList()
 		let renderData = {
 			student: studentObj,
 			view: false,
-			programs: await applicationFile.getApplicationsByStudentId(studentId),
+			programs: module.exports.activePrograms(programList),
+			// await applicationFile.getApplicationsByStudentId(studentId),
 			add: false
 		};
 		response.render('edit-student', renderData);
@@ -49,14 +50,17 @@ module.exports = {
 	},
 	
 	editStudent: async function (request, response) {
-		let studentId = request.params.id
-		// let programIds = request.body.program_list
+		// let studentId = request.params.id
+		// let programIds = []
+		// for(let i = 0; i < request.body.program_list.length; i++) {
+		// 	programIds.push(request.body.program_list)
+		// }
 		// let applicationList = await application_db.getApplicationsList()
 		// for(let i = 0; i < applicationList.length; i++) {
 		// 	await application_db.deleteApplicationByStudentId(studentId)
 		// }
-		// for(let j = 0; j < programIds.length; j++) {
-		// 	await application_db.addApplication(studentId, programIds[j])
+		// for(let i = 0; i < programIds.length; i++) {
+		// 	await application_db.addApplication(studentId, programIds[i])
 		// }
 		await db.editStudentById(studentId, request.body);
 		await module.exports.viewStudentPage(request, response)
