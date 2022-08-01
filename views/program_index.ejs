@@ -33,7 +33,7 @@
 				<td>
 					<% for (let j = 0; j < applications.length; j++) { %>
 						<% if (applications[j].program == programs[i].id) { %>
-							<a href="/view_program/<%= applications[j].student %>"><%= first_names[count] %> </a>
+							<a href="/view/<%= applications[j].student %>"><%= first_names[count] %> </a>
 							<% count++ %> 
 						<% } %>
                     <% } %>
