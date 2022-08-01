@@ -74,7 +74,7 @@
 				<td>
 					<% for (let j = 0; j < applications.length; j++) { %>
 						<% if (applications[j].student == students[i].id) { %>
-							<a href="/view/<%= applications[j].program %>"><%= titles[count] %> </a>
+							<a href="/view_program/<%= applications[j].program %>"><%= titles[count] %> </a>
 							<% count++ %> 
 						<% } %>
                     <% } %>

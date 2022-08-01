@@ -79,7 +79,8 @@ module.exports = {
 			program: programObj,
 			add: false,
 			view: true,
-			students: await applicationFile.activeApplications(),
+			students: await applicationFile.getStudentListByProgramId(programId),
+			applications: await applicationFile.activeApplications(),
 		}
 
 		response.render('edit-program', renderData);
