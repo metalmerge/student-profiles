@@ -16,7 +16,7 @@ module.exports = {
 			countries: countries,
 			programs: module.exports.activePrograms(programList),
 			applications: await applicationFile.activeApplications(),
-		};
+		}
 
 		response.render('edit-student', renderData)
 	},
@@ -38,7 +38,7 @@ module.exports = {
 			applications: await applicationFile.activeApplications()
 		};
 
-		response.render('edit-student', renderData);
+		response.render('edit-student', renderData)
 	},
 
 	editStudentPage: async function (request, response) {
@@ -53,11 +53,11 @@ module.exports = {
 			applications: applicationList,
 			add: false
 		};
-		response.render('edit-student', renderData);
+		response.render('edit-student', renderData)
 	},
 
 	addStudent: async function (request, response) {
-		await db.addStudent(request.body);
+		await db.addStudent(request.body)
 
 		response.redirect('/')
 	},
@@ -96,18 +96,18 @@ module.exports = {
 	},
 
 	deleteStudent: async function (request, response) {
-		let studentId = request.params.id;
-		let studentObj = await db.getStudentById(studentId);
-		let applicationList = await application_db.getApplicationsList();
+		let studentId = request.params.id
+		let studentObj = await db.getStudentById(studentId)
+		let applicationList = await application_db.getApplicationsList()
 		for(let i = 0; i < applicationList.length; i++) {
 			if(applicationList[i].student == studentId) {
 				application[i].status == 'disabled'
 			}
 		}
-		studentObj['status'] = 'inactive';
-		await db.editStudentById(studentId, studentObj);
+		studentObj['status'] = 'inactive'
+		await db.editStudentById(studentId, studentObj)
 
-		response.redirect('/');
+		response.redirect('/')
 	},
 
 	reactivateStudent: async function (request, response) {
@@ -120,7 +120,7 @@ module.exports = {
 			}
 		}
 		studentObj['status'] = 'active';
-		await db.editStudentById(studentId, studentObj);
+		await db.editStudentById(studentId, studentObj)
 
 		response.redirect('/');
 	},
@@ -128,7 +128,7 @@ module.exports = {
 		let activePrograms = [];
 		for (let i = 0; i < programList.length; i++) {
 			if (programList[i].status == "active") {
-				activePrograms.push(programList[i]);
+				activePrograms.push(programList[i])
 			}
 		}
 		return activePrograms

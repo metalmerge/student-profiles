@@ -1,6 +1,6 @@
-const Program = require("../models/Program");
+const Program = require("../models/Program")
 const application_db = require("../database/application_db")
-const grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "Out of High School", "College Freshman", "College Sophmore", "College Junior", "College Senior", "Out of College"];
+const grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "Out of High School", "College Freshman", "College Sophmore", "College Junior", "College Senior", "Out of College"]
 
 module.exports = {
 	addProgram: async function(programObj) {
@@ -15,7 +15,7 @@ module.exports = {
         max_grade_level: programObj.max_grade_level,
         program_id: `${programObj.title}.${ await module.exports.getTitleCount(programObj.title)}`,
         status: "active"
-      });
+      })
       await newProgram.save()
 
       let student_list = programObj.student_list
@@ -30,7 +30,7 @@ module.exports = {
 	},
   
 	getProgramsList: async function() {
-	  return await Program.find({});
+	  return await Program.find({})
 	},
 
 	getProgramById: async function(programId) {
@@ -47,7 +47,7 @@ module.exports = {
       newprogramObj,
       {
         runValidators: true
-      });
+      })
     }
 	},
 }

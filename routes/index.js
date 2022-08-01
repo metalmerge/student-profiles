@@ -1,8 +1,8 @@
 const db = require("../database/db")
 const prorgam_db = require("../database/program_db")
 const programFile = require("./program")
-const applicationFile = require("./application");
-const program_db = require("../database/program_db");
+const applicationFile = require("./application")
+const program_db = require("../database/program_db")
 
 module.exports = {
 	getHomePage: async function (request, response) {
@@ -35,10 +35,10 @@ module.exports = {
 
 	sortFirstNames: async function(request, response) {
 		let studentList = await db.getStudentsList();
-		let activeStudents = [];
+		let activeStudents = []
 		for (let i = 0; i < studentList.length; i++) {
 			if (studentList[i].status == "active") {
-				activeStudents.push(studentList[i]);
+				activeStudents.push(studentList[i])
 			}
 		}
 		let activeApplications = await applicationFile.activeApplications()
@@ -63,24 +63,24 @@ module.exports = {
 			titles: programTitles,
 		}
 		
-		response.render('index', renderData);
+		response.render('index', renderData)
 	},
 
 	filter: async function (request, response) {
 		let studentList = await db.getStudentsList();
 		let filteredGrade = request.params.grade;
 
-		let activeStudents = [];
+		let activeStudents = []
 		for (let i = 0; i < studentList.length; i++) {
 			if (studentList[i].status == "active") {
 				activeStudents.push(studentList[i]);
 			}
 		}
 
-		let filteredStudents = [];
+		let filteredStudents = []
 		for (let i = 0; i < activeStudents.length; i++) {
 			if (activeStudents[i].grade == filteredGrade) {
-				filteredStudents.push(activeStudents[i]);
+				filteredStudents.push(activeStudents[i])
 			}
 		}
 		let activeApplications = await applicationFile.activeApplications()
@@ -104,6 +104,6 @@ module.exports = {
 			titles: programTitles,
 		}
 
-		response.render('index', renderData);
+		response.render('index', renderData)
 	}
 };

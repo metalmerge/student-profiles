@@ -25,10 +25,10 @@ module.exports = {
     },
     activeApplications: async function() {
 		let applicationList = await application_db.getApplicationsList()
-		let activeApplications = [];
+		let activeApplications = []
 		for (let i = 0; i < applicationList.length; i++) {
 			if (applicationList[i].status != "disabled") {
-				activeApplications.push(applicationList[i]);
+				activeApplications.push(applicationList[i])
 			}
 		}
 		return activeApplications

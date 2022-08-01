@@ -1,4 +1,4 @@
-const Student = require("../models/Student");
+const Student = require("../models/Student")
 const application_db = require("../database/application_db")
 
 module.exports = {
@@ -45,13 +45,13 @@ module.exports = {
     return await Student.find({last_name : lastName}).countDocuments() + 1 
 	},
 	getStudentsList: async function() {
-	  return await Student.find({});
+	  return await Student.find({})
 	},
 
 	getStudentById: async function(studentId) {
     return await Student.findOne({
       _id: studentId
-    });
+    })
 	},
 
 	editStudentById: async function(studentId, newStudentObj) {
@@ -80,12 +80,12 @@ module.exports = {
     newStudentObj,
     {
       runValidators: true
-    });
+    })
 	},
 
 	deleteStudentById: async function(studentId) {
     await Student.findOneAndRemove({
       _id: studentId
-    });
+    })
 	}
 }

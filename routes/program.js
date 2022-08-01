@@ -6,22 +6,22 @@ const applicationFile = require("./application")
 
 module.exports = {
 	addProgramPage: async function (request, response) {
-		let studentList = await student_db.getStudentsList();
+		let studentList = await student_db.getStudentsList()
 		let renderData = {
 			program: {},
 			students: await module.exports.activeStudents(studentList),
 			add: true,
 			view: false,
 			applications: await applicationFile.activeApplications(),
-		};
+		}
 
-		response.render('edit-program', renderData);
+		response.render('edit-program', renderData)
 	},
 
 	editProgramPage: async function (request, response) {
-		let programId = request.params.id;
-		let programObj = await db.getProgramById(programId);
-		let studentList = await student_db.getStudentsList();
+		let programId = request.params.id
+		let programObj = await db.getProgramById(programId)
+		let studentList = await student_db.getStudentsList()
 		let renderData = {
 			program: programObj,
 			students: await module.exports.activeStudents(studentList),
@@ -34,7 +34,7 @@ module.exports = {
 	},
 
 	addProgram: async function (request, response) {
-		await db.addProgram(request.body);
+		await db.addProgram(request.body)
 
 		response.redirect('/program')
 	},
@@ -69,26 +69,26 @@ module.exports = {
 		for(let i = 0; i < studentIds.length; i++) {
 			await application_db.addApplication(studentIds[i], programId)
 		}
-		await db.editProgramById(programId, request.body);
+		await db.editProgramById(programId, request.body)
 		await module.exports.viewProgramPage(request, response)
 	},
 	viewProgramPage: async function (request, response) {
-		let programId = request.params.id;
-		let programObj = await db.getProgramById(programId);
+		let programId = request.params.id
+		let programObj = await db.getProgramById(programId)
 		let renderData = {
 			program: programObj,
 			add: false,
 			view: true,
 			students: await applicationFile.activeApplications(),
-		};
+		}
 
 		response.render('edit-program', renderData);
 	},
 
 	deleteProgram: async function (request, response) {
-		let programId = request.params.id;
-		let programObj = await db.getProgramById(programId);
-		let applicationList = await application_db.getApplicationsList();
+		let programId = request.params.id
+		let programObj = await db.getProgramById(programId)
+		let applicationList = await application_db.getApplicationsList()
 		for(let i = 0; i < applicationList.length; i++) {
 			if(applicationList[i].program == programId) {
 				application[i].status == 'disabled'
@@ -97,7 +97,7 @@ module.exports = {
 		programObj['status'] = 'inactive'
 		await db.editProgramById(programId, programObj)
 
-		response.redirect('/program');
+		response.redirect('/program')
 	},
 
 	reactivateProgram: async function (request, response) {
@@ -112,10 +112,10 @@ module.exports = {
 		programObj['status'] = 'active'
 		await db.editProgramById(programId, programObj)
 
-		response.redirect('/program');
+		response.redirect('/program')
 	},
 	activeStudents: function(studentList) {
-		let activeStudents = [];
+		let activeStudents = []
 		for (let i = 0; i < studentList.length; i++) {
 			if (studentList[i].status == "active") {
 				activeStudents.push(studentList[i]);
