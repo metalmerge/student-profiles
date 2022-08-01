@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema
 
 const ProgramSchema = new Schema({
   title: {
@@ -41,6 +41,6 @@ const ProgramSchema = new Schema({
     enum: ["active", "inactive"],
     required: true
   }
-});
+})
 
-module.exports = Program = mongoose.model("programs", ProgramSchema);
+module.exports = Program = mongoose.model("programs", ProgramSchema)
