@@ -3,7 +3,7 @@ const student_db = require("../database/db")
 const program_db = require("../database/program_db")
 
 module.exports = {
-    getApplicationsByStudentId: async function(studentId) {
+    getProgramListByStudentId: async function(studentId) {
         let applicationList = await application_db.getApplicationsList();
         let program_list = []
         for(let i = 0; i < applicationList.length; i++) {
@@ -13,7 +13,7 @@ module.exports = {
         }
         return program_list
     },
-    getApplicationsByProgramId: async function(programId) {
+    getStudentListByProgramId: async function(programId) {
         let applicationList = await application_db.getApplicationsList();
         let student_list = []
         for(let i = 0; i < applicationList.length; i++) {
