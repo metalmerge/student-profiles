@@ -3,7 +3,7 @@ const student_db = require("../database/db")
 const moment = require('moment');
 const application_db = require("../database/application_db")
 const applicationFile = require("./application")
-
+var mongoose = require('mongoose');
 module.exports = {
 	addProgramPage: async function (request, response) {
 		let studentList = await student_db.getStudentsList()
@@ -65,9 +65,14 @@ module.exports = {
 		for(let i = 0; i < request.body.student_list.length; i++) {
 			studentIds.push(request.body.student_list[i])
 		}
-			await application_db.deleteApplicationByProgramId(programId)
-		for(let i = 0; i < studentIds.length; i++) {
-			await application_db.addApplication(studentIds[i], programId)
+		await application_db.deleteApplicationByProgramId(programId)
+		if(request.body.student_list.length == 24) {
+			await application_db.addApplication(mongoose.Types.ObjectId(request.body.student_list), programId)
+		}
+		else {
+			for(let i = 0; i < request.body.student_list.length; i++) {
+				await application_db.addApplication(mongoose.Types.ObjectId(studentIds[i]), programId)
+			}
 		}
 		await db.editProgramById(programId, request.body)
 		await module.exports.viewProgramPage(request, response)

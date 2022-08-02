@@ -73,7 +73,7 @@
 						<% for (let j = 0; j < applications.length; j++) { %>
 							<% if(applications[j].student == students[i].id && applications[j].program == program.id) {match = true;}  %> 
 						<% } %>
-						<option value="<%= students[i].id %>" <% if(!add && !view) { if (match) { %> selected <% } } %> ><%= students[i].first_name%></option>
+						<option value="<%= students[i].id %>" <% if(!add && !view) { if (match) { %> selected <% } } %> ><%= students[i].first_name %></option>
 					<% } %>
 				</select>
 			</div>
