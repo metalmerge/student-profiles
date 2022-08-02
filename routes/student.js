@@ -1,11 +1,12 @@
-const countries = require("countries-list").countries;
-const { response } = require("express");
-const db = require("../database/db");
-const moment = require('moment');
-const program_db = require("../database/program_db");
+const { response } = require("express")
+const db = require("../database/db")
+const program_db = require("../database/program_db")
 const application_db = require("../database/application_db")
 const applicationFile = require("./application")
 var mongoose = require('mongoose');
+const countries = require("countries-list").countries;
+const { response } = require("express");
+const moment = require('moment');
 
 module.exports = {
 	addStudentPage: async function (request, response) {
@@ -34,9 +35,9 @@ module.exports = {
 			student: studentObj,
 			add: false,
 			view: true,
-			countries: countries,
-			programs: await applicationFile.getApplicationsByStudentId(studentId),
-			applications: await applicationFile.activeApplications()
+			programs: await applicationFile.getProgramListByStudentId(studentId),
+			applications: await applicationFile.activeApplications(),
+			countries: countries
 		};
 
 		response.render('edit-student', renderData)
@@ -52,7 +53,8 @@ module.exports = {
 			view: false,
 			programs: module.exports.activePrograms(programList),
 			applications: applicationList,
-			add: false
+			add: false,
+			countries: countries
 		};
 		response.render('edit-student', renderData)
 	},
@@ -62,26 +64,7 @@ module.exports = {
 
 		response.redirect('/')
 	},
-
-	editStudentPage: async function (request, response) {
-		let studentId = request.params.id;
-		let studentObj = await db.getStudentById(studentId);
-		let programList = await program_db.getProgramsList();
-
-		let dateOfBirth = moment.utc(studentObj.dateOfBirth);
-		studentObj['dateOfBirthFormatted'] = dateOfBirth.format('YYYY[-]MM[-]DD');
-
-		let renderData = {
-			student: studentObj,
-			view: false,
-			countries: countries,
-			programs: module.exports.activePrograms(programList),
-			add: false
-		}
-
-		response.render('edit-student', renderData);
-	},
-
+	
 	editStudent: async function (request, response) {
 		
 		let studentId = request.params.id

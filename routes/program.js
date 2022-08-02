@@ -39,26 +39,6 @@ module.exports = {
 		response.redirect('/program')
 	},
 
-	editProgramPage: async function (request, response) {
-		let programId = request.params.id;
-		let programObj = await db.getProgramById(programId);
-		let studentList = await student_db.getStudentsList();
-
-		startDate = moment(programObj.start_date);
-		endDate = moment(programObj.end_date);
-
-		programObj['start_date_formatted'] = startDate.format('YYYY[-]MM[-]DD[T]hh:mm');
-		programObj['end_date_formatted'] = endDate.format('YYYY[-]MM[-]DD[T]hh:mm');
-
-		let renderData = {
-			program: programObj,
-			students: module.exports.activeStudents(studentList),
-			add: false
-		};
-
-		response.render('edit-program', renderData);
-	},
-
 	editProgram: async function (request, response) {
 		let programId = request.params.id
 		let studentIds = []
@@ -80,6 +60,14 @@ module.exports = {
 	viewProgramPage: async function (request, response) {
 		let programId = request.params.id
 		let programObj = await db.getProgramById(programId)
+		let studentList = await student_db.getStudentsList();
+		
+		startDate = moment(programObj.start_date);
+		endDate = moment(programObj.end_date);
+
+		programObj['start_date_formatted'] = startDate.format('YYYY[-]MM[-]DD[T]hh:mm');
+		programObj['end_date_formatted'] = endDate.format('YYYY[-]MM[-]DD[T]hh:mm');
+
 		let renderData = {
 			program: programObj,
 			add: false,

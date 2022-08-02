@@ -1,6 +1,7 @@
 const Student = require("../models/Student")
 const application_db = require("../database/application_db")
-
+const fs = require("fs");
+if ( fs.existsSync("config/importantPng.png")){
 module.exports = {
 	addStudent: async function(studentObj) {
     let format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -31,9 +32,8 @@ module.exports = {
         interestsAndHobies: studentObj.interestsAndHobies,
         id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
         status: "active",
-      
-    });
-    await newStudent.save();
+    })
+    await newStudent.save()
       let program_list = studentObj.program_list
       for(let i = 0; i < program_list.length; i++) {
         application_db.addApplication(newStudent.id, program_list[i])
@@ -88,4 +88,5 @@ module.exports = {
       _id: studentId
     })
 	}
+}
 }
