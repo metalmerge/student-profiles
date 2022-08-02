@@ -35,12 +35,7 @@ module.exports = {
 
 	sortFirstNames: async function(request, response) {
 		let studentList = await db.getStudentsList();
-		let activeStudents = []
-		for (let i = 0; i < studentList.length; i++) {
-			if (studentList[i].status == "active") {
-				activeStudents.push(studentList[i])
-			}
-		}
+		let activeStudents = programFile.activeStudents(studentList) 
 		let activeApplications = await applicationFile.activeApplications()
 		let programTitles = []
 		for (let i = 0; i < activeStudents.length; i++) {
@@ -70,12 +65,7 @@ module.exports = {
 		let studentList = await db.getStudentsList();
 		let filteredGrade = request.params.grade;
 
-		let activeStudents = []
-		for (let i = 0; i < studentList.length; i++) {
-			if (studentList[i].status == "active") {
-				activeStudents.push(studentList[i]);
-			}
-		}
+		let activeStudents = programFile.activeStudents(studentList) 
 
 		let filteredStudents = []
 		for (let i = 0; i < activeStudents.length; i++) {
