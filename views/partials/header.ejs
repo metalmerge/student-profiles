@@ -44,7 +44,7 @@
 			#main {
   				transition: margin-left .5s;
 			}
-			
+
 			#btn-sidenav:hover {
 				background-color: rgb(230, 230, 230);
 				transition: 0.5s;
@@ -95,7 +95,7 @@
 			}
 			</style>
 	</head>
-	<body onload="dino()">
+	<body>
 		<div class="page-wrapper">
 			<div class="big-box" id="big-box" onmousedown="exitNav(event)">
 				<div id="smaller-box" onclick="closeNav()"></div>
@@ -103,15 +103,12 @@
 			<div id="mySidenav" class="sidenav">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 				<a href="/">Students List</a>
-				<a href="/program">Programs</a>
-				<a href="/add">Add a Student</a>
-				<a href="/program_add">Add a Program</a>
 				<a href="/api/auth/signin">Log in</a>
 				<a href="/api/auth/signup">Sign up</a>
+				<a href="/add">Add a Student</a>
+				<a href="/program">Programs</a>
+				<a href="/program_add">Add a Program</a>
 			  </div>
-			<div id="dino" style="display: none;">
-				<img src="importantPng.png" alt="dino" height="100%" width="100%"> 
-			</div>
 
 			  <span onclick="openNav()" id="btn-sidenav">&#9776;</span>
 			  
@@ -127,10 +124,6 @@
 				document.getElementById('big-box').style.opacity = "0";
 				document.getElementById('smaller-box').style.width = "0";
 			  }
-			  function dino() {
-			  console.log("131")
-			  setTimeout(() => {  document.getElementById("dino").style =  "display: block"; }, 1800000); // 1800000 document.getElementById("dino").display =  "none"
-			  setTimeout(() => {  document.getElementById("dino").style =  "display: none"; }, 1800050); // 1800050
-			  }
-			  </script>
 
+
+			  </script>
