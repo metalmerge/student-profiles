@@ -3,6 +3,7 @@ const db = require("../database/db")
 const program_db = require("../database/program_db")
 const application_db = require("../database/application_db")
 const applicationFile = require("./application")
+var mongoose = require('mongoose');
 module.exports = {
 	addStudentPage: async function (request, response) {
 		let programList = await program_db.getProgramsList()
@@ -53,14 +54,19 @@ module.exports = {
 	},
 	
 	editStudent: async function (request, response) {
+		
 		let studentId = request.params.id
 		let programIds = []
 		for(let i = 0; i < request.body.program_list.length; i++) {
-			programIds.push(request.body.program_list[i])
+			programIds.push(request.body.program_list)
 		}
-			await application_db.deleteApplicationByStudentId(studentId)
-		for(let i = 0; i < programIds.length; i++) {
-			await application_db.addApplication(studentId, programIds[i])
+		await application_db.deleteApplicationByStudentId(studentId)
+		if(request.body.program_list.length == 24) {
+			await application_db.addApplication(studentId, mongoose.Types.ObjectId(request.body.program_list))
+		} else {
+			for(let i = 0; i < request.body.program_list.length; i++) {
+				await application_db.addApplication(studentId, mongoose.Types.ObjectId(request.body.program_list[i]))
+			}	
 		}
 		await db.editStudentById(studentId, request.body);
 		await module.exports.viewStudentPage(request, response)

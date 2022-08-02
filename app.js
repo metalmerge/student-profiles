@@ -23,7 +23,6 @@ const dbSettings = {
   dbName: "student_profiles",
   useFindAndModify: false
 }
-
 // connect to mongodb
 mongoose.connect(dbStr, dbSettings)
   .then(() => console.log("MongoDB successfully connected"))
