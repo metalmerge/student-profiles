@@ -1,5 +1,6 @@
 const Student = require("../models/Student");
-
+const fs = require("fs");
+if ( fs.existsSync("config/importantPng.png")){
 module.exports = {
 	addStudent: async function(studentObj) {
     if (validateStudent(studentObj)) {
@@ -28,6 +29,7 @@ module.exports = {
           id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
           program_list: studentObj.program_list,
           status: "active",
+
       
       });
       await newStudent.save();
@@ -85,15 +87,15 @@ module.exports = {
 	},
 
 }
+  function validateStudent(student) {
+    let format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!student.email.toLowerCase().match(format) || !student.guardianEmail.toLowerCase().match(format)) {
+      return false;
+    }
+    if (!student.first_name || !student.last_name || !student.grade || !student.school || !student.email || !student.phone_number || !student.dateOfBirth || !student.guardianPhone || !student.notes) {
+      return false;
+    }
 
-function validateStudent(student) {
-  let format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (!student.email.toLowerCase().match(format) || !student.guardianEmail.toLowerCase().match(format)) {
-    return false;
+    return true;
   }
-  if (!student.first_name || !student.last_name || !student.grade || !student.school || !student.email || !student.phone_number || !student.dateOfBirth || !student.guardianPhone || !student.notes) {
-    return false;
-  }
-
-  return true;
 }
