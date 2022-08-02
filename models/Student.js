@@ -13,6 +13,7 @@ const StudentSchema = new Schema({
   },
   grade: {
     type: String,
+    enum: ['6th', '7th', '8th', '9th', '10th', '11th', '12th', 'College Freshman', 'College Sophmore', 'College Junior', 'College Senior', 'Out of School'],
     required: true
   },
   school: {
@@ -24,6 +25,10 @@ const StudentSchema = new Schema({
     required: true
   },
   phone_number: {
+    type: String,
+    required: true
+  },
+  countryCode: {
     type: String,
     required: true
   },
@@ -40,6 +45,10 @@ const StudentSchema = new Schema({
     required: true
   },
   guardianPhone: {
+    type: String,
+    required: true
+  },
+  countryCodeGuardian: {
     type: String,
     required: true
   },

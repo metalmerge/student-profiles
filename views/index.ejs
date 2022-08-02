@@ -31,7 +31,7 @@
    			background: rgb(250,250,250); 
 		}
 	</style>
-	<% let grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "Out of High School", "College Freshman", "College Sophmore", "College Junior", "College Senior", "Out of College"]; %>
+	<% let grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "College Freshman", "College Sophmore", "College Junior", "College Senior", "Out of School"]; %>
 	<form>
 	<div class="row">
 		<div class="col-md-2">
@@ -53,9 +53,9 @@
 			<tr>
 				<th>First Name</th>
 				<th>Last Name</th>
+				<th>Email</th>
 				<th>School</th>
 				<th>Grade</th>
-				<th>Email</th>
 				<th>ID</th>
 			</tr>
 		</thead>
@@ -65,9 +65,9 @@
 				
 					<td><%= students[i].first_name %></td>
 					<td><%= students[i].last_name %></td>
+					<td><%= students[i].email %></td>
 					<td><%= students[i].school %></td>
 					<td><%= students[i].grade %></td>
-					<td><%= students[i].email %></td>
 					<td><%= students[i].id_number %></td>
 			</tr>
 		<% } %>

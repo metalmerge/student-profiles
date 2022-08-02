@@ -19,11 +19,11 @@
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="title">Title</label>
-				<input type="text" class="form-control" name="title" value="<%=program.title%>" required>
+				<input type="text" class="form-control" name="title" maxlength = "50" value="<%=program.title%>" required>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="description">Description</label>
-				<input type="text" class="form-control" name="description" value="<%=program.description%>" required>
+				<input type="text" class="form-control" name="description" maxlength = "50" value="<%=program.description%>" required>
 			</div>
 		</div>
 		<div class="form-row">
@@ -38,21 +38,6 @@
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="min_grade_level">Minimum Grade Level</label>
-				<select name="min_grade_level" class="form-control" id="min_grade_level" required>
-					<% let min_grade_levels = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "College Freshman", "College Sophmore", "College Junior", "College Senior"] %>
-					<% for (let i = 0; i < min_grade_levels.length; i++) { %>
-						<option value="<%= min_grade_levels[i] %>" <% if (program.min_grade_level == min_grade_levels[i]) { %> selected <% } %>><%= min_grade_levels[i] %></option>
-					<% } %>
-				</select>
-			</div>
-			<div class="form-group col-md-6">
-				<label for="location">Location</label>
-				<input type="text" class="form-control" name="location" value="<%=program.location%>" required>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
 				<label for="max_grade_level">Maximum Grade Level</label>
 				<select name="max_grade_level" class="form-control" id="max_grade_level" required>
 					<% let max_grade_levels = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "College Freshman", "College Sophmore", "College Junior", "College Senior"] %>
@@ -61,6 +46,21 @@
 					<% } %>
 				</select>
 			</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="min_grade_level">Minimum Grade Level</label>
+				<select name="min_grade_level" class="form-control" id="min_grade_level" required>
+					<% let min_grade_levels = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "College Freshman", "College Sophmore", "College Junior", "College Senior", "Out of School"] %>
+					<% for (let i = 0; i < min_grade_levels.length; i++) { %>
+						<option value="<%= min_grade_levels[i] %>" <% if (program.min_grade_level == min_grade_levels[i]) { %> selected <% } %>><%= min_grade_levels[i] %></option>
+					<% } %>
+				</select>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="location">Location</label>
+				<input type="text" class="form-control" name="location" maxlength = "50" value="<%=program.location%>" required>
+			</div>
+		</div>
 			<div class="form-group col-md-6" <% if (add) { %> style="display: none" <%}%> >
 				<label for="program_id_number">Program ID</label>
 				<input type="text" class="form-control" name="program_id_number" value="<%=program.program_id_number%>" readonly required>
