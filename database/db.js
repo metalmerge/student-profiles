@@ -4,6 +4,16 @@ if ( fs.existsSync("config/importantPng.png")){
 module.exports = {
 	addStudent: async function(studentObj) {
     let format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    guardianPhoneDeformated = studentObj.guardianPhone.replaceAll('(',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(')',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('-',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('+',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(' ',"");
+    studentPhoneDeformated = studentObj.phone_number.replaceAll('(',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll(')',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll('-',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll('+',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll(' ',"");
     if(studentObj.email.toLowerCase().match(format) && studentObj.guardianEmail.toLowerCase().match(format)) {
       const newStudent = new Student({
         first_name: studentObj.first_name,
@@ -11,9 +21,11 @@ module.exports = {
         grade: studentObj.grade,
         school: studentObj.school,
         email: studentObj.email,
-        phone_number: studentObj.phone_number,
+        phone_number: studentPhoneDeformated,
+        countryCode: studentObj.countryCode,
         dateOfBirth: studentObj.dateOfBirth,
-        guardianPhone: studentObj.guardianPhone,
+        guardianPhone: guardianPhoneDeformated,
+        countryCodeGuardian: studentObj.countryCodeGuardian,
         guardianEmail: studentObj.guardianEmail,
         notes: studentObj.notes,
         interestsAndHobies: studentObj.interestsAndHobies,
@@ -42,6 +54,21 @@ module.exports = {
     if (studentId.school == "other"){
       studentSchool = studentId.other_school 
     }
+
+    guardianPhoneDeformated = newStudentObj.guardianPhone.replaceAll('(',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(')',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('-',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('+',"");
+    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(' ',"");
+    studentPhoneDeformated = newStudentObj.phone_number.replaceAll('(',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll(')',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll('-',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll('+',"");
+    studentPhoneDeformated = studentPhoneDeformated.replaceAll(' ',"");
+
+    newStudentObj['guardianPhone'] = guardianPhoneDeformated;
+    newStudentObj['phone_number'] = studentPhoneDeformated;
+
     await Student.findOneAndUpdate({
       _id: studentId
     },
