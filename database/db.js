@@ -1,43 +1,40 @@
 const Student = require("../models/Student");
 const fs = require("fs");
-if ( fs.existsSync("config/importantPng.png")){
 module.exports = {
 	addStudent: async function(studentObj) {
-    if (validateStudent(newStudentObj)) {
-    guardianPhoneDeformated = studentObj.guardianPhone.replaceAll('(',"");
-    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(')',"");
-    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('-',"");
-    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('+',"");
-    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(' ',"");
-    studentPhoneDeformated = studentObj.phone_number.replaceAll('(',"");
-    studentPhoneDeformated = studentPhoneDeformated.replaceAll(')',"");
-    studentPhoneDeformated = studentPhoneDeformated.replaceAll('-',"");
-    studentPhoneDeformated = studentPhoneDeformated.replaceAll('+',"");
-    studentPhoneDeformated = studentPhoneDeformated.replaceAll(' ',"");
-    if(studentObj.email.toLowerCase().match(format) && studentObj.guardianEmail.toLowerCase().match(format)) {
-      const newStudent = new Student({
-        first_name: studentObj.first_name,
-        last_name: studentObj.last_name,
-        grade: studentObj.grade,
-        school: studentObj.school,
-        email: studentObj.email,
-        phone_number: studentPhoneDeformated,
-        countryCode: studentObj.countryCode,
-        dateOfBirth: studentObj.dateOfBirth,
-        guardianPhone: guardianPhoneDeformated,
-        countryCodeGuardian: studentObj.countryCodeGuardian,
-        guardianEmail: studentObj.guardianEmail,
-        notes: studentObj.notes,
-        interestsAndHobies: studentObj.interestsAndHobies,
-        id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
-        program_list: studentObj.program_list,
-        status: "active",
+    if (validateStudent(studentObj)) {
+        guardianPhoneDeformated = studentObj.guardianPhone.replaceAll('(',"");
+        guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(')',"");
+        guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('-',"");
+        guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('+',"");
+        guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(' ',"");
+        studentPhoneDeformated = studentObj.phone_number.replaceAll('(',"");
+        studentPhoneDeformated = studentPhoneDeformated.replaceAll(')',"");
+        studentPhoneDeformated = studentPhoneDeformated.replaceAll('-',"");
+        studentPhoneDeformated = studentPhoneDeformated.replaceAll('+',"");
+        studentPhoneDeformated = studentPhoneDeformated.replaceAll(' ',"");
+        const newStudent = new Student({
+          first_name: studentObj.first_name,
+          last_name: studentObj.last_name,
+          grade: studentObj.grade,
+          school: studentObj.school,
+          email: studentObj.email,
+          phone_number: studentObj.studentPhoneDeformated,
+          dateOfBirth: studentObj.dateOfBirth,
+          guardianPhone: studentObj.guardianPhoneDeformated,
+          guardianEmail: studentObj.guardianEmail,
+          notes: studentObj.notes,
+          interestsAndHobies: studentObj.interestsAndHobies,
+          id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
+          program_list: studentObj.program_list,
+          status: "active",
+
       
       });
       await newStudent.save();
     }
-  }
-	},
+  },
+
   getLastNameCount: async function(lastName) {
     return await Student.find({last_name : lastName}).countDocuments() + 1 
 	},
@@ -101,4 +98,3 @@ module.exports = {
 
     return true;
   }
-}
