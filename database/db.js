@@ -29,6 +29,7 @@ module.exports = {
           id_number: `${studentObj.last_name}.${ await module.exports.getLastNameCount(studentObj.last_name)}`,
           program_list: studentObj.program_list,
           status: "active",
+
       
       });
       await newStudent.save();
