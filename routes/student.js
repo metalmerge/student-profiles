@@ -5,7 +5,6 @@ const application_db = require("../database/application_db")
 const applicationFile = require("./application")
 var mongoose = require('mongoose');
 const countries = require("countries-list").countries;
-const { response } = require("express");
 const moment = require('moment');
 
 module.exports = {
