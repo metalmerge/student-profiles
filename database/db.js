@@ -36,7 +36,6 @@ module.exports = {
       
       });
       await newStudent.save();
-      let program_list = studentObj.program_list;
       
       let program_list = studentObj.program_list
       if(program_list !== undefined) {
