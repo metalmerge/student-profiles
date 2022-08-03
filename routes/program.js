@@ -22,6 +22,13 @@ module.exports = {
 		let programId = request.params.id
 		let programObj = await db.getProgramById(programId)
 		let studentList = await student_db.getStudentsList()
+		
+		startDate = moment(programObj.start_date);
+		endDate = moment(programObj.end_date);
+
+		programObj['start_date_formatted'] = startDate.format('YYYY[-]MM[-]DD[T]hh:mm');
+		programObj['end_date_formatted'] = endDate.format('YYYY[-]MM[-]DD[T]hh:mm');
+
 		let renderData = {
 			program: programObj,
 			students: await module.exports.activeStudents(studentList),

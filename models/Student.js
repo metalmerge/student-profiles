@@ -57,7 +57,7 @@ const StudentSchema = new Schema({
   },
   notes: {
     type: String,
-    required: true
+    required: false
   },
   interestsAndHobies: {
     type: String,

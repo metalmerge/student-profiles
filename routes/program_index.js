@@ -3,6 +3,7 @@ const studentFile = require("./student")
 const application_db = require("../database/application_db")
 const applicationFile = require("./application")
 const student_db = require("../database/db")
+const moment = require('moment');
 
 module.exports = {
 	getProgramPage: async function (request, response) {
@@ -18,6 +19,15 @@ module.exports = {
 				} 
 			} 
 		}
+
+		for (let i = 0; i < activePrograms.length; i++) {
+			startDate = moment(activePrograms[i].start_date);
+			endDate = moment(activePrograms[i].end_date);
+
+			activePrograms[i]['start_date_formatted'] = startDate.format('MMM Do YYYY, h:mma');
+			activePrograms[i]['end_date_formatted'] = endDate.format('MMM Do YYYY, h:mma');
+		}
+
 		let renderData = {
 			programs: activePrograms,
 			applications: activeApplications,

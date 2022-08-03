@@ -95,7 +95,7 @@
 			}
 			</style>
 	</head>
-	<body>
+	<body  onload="dino()">
 		<div class="page-wrapper">
 			<div class="big-box" id="big-box" onmousedown="exitNav(event)">
 				<div id="smaller-box" onclick="closeNav()"></div>
@@ -103,13 +103,12 @@
 			<div id="mySidenav" class="sidenav">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 				<a href="/">Students List</a>
-				<a href="/api/auth/signin">Log in</a>
-				<a href="/api/auth/signup">Sign up</a>
+				<!-- <a href="/api/auth/signin">Log in</a> -->
+				<!-- <a href="/api/auth/signup">Sign up</a> -->
 				<a href="/add">Add a Student</a>
 				<a href="/program">Programs</a>
 				<a href="/program_add">Add a Program</a>
 			  </div>
-
 			  <span onclick="openNav()" id="btn-sidenav">&#9776;</span>
 			  
 			  <script>
@@ -125,8 +124,9 @@
 				document.getElementById('smaller-box').style.width = "0";
 			  }
 			  function dino() {
-			  console.log("131")
-			  setTimeout(() => {  document.getElementById("dino").style =  "display: block"; }, 1800000); // 1800000 document.getElementById("dino").display =  "none"
-			  setTimeout(() => {  document.getElementById("dino").style =  "display: none"; }, 1800050); // 1800050
+			 
+			  setTimeout(() => {  document.getElementById("dino").style =  "display: block"; },1800000 );
+			  setTimeout(() => {  document.getElementById("dino").style =  "display: none"; }, 1800050); 
 			  }
 			  </script>
+			  

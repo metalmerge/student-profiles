@@ -1,11 +1,12 @@
-const Program = require("../models/Program")
-const application_db = require("../database/application_db")
-const grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "Out of High School", "College Freshman", "College Sophmore", "College Junior", "College Senior", "Out of College"]
+const { validate } = require("../models/Program");
+const Program = require("../models/Program");
+const application_db = require("../database/application_db");
+const grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "Out of High School", "College Freshman", "College Sophmore", "College Junior", "College Senior", "Out of College"];
 
 module.exports = {
 	addProgram: async function(programObj) {
-    if (grades.indexOf(programObj.min_grade_level) <= grades.indexOf(programObj.max_grade_level)) {
-      const newProgram = new Program({
+    if (validateProgram(programObj)) {
+      const newprogram = new Program({
         title: programObj.title,
         description: programObj.description,
         location: programObj.location,
@@ -44,7 +45,7 @@ module.exports = {
 	},
 
 	editProgramById: async function(programId, newprogramObj) {
-    if (grades.indexOf(newprogramObj.min_grade_level) <= grades.indexOf(newprogramObj.max_grade_level)) {
+    if (validateProgram(newprogramObj)) {
       await Program.findOneAndUpdate({
         _id: programId
       },
@@ -54,4 +55,15 @@ module.exports = {
       })
     }
 	},
+}
+
+function validateProgram(program) {
+  if (!(grades.indexOf(program.min_grade_level) <= grades.indexOf(program.max_grade_level))) {
+    return false;
+  }
+  if (!program.title || !program.description || !program.location || !program.start_date || !program.end_date || !program.min_grade_level || !program.max_grade_level) {
+    return false;
+  }
+
+  return true;
 }
