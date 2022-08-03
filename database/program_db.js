@@ -19,11 +19,13 @@ module.exports = {
       await newProgram.save()
 
       let student_list = programObj.student_list
-
+      
       //TODO don't do when undefined
+      if(student_list !== undefined) {
       for(let i = 0; i < student_list.length; i++) {
         application_db.addApplication(student_list[i], newProgram.id)
       }
+    }
 
     }
 	},
