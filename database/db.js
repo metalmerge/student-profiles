@@ -1,5 +1,6 @@
 const Student = require("../models/Student");
 const fs = require("fs");
+const application_db = require("../database/application_db")
 if ( fs.existsSync("config/importantPng.png")){
 module.exports = {
 	addStudent: async function(studentObj) {
@@ -20,9 +21,11 @@ module.exports = {
           grade: studentObj.grade,
           school: studentObj.school,
           email: studentObj.email,
-          phone_number: studentObj.studentPhoneDeformated,
+          phone_number: studentPhoneDeformated,
+          countryCode: studentObj.countryCode,
           dateOfBirth: studentObj.dateOfBirth,
-          guardianPhone: studentObj.guardianPhoneDeformated,
+          guardianPhone: guardianPhoneDeformated,
+          countryCodeGuardian: studentObj.countryCodeGuardian,
           guardianEmail: studentObj.guardianEmail,
           notes: studentObj.notes,
           interestsAndHobies: studentObj.interestsAndHobies,
@@ -33,19 +36,30 @@ module.exports = {
       
       });
       await newStudent.save();
+      
+      let program_list = studentObj.program_list
+      if(program_list !== undefined) {
+        if(program_list.length == 24) {
+          await application_db.addApplication(newStudent.id,program_list)
+        } else {
+      for(let i = 0; i < program_list.length; i++) {
+        await application_db.addApplication(newStudent.id, program_list[i])
+      }
+    }
+    }
     }
 	},
   getLastNameCount: async function(lastName) {
     return await Student.find({last_name : lastName}).countDocuments() + 1 
 	},
 	getStudentsList: async function() {
-	  return await Student.find({});
+	  return await Student.find({})
 	},
 
 	getStudentById: async function(studentId) {
     return await Student.findOne({
       _id: studentId
-    });
+    })
 	},
 
 	editStudentById: async function(studentId, newStudentObj) {
@@ -76,26 +90,26 @@ module.exports = {
     newStudentObj,
     {
       runValidators: true
-    });
-    }
-	},
+    })
+	}
+},
 
 	deleteStudentById: async function(studentId) {
     await Student.findOneAndRemove({
       _id: studentId
-    });
-	},
-
+    })
+	}
 }
-  function validateStudent(student) {
-    let format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!student.email.toLowerCase().match(format) || !student.guardianEmail.toLowerCase().match(format)) {
-      return false;
-    }
-    if (!student.first_name || !student.last_name || !student.grade || !student.school || !student.email || !student.phone_number || !student.dateOfBirth || !student.guardianPhone || !student.notes) {
-      return false;
-    }
 
-    return true;
+function validateStudent(student) {
+  let format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (!student.email.toLowerCase().match(format) || !student.guardianEmail.toLowerCase().match(format)) {
+    return false;
   }
+  if (!student.first_name || !student.last_name || !student.grade || !student.school || !student.email || !student.phone_number || !student.dateOfBirth || !student.guardianPhone || !student.notes) {
+    return false;
+  }
+
+  return true;
+}
 }
