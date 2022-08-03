@@ -72,16 +72,18 @@ module.exports = {
 		
 		let studentId = request.params.id
 		let programIds = []
+		await application_db.deleteApplicationByStudentId(studentId)
+		if(request.body.program_list !== undefined) {
 		for(let i = 0; i < request.body.program_list.length; i++) {
 			programIds.push(request.body.program_list)
 		}
-		await application_db.deleteApplicationByStudentId(studentId)
 		if(request.body.program_list.length == 24) {
 			await application_db.addApplication(studentId, mongoose.Types.ObjectId(request.body.program_list))
 		} else {
 			for(let i = 0; i < request.body.program_list.length; i++) {
 				await application_db.addApplication(studentId, mongoose.Types.ObjectId(request.body.program_list[i]))
 			}	
+		}
 		}
 		await db.editStudentById(studentId, request.body);
 		await module.exports.viewStudentPage(request, response)

@@ -49,10 +49,12 @@ module.exports = {
 	editProgram: async function (request, response) {
 		let programId = request.params.id
 		let studentIds = []
+		await application_db.deleteApplicationByProgramId(programId)
+
+		if(request.body.student_list !== undefined) {
 		for(let i = 0; i < request.body.student_list.length; i++) {
 			studentIds.push(request.body.student_list[i])
 		}
-		await application_db.deleteApplicationByProgramId(programId)
 		if(request.body.student_list.length == 24) {
 			await application_db.addApplication(mongoose.Types.ObjectId(request.body.student_list), programId)
 		}
@@ -61,6 +63,7 @@ module.exports = {
 				await application_db.addApplication(mongoose.Types.ObjectId(studentIds[i]), programId)
 			}
 		}
+	}
 		await db.editProgramById(programId, request.body)
 		await module.exports.viewProgramPage(request, response)
 	},
@@ -92,7 +95,7 @@ module.exports = {
 		let applicationList = await application_db.getApplicationsList()
 		for(let i = 0; i < applicationList.length; i++) {
 			if(applicationList[i].program == programId) {
-				application[i].status == 'disabled'
+				applicationList[i].status == 'disabled'
 			}
 		}
 		programObj['status'] = 'inactive'
