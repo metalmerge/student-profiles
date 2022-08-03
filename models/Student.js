@@ -10,6 +10,10 @@ const StudentSchema = new Schema({
     type: String,
     required: true
   },
+  guardian_Name:{
+    type: String,
+    required: true
+  },
   grade: {
     type: String,
     enum: ['6th', '7th', '8th', '9th', '10th', '11th', '12th', 'College Freshman', 'College Sophmore', 'College Junior', 'College Senior', 'Out of School'],
