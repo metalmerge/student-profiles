@@ -38,11 +38,16 @@ module.exports = {
       await newStudent.save();
       let program_list = studentObj.program_list;
       
+      let program_list = studentObj.program_list
       if(program_list !== undefined) {
-        for(let i = 0; i < program_list.length; i++) {
-          application_db.addApplication(newStudent.id, program_list[i])
-        }
+        if(program_list.length == 24) {
+          await application_db.addApplication(newStudent.id,program_list)
+        } else {
+      for(let i = 0; i < program_list.length; i++) {
+        await application_db.addApplication(newStudent.id, program_list[i])
       }
+    }
+    }
     }
 	},
   getLastNameCount: async function(lastName) {

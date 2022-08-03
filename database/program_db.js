@@ -21,12 +21,15 @@ module.exports = {
 
       let student_list = programObj.student_list
       
-      //TODO don't do when undefined
       if(student_list !== undefined) {
+        if(student_list.length == 24) {
+          await application_db.addApplication(student_list, newProgram.id)
+        } else {
       for(let i = 0; i < student_list.length; i++) {
-        application_db.addApplication(student_list[i], newProgram.id)
+       await application_db.addApplication(student_list[i], newProgram.id)
       }
     }
+  }
 
     }
 	},

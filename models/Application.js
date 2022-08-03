@@ -12,7 +12,7 @@ const ApplicationSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ['new', 'accept', 'deny', 'disabled', 'reinstated'],
+    enum: ['new', 'accept', 'deny', 'disabled'],
     default: 'new',
     required: true
   },
