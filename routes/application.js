@@ -4,7 +4,7 @@ const program_db = require("../database/program_db")
 
 module.exports = {
     getProgramListByStudentId: async function(studentId) {
-        let applicationList = await application_db.getApplicationsList();
+        let applicationList = await module.exports.activeApplications();
         let program_list = []
         for(let i = 0; i < applicationList.length; i++) {
             if(applicationList[i].student == studentId) {
@@ -14,7 +14,7 @@ module.exports = {
         return program_list
     },
     getStudentListByProgramId: async function(programId) {
-        let applicationList = await application_db.getApplicationsList();
+        let applicationList = await module.exports.activeApplications();
         let student_list = []
         for(let i = 0; i < applicationList.length; i++) {
             if(applicationList[i].program == programId) {

@@ -10,7 +10,7 @@ module.exports = {
 		let studentList = await student_db.getStudentsList()
 		let renderData = {
 			program: {},
-			students: await module.exports.activeStudents(studentList),
+			students: module.exports.activeStudents(studentList),
 			add: true,
 			view: false,
 			applications: await applicationFile.activeApplications(),
@@ -32,7 +32,7 @@ module.exports = {
 
 		let renderData = {
 			program: programObj,
-			students: await module.exports.activeStudents(studentList),
+			students: module.exports.activeStudents(studentList),
 			applications: await applicationFile.activeApplications(),
 			add: false,
 			view: false
