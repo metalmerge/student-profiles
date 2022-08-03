@@ -45,19 +45,27 @@ module.exports = {
 	editStudentPage: async function (request, response) {
 		let studentId = request.params.id
 		let studentObj = await db.getStudentById(studentId)
-		let programList = await program_db.getProgramsList()
+		let programList = module.exports.activePrograms(await program_db.getProgramsList())
 		let applicationList = await applicationFile.activeApplications()
+		let formatedProgramList = []
 
 		let dateOfBirth = moment.utc(studentObj.dateOfBirth);
 		studentObj['dateOfBirthFormatted'] = dateOfBirth.format('YYYY[-]MM[-]DD');
 		
+		 for (let i = 0; i < programList.length; i++) { 
+					let startDate = moment.utc(programList[i].start_date).format('MM[ ]YYYY')
+					let endDate = moment.utc(programList[i].end_date).format('MM[ ]YYYY')
+					formatedProgramList.push(`${programList[i].title} (${startDate} - ${endDate})`)
+		 } 
+
 		let renderData = {
 			student: studentObj,
 			view: false,
-			programs: module.exports.activePrograms(programList),
+			programs: programList,
 			applications: applicationList,
 			add: false,
-			countries: countries
+			countries: countries,
+			formatedProgramList: formatedProgramList,
 		};
 		response.render('edit-student', renderData)
 	},
