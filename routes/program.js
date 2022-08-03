@@ -4,6 +4,7 @@ const moment = require('moment');
 const application_db = require("../database/application_db")
 const applicationFile = require("./application")
 var mongoose = require('mongoose');
+const application = require("./application");
 module.exports = {
 	addProgramPage: async function (request, response) {
 		let studentList = await student_db.getStudentsList()
@@ -95,7 +96,8 @@ module.exports = {
 		let applicationList = await application_db.getApplicationsList()
 		for(let i = 0; i < applicationList.length; i++) {
 			if(applicationList[i].program == programId) {
-				applicationList[i].status == 'disabled'
+				applicationList[i]['status'] = 'disabled'
+				await application_db.editApplicationById(applicationList[i].id,applicationList[i])
 			}
 		}
 		programObj['status'] = 'inactive'
@@ -110,7 +112,8 @@ module.exports = {
 		let applicationList = await application_db.getApplicationsList();
 		for(let i = 0; i < applicationList.length; i++) {
 			if(applicationList[i].program == programId) {
-				applicationList[i].status == 'new'
+				applicationList[i]['status'] = 'new'
+				await application_db.editApplicationById(applicationList[i].id,applicationList[i])
 			}
 		}
 		programObj['status'] = 'active'

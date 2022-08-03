@@ -1,5 +1,4 @@
 const db = require("../database/db")
-const prorgam_db = require("../database/program_db")
 const programFile = require("./program")
 const applicationFile = require("./application")
 const program_db = require("../database/program_db")
