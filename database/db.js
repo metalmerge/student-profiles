@@ -18,7 +18,7 @@ module.exports = {
         const newStudent = new Student({
           first_name: studentObj.first_name,
           last_name: studentObj.last_name,
-          Guardian_Name: studentObj.Guardian_Name,
+          guardian_Name: studentObj.guardian_Name,
           grade: studentObj.grade,
           school: studentObj.school,
           email: studentObj.email,
