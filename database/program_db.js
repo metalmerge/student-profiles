@@ -6,7 +6,7 @@ const grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "Out of High
 module.exports = {
 	addProgram: async function(programObj) {
     if (validateProgram(programObj)) {
-      const newprogram = new Program({
+      const newProgram = new Program({
         title: programObj.title,
         description: programObj.description,
         location: programObj.location,
