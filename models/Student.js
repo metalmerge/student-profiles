@@ -33,7 +33,7 @@ const StudentSchema = new Schema({
   },
   dateOfBirth: {
     type: Date,
-    required: true
+    required: false
   },
   guardianEmail: {
     type: String,
