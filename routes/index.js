@@ -6,8 +6,10 @@ const program_db = require("../database/program_db")
 
 module.exports = {
 	getHomePage: async function (request, response) {
-		let studentList = await db.getStudentsList()
-		let activeStudents = programFile.activeStudents(studentList) 
+		let activeStudents = programFile.activeStudents(await db.getStudentsList()) 
+		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
+			ignorePunctuation: true
+		}));
 		let activeApplications = await applicationFile.activeApplications()
 		let programTitles = []
 		for (let i = 0; i < activeStudents.length; i++) {
