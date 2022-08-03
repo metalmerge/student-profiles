@@ -100,7 +100,7 @@ module.exports = {
 		let applicationList = await application_db.getApplicationsList();
 		for(let i = 0; i < applicationList.length; i++) {
 			if(applicationList[i].program == programId) {
-				application[i].status == 'reinstated'
+				application[i].status == 'new'
 			}
 		}
 		programObj['status'] = 'active'

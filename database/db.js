@@ -34,11 +34,14 @@ module.exports = {
     })
     await newStudent.save()
       let program_list = studentObj.program_list
-
       if(program_list !== undefined) {
+        if(program_list.length == 24) {
+          await application_db.addApplication(newStudent.id,program_list)
+        } else {
       for(let i = 0; i < program_list.length; i++) {
-        application_db.addApplication(newStudent.id, program_list[i])
+        await application_db.addApplication(newStudent.id, program_list[i])
       }
+    }
     }
       
 	}},
