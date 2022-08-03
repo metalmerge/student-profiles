@@ -95,7 +95,7 @@ module.exports = {
 		let applicationList = await application_db.getApplicationsList()
 		for(let i = 0; i < applicationList.length; i++) {
 			if(applicationList[i].student == studentId) {
-				application[i].status == 'disabled'
+				applicationList[i].status == 'disabled'
 			}
 		}
 		studentObj['status'] = 'inactive'
@@ -110,7 +110,7 @@ module.exports = {
 		let applicationList = await application_db.getApplicationsList();
 		for(let i = 0; i < applicationList.length; i++) {
 			if(applicationList[i].student == studentId) {
-				application[i].status == 'reinstated'
+				applicationList[i].status == 'reinstated'
 			}
 		}
 		studentObj['status'] = 'active';
