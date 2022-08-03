@@ -108,7 +108,7 @@
 			<% } %>
 			</form>
 			<% if (student.status == "inactive") { %>
-				<a class="float-right" href="/reactivate/<%= student.id %>" class="btn btn-info float-left">Reactivate</a>
+				<a href="/reactivate/<%= student.id %>" class="btn btn-info float-left">Reactivate</a>
 			<% } %>
 			<% } else { %>
 				<p class="text-center">Student Not Found.</p>
