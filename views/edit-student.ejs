@@ -102,6 +102,10 @@
 				<label for="id_number">Student ID</label>
 				<input type="text" class="form-control" value="<%=student.id_number%>" readonly required>
 			</div>
+			<div class="form-group col-md-6">
+				<label for="Guardian_Name">Guardian Name</label>
+				<input type="text" class="form-control" name="Guardian_Name" maxlength = "50" value="<%=student.Guardian_Name%>" required <% if (view) { %> readonly <% } %>>
+			</div>
 			</div>
 			<% if (!view) { %>
 				<button type="submit" class="btn btn-success float-right"><%= add ? 'Add' : 'Update' %> Student</button>
