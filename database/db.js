@@ -106,7 +106,7 @@ function validateStudent(student) {
   if (!student.email.toLowerCase().match(format) || !student.guardianEmail.toLowerCase().match(format)) {
     return false;
   }
-  if (!student.first_name || !student.last_name || !student.grade || !student.school || !student.email || !student.phone_number || !student.dateOfBirth || !student.guardianPhone || !student.notes) {
+  if (!student.first_name || !student.last_name || !student.grade || !student.school || !student.email || !student.phone_number || !student.dateOfBirth || !student.guardianPhone) {
     return false;
   }
 
