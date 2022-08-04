@@ -56,6 +56,12 @@ module.exports = {
 	},
 	editProgramById: async function(programId, newprogramObj) {
     if (validateProgram(newprogramObj)) {
+      registration = false;
+      if(((typeof newprogramObj.registration_required)) == "string" ){
+        registration = true;
+      }  
+
+      newprogramObj['registration_required'] = registration
       await Program.findOneAndUpdate({
         _id: programId
       },
