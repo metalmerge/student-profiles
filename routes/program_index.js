@@ -9,7 +9,7 @@ module.exports = {
 	getProgramPage: async function (request, response) {
 		let programList = await db.getProgramsList()
 		let activePrograms = studentFile.activePrograms(programList)
-		activePrograms.sort( (a, b) => a.title.localeCompare(b.title, 'fr', {
+		activePrograms.sort( (a, b) => a.title.localeCompare(b.title, 'en', {
 			ignorePunctuation: true
 		}));
 		let activeRegistrations = await registrationFile.activeRegistrations()

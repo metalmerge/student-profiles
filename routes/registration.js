@@ -24,13 +24,6 @@ module.exports = {
         return student_list
     },
     activeRegistrations: async function() {
-		let registrationList = await registration_db.getRegistrationsList()
-		let activeRegistrations = []
-		for (let i = 0; i < registrationList.length; i++) {
-			if (registrationList[i].status != "disabled") {
-				activeRegistrations.push(registrationList[i])
-			}
-		}
-		return activeRegistrations
+		return await registration_db.getActiveRegistrations()
 	}, 
 }

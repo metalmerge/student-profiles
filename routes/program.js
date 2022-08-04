@@ -5,6 +5,8 @@ const registration_db = require("../database/registration_db")
 const registrationFile = require("./registration")
 var mongoose = require('mongoose');
 const registration = require("./registration");
+const constants = require("./constants")
+
 module.exports = {
 	addProgramPage: async function (request, response) {
 		let studentList = await student_db.getStudentsList()
@@ -14,6 +16,8 @@ module.exports = {
 			add: true,
 			view: false,
 			registrations: await registrationFile.activeRegistrations(),
+			grades: constants.getGradeLevels(),
+
 		}
 
 		response.render('edit-program', renderData)
@@ -35,8 +39,31 @@ module.exports = {
 			students: module.exports.activeStudents(studentList),
 			registrations: await registrationFile.activeRegistrations(),
 			add: false,
-			view: false
+			view: false,
+			grades: constants.getGradeLevels(),
 		};
+
+		response.render('edit-program', renderData);
+	},
+	viewProgramPage: async function (request, response) {
+		let programId = request.params.id
+		let programObj = await db.getProgramById(programId)
+		let studentList = await student_db.getStudentsList();
+		
+		startDate = moment(programObj.start_date);
+		endDate = moment(programObj.end_date);
+
+		programObj['start_date_formatted'] = startDate.format('YYYY[-]MM[-]DD[T]hh:mm');
+		programObj['end_date_formatted'] = endDate.format('YYYY[-]MM[-]DD[T]hh:mm');
+
+		let renderData = {
+			program: programObj,
+			add: false,
+			view: true,
+			students: await registrationFile.getStudentListByProgramId(programId),
+			registrations: await registrationFile.activeRegistrations(),
+			grades: constants.getGradeLevels(),
+		}
 
 		response.render('edit-program', renderData);
 	},
@@ -68,27 +95,6 @@ module.exports = {
 		await db.editProgramById(programId, request.body)
 		await module.exports.viewProgramPage(request, response)
 	},
-	viewProgramPage: async function (request, response) {
-		let programId = request.params.id
-		let programObj = await db.getProgramById(programId)
-		let studentList = await student_db.getStudentsList();
-		
-		startDate = moment(programObj.start_date);
-		endDate = moment(programObj.end_date);
-
-		programObj['start_date_formatted'] = startDate.format('YYYY[-]MM[-]DD[T]hh:mm');
-		programObj['end_date_formatted'] = endDate.format('YYYY[-]MM[-]DD[T]hh:mm');
-
-		let renderData = {
-			program: programObj,
-			add: false,
-			view: true,
-			students: await registrationFile.getStudentListByProgramId(programId),
-			registrations: await registrationFile.activeRegistrations(),
-		}
-
-		response.render('edit-program', renderData);
-	},
 
 	deleteProgram: async function (request, response) {
 		let programId = request.params.id
@@ -112,7 +118,7 @@ module.exports = {
 		let registrationList = await registration_db.getRegistrationsList();
 		for(let i = 0; i < registrationList.length; i++) {
 			if(registrationList[i].program == programId) {
-				registrationList[i]['status'] = 'new'
+				registrationList[i]['status'] = 'active'
 				await registration_db.editRegistrationById(registrationList[i].id,registrationList[i])
 			}
 		}
