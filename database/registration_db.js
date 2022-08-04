@@ -27,8 +27,11 @@ module.exports = {
           const newRegistration = new Registration({ 
             student: studentId,
             program: programId,
-            status: "new",
+            status: "active",
           })
           await newRegistration.save()
         },
+        getActiveRegistrations: async function() {
+          return await Registration.find({status: 'active'});
+      }
 }

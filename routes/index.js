@@ -7,12 +7,12 @@ const constants = require("./constants")
 module.exports = {
 	getHomePage: async function (request, response) {
 		let activeStudents = programFile.activeStudents(await db.getStudentsList()) 
-		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
+		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'en', {
 			ignorePunctuation: true
 		}));
 		let activeRegistrations = await registrationFile.activeRegistrations()
 		
-		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
+		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'en', {
 			ignorePunctuation: true
 		}));
 		
@@ -33,7 +33,7 @@ module.exports = {
 		let activeStudents = programFile.activeStudents(studentList) 
 		let activeRegistrations = await registrationFile.activeRegistrations()
 
-		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
+		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'en', {
 			ignorePunctuation: true
 		}));
 
@@ -61,7 +61,7 @@ module.exports = {
 		}
 		let activeRegistrations = await registrationFile.activeRegistrations()
 
-		filteredStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
+		filteredStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'en', {
 			ignorePunctuation: true
 		}));
 

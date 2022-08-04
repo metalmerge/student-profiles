@@ -118,7 +118,7 @@ module.exports = {
 		let registrationList = await registration_db.getRegistrationsList();
 		for(let i = 0; i < registrationList.length; i++) {
 			if(registrationList[i].program == programId) {
-				registrationList[i]['status'] = 'new'
+				registrationList[i]['status'] = 'active'
 				await registration_db.editRegistrationById(registrationList[i].id,registrationList[i])
 			}
 		}
