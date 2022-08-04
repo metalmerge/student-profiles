@@ -6,6 +6,7 @@ const registrationFile = require("./registration")
 var mongoose = require('mongoose');
 const countries = require("countries-list").countries;
 const moment = require('moment');
+const constants = require("./constants")
 
 module.exports = {
 	addStudentPage: async function (request, response) {
@@ -17,6 +18,7 @@ module.exports = {
 			countries: countries,
 			programs: module.exports.activePrograms(programList),
 			registrations: await registrationFile.activeRegistrations(),
+			grades: constants.getGradeLevels(),
 		}
 
 		response.render('edit-student', renderData)
@@ -36,7 +38,8 @@ module.exports = {
 			view: true,
 			programs: await registrationFile.getProgramListByStudentId(studentId),
 			registrations: await registrationFile.activeRegistrations(),
-			countries: countries
+			countries: countries,
+			grades: constants.getGradeLevels(),
 		};
 
 		response.render('edit-student', renderData)
@@ -57,7 +60,8 @@ module.exports = {
 			programs: module.exports.activePrograms(programList),
 			registrations: registrationList,
 			add: false,
-			countries: countries
+			countries: countries,
+			grades: constants.getGradeLevels(),
 		};
 		response.render('edit-student', renderData)
 	},
@@ -132,7 +136,7 @@ module.exports = {
 	
 
 	increaseStudentGrades: async function (request, response) {
-		let grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "College Freshman", "College Sophmore", "College Junior", "College Senior", "Out of School"];
+		let grades = constants.getGradeLevels()
 		let students = await db.getStudentsList();
 
 		for (let i = 0; i < students.length; i++) {
