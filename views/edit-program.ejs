@@ -59,6 +59,7 @@
 				<label for="location">Location</label>
 				<input type="text" class="form-control" name="location" maxlength = "50" value="<%=program.location%>" required <% if (view) { %> readonly <% } %>>
 			</div>
+			
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
@@ -68,6 +69,10 @@
 						<option value="<%= grades[i] %>" <% if (program.max_grade_level == grades[i]) { %> selected <% } %>><%= grades[i] %></option>
 					<% } %>
 				</select>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="registration_required">Registration Required</label>
+				<input type="checkbox" class="form-control" name="registration_required" <% if (program.registration_required) { %>checked<% } %>  <% if (view) { %> onclick="return false" <% } %>>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="student_list">Students Involved</label>
