@@ -3,12 +3,16 @@ const Program = require("../models/Program");
 const registration_db = require("./registration_db");
 const constants = require("../routes/constants")
 const grades = constants.getGradeLevels()
+const d = new Date();
 
 module.exports = {
 	addProgram: async function(programObj) {
     if (validateProgram(programObj)) {
+      let year = d.getFullYear();
+      let month = d.getMonth();
+      title = (programObj.title + " (" + month + " - " + year + ")" )
       const newProgram = new Program({
-        title: programObj.title,
+        title: title,
         description: programObj.description,
         location: programObj.location,
         start_date: programObj.start_date,

@@ -48,12 +48,15 @@ module.exports = {
 	editStudentPage: async function (request, response) {
 		let studentId = request.params.id
 		let studentObj = await db.getStudentById(studentId)
+
 		let programList = await program_db.getProgramsList()
 		let registrationList = await registrationFile.activeRegistrations()
+
 
 		let dateOfBirth = moment.utc(studentObj.dateOfBirth);
 		studentObj['dateOfBirthFormatted'] = dateOfBirth.format('YYYY[-]MM[-]DD');
 		
+
 		let renderData = {
 			student: studentObj,
 			view: false,
