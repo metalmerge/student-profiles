@@ -1,7 +1,5 @@
 const Student = require("../models/Student");
-const fs = require("fs");
 const registration_db = require("./registration_db")
-if ( fs.existsSync("config/importantPng.png")){
 module.exports = {
 	addStudent: async function(studentObj) {
     if (validateStudent(studentObj)) {
@@ -112,5 +110,4 @@ function validateStudent(student) {
   }
 
   return true;
-}
 }

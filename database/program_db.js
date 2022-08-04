@@ -1,7 +1,8 @@
 const { validate } = require("../models/Program");
 const Program = require("../models/Program");
 const registration_db = require("./registration_db");
-const grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "Out of High School", "College Freshman", "College Sophmore", "College Junior", "College Senior", "Out of College"];
+const constants = require("../routes/constants")
+const grades = constants.getGradeLevels()
 const d = new Date();
 
 module.exports = {
