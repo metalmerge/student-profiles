@@ -70,8 +70,8 @@
 				<select class="form-control" name="student_list" id="student_list" multiple <% if (view) { %> readonly <% } %>>
 					<% for (let i = 0; i < students.length; i++) { %>
 						<% let match = false %>
-						<% for (let j = 0; j < applications.length; j++) { %>
-							<% if(applications[j].student == students[i].id && applications[j].program == program.id) {match = true;}  %> 
+						<% for (let j = 0; j < registrations.length; j++) { %>
+							<% if(registrations[j].student == students[i].id && registrations[j].program == program.id) {match = true;}  %> 
 						<% } %>
 						<option value="<%= students[i].id %>" <% if(!add && !view) { if (match) { %> selected <% } } %> ><%= students[i].first_name %></option>
 					<% } %>

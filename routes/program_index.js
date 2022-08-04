@@ -1,7 +1,7 @@
 const db = require("../database/program_db")
 const studentFile = require("./student")
-const application_db = require("../database/application_db")
-const applicationFile = require("./application")
+const registration_db = require("../database/registration_db")
+const registrationFile = require("./registration")
 const student_db = require("../database/db")
 const moment = require('moment');
 
@@ -12,12 +12,12 @@ module.exports = {
 		activePrograms.sort( (a, b) => a.title.localeCompare(b.title, 'fr', {
 			ignorePunctuation: true
 		}));
-		let activeApplications = await applicationFile.activeApplications()
+		let activeRegistrations = await registrationFile.activeRegistrations()
 		let studentNames = []
 		for (let i = 0; i < activePrograms.length; i++) {
-			for (let j = 0; j < activeApplications.length; j++) { 
-				if (activeApplications[j].program == activePrograms[i].id) { 
-					let studentObj =  await student_db.getStudentById(activeApplications[j].student)
+			for (let j = 0; j < activeRegistrations.length; j++) { 
+				if (activeRegistrations[j].program == activePrograms[i].id) { 
+					let studentObj =  await student_db.getStudentById(activeRegistrations[j].student)
 					studentNames.push(studentObj.first_name)
 				} 
 			} 
@@ -33,7 +33,7 @@ module.exports = {
 
 		let renderData = {
 			programs: activePrograms,
-			applications: activeApplications,
+			registrations: activeRegistrations,
 			first_names: studentNames,
 		}
 		response.render('program_index', renderData)

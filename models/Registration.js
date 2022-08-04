@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-const ApplicationSchema = new Schema({
+const RegistrationSchema = new Schema({
   student: {
     type: Schema.Types.ObjectId,
     ref: 'Student'
@@ -19,4 +19,4 @@ const ApplicationSchema = new Schema({
  
 })
 
-module.exports = Application = mongoose.model("applications", ApplicationSchema)
+module.exports = Registration = mongoose.model("registrations", RegistrationSchema)
