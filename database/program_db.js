@@ -9,10 +9,7 @@ module.exports = {
     if (validateProgram(programObj)) {
       let year = d.getFullYear();
       let month = d.getMonth();
-      console.log(month);
-      console.log(year);
       title = (programObj.title + " (" + month + " - " + year + ")" )
-      console.log(title)
       const newProgram = new Program({
         title: title,
         description: programObj.description,
