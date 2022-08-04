@@ -2,8 +2,6 @@ const Student = require("../models/Student");
 const registration_db = require("./registration_db")
 module.exports = {
 	addStudent: async function(studentObj) {
-    guradianPhoneDeformated = studentObj.guardianPhone
-    studentPhoneDeformated = studentObj.phone_number
     if (validateStudent(studentObj)) {
       guardianPhoneDeformated = studentObj.guardianPhone
       studentPhoneDeformated = studentObj.phone_number
