@@ -1,3 +1,4 @@
+const { application } = require("express")
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const constants = require("../routes/constants")
@@ -40,6 +41,10 @@ const ProgramSchema = new Schema({
   status: {
     type: String,
     enum: ["active", "inactive"],
+    required: true
+  },
+  application: {
+    type: Boolean,
     required: true
   }
 })

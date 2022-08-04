@@ -7,10 +7,9 @@ const d = new Date();
 
 module.exports = {
 	addProgram: async function(programObj) {
+    console.log(programObj.application)
     if (validateProgram(programObj)) {
-      let year = d.getFullYear();
-      let month = d.getMonth();
-      title = (programObj.title + " (" + month + " - " + year + ")" )
+      
       const newProgram = new Program({
         title: title,
         description: programObj.description,
@@ -19,6 +18,7 @@ module.exports = {
         end_date: programObj.end_date,
         min_grade_level: programObj.min_grade_level,
         max_grade_level: programObj.max_grade_level,
+        application: programObj.application,
         program_id: `${programObj.title}.${ await module.exports.getTitleCount(programObj.title)}`,
         status: "active"
       })
