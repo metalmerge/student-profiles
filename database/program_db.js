@@ -7,7 +7,7 @@ const d = new Date();
 
 module.exports = {
 	addProgram: async function(programObj) {
-    console.log(programObj.application)
+    console.log(programObj.registration_required)
     if (validateProgram(programObj)) {
       
       const newProgram = new Program({
@@ -18,7 +18,7 @@ module.exports = {
         end_date: programObj.end_date,
         min_grade_level: programObj.min_grade_level,
         max_grade_level: programObj.max_grade_level,
-        application: programObj.application,
+        registration_required: programObj.registration_required,
         program_id: `${programObj.title}.${ await module.exports.getTitleCount(programObj.title)}`,
         status: "active"
       })
