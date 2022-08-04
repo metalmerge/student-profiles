@@ -43,11 +43,11 @@ module.exports = {
         if(program_list.length == 24) {
           await registration_db.addRegistration(newStudent.id,program_list)
         } else {
-      for(let i = 0; i < program_list.length; i++) {
-        await registration_db.addRegistration(newStudent.id, program_list[i])
-      }
-    }
-    }
+          for(let i = 0; i < program_list.length; i++) {
+            await registration_db.addRegistration(newStudent.id, program_list[i])
+          }
+        }
+     }
     }
 	},
   getLastNameCount: async function(lastName) {

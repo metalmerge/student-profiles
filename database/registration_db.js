@@ -31,4 +31,7 @@ module.exports = {
           })
           await newRegistration.save()
         },
+        getActiveRegistrations: async function() {
+          return await Registration.find({status: 'active'});
+      }
 }

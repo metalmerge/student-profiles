@@ -6,7 +6,7 @@ const program_db = require("../database/program_db")
 module.exports = {
 	getHomePage: async function (request, response) {
 		let activeStudents = programFile.activeStudents(await db.getStudentsList()) 
-		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
+		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'en', {
 			ignorePunctuation: true
 		}));
 		let activeRegistrations = await registrationFile.activeRegistrations()
@@ -19,7 +19,7 @@ module.exports = {
 				} 
 			} 
 		}
-		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
+		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'en', {
 			ignorePunctuation: true
 		}));
 		
@@ -48,7 +48,7 @@ module.exports = {
 			} 
 		}
 
-		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
+		activeStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'en', {
 			ignorePunctuation: true
 		}));
 
@@ -84,7 +84,7 @@ module.exports = {
 				} 
 			} 
 		}
-		filteredStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'fr', {
+		filteredStudents.sort( (a, b) => a.first_name.localeCompare(b.first_name, 'en', {
 			ignorePunctuation: true
 		}));
 
