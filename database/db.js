@@ -5,11 +5,10 @@ module.exports = {
     if (validateStudent(studentObj)) {
       guardianPhoneDeformated = studentObj.guardianPhone
       studentPhoneDeformated = studentObj.phone_number
-      let replace_chars = ["(", ")", "-", "+", " "];
-      replace_chars.forEach(replace)
-      function replace(char) {
-        guardianPhoneDeformated.replaceAll(char, "");
-        studentPhoneDeformated.replaceAll(char, "");
+      let replace_chars = ['(', ')', '-', '+', ' '];
+      for(let i = 0; i < replace_chars.length; i++) {
+        guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(replace_chars[i], "");
+        studentPhoneDeformated = studentPhoneDeformated.replaceAll(replace_chars[i], "");
       }
 
         const newStudent = new Student({
@@ -68,14 +67,13 @@ module.exports = {
       studentSchool = studentId.other_school 
     }
 
-    guardianPhoneDeformated = studentObj.guardianPhone
-    studentPhoneDeformated = studentObj.phone_number
-    let replace_chars = ["(", ")", "-", "+", " "];
-    replace_chars.forEach(replace)
-    function replace(char) {
-      guardianPhoneDeformated.replaceAll(char, "");
-      studentPhoneDeformated.replaceAll(char, "");
-    }
+    guardianPhoneDeformated = newStudentObj.guardianPhone
+    studentPhoneDeformated = newStudentObj.phone_number
+    let replace_chars = ['(', ')', '-', '+', ' '];
+      for(let i = 0; i < replace_chars.length; i++) {
+        guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(replace_chars[i], "");
+        studentPhoneDeformated = studentPhoneDeformated.replaceAll(replace_chars[i], "");
+      }
 
     newStudentObj['guardianPhone'] = guardianPhoneDeformated;
     newStudentObj['phone_number'] = studentPhoneDeformated;
