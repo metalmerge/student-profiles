@@ -12,8 +12,8 @@ const RegistrationSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ['new', 'accept', 'deny', 'disabled'],
-    default: 'new',
+    enum: ['active', 'accept', 'deny', 'disabled'],
+    default: 'active',
     required: true
   },
  
