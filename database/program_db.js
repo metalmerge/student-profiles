@@ -2,12 +2,19 @@ const { validate } = require("../models/Program");
 const Program = require("../models/Program");
 const application_db = require("../database/application_db");
 const grades = ["6th", "7th", "8th", "9th", "10th", "11th", "12th", "Out of High School", "College Freshman", "College Sophmore", "College Junior", "College Senior", "Out of College"];
+const d = new Date();
 
 module.exports = {
 	addProgram: async function(programObj) {
     if (validateProgram(programObj)) {
+      let year = d.getFullYear();
+      let month = d.getMonth();
+      console.log(month);
+      console.log(year);
+      title = (programObj.title + " (" + month + " - " + year + ")" )
+      console.log(title)
       const newProgram = new Program({
-        title: programObj.title,
+        title: title,
         description: programObj.description,
         location: programObj.location,
         start_date: programObj.start_date,

@@ -52,11 +52,6 @@ module.exports = {
 		let dateOfBirth = moment.utc(studentObj.dateOfBirth);
 		studentObj['dateOfBirthFormatted'] = dateOfBirth.format('YYYY[-]MM[-]DD');
 		
-		 for (let i = 0; i < programList.length; i++) { 
-					let startDate = moment.utc(programList[i].start_date).format('MM[ ]YYYY')
-					let endDate = moment.utc(programList[i].end_date).format('MM[ ]YYYY')
-					formatedProgramList.push(`${programList[i].title} (${startDate} - ${endDate})`)
-		 } 
 
 		let renderData = {
 			student: studentObj,
@@ -65,7 +60,6 @@ module.exports = {
 			applications: applicationList,
 			add: false,
 			countries: countries,
-			formatedProgramList: formatedProgramList,
 		};
 		response.render('edit-student', renderData)
 	},
