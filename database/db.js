@@ -4,17 +4,18 @@ const registration_db = require("./registration_db")
 if ( fs.existsSync("config/importantPng.png")){
 module.exports = {
 	addStudent: async function(studentObj) {
+    guradianPhoneDeformated = studentObj.guardianPhone
+    studentPhoneDeformated = studentObj.phone_number
     if (validateStudent(studentObj)) {
-        guardianPhoneDeformated = studentObj.guardianPhone.replaceAll('(',"");
-        guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(')',"");
-        guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('-',"");
-        guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('+',"");
-        guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(' ',"");
-        studentPhoneDeformated = studentObj.phone_number.replaceAll('(',"");
-        studentPhoneDeformated = studentPhoneDeformated.replaceAll(')',"");
-        studentPhoneDeformated = studentPhoneDeformated.replaceAll('-',"");
-        studentPhoneDeformated = studentPhoneDeformated.replaceAll('+',"");
-        studentPhoneDeformated = studentPhoneDeformated.replaceAll(' ',"");
+      replace_chars = ["(", ")", "-"];
+      foreach (char in replace_chars) {
+        guradianPhoneDeformated.replaceAll(char, "");
+      }
+      replace_chars = ["(", ")", "-"];
+      foreach (char in replace_chars) {
+        studentPhoneDeformated.replaceAll(char, "");
+      }
+    
         const newStudent = new Student({
           first_name: studentObj.first_name,
           last_name: studentObj.last_name,
@@ -70,17 +71,16 @@ module.exports = {
     if (studentId.school == "other"){
       studentSchool = studentId.other_school 
     }
-
-    guardianPhoneDeformated = newStudentObj.guardianPhone.replaceAll('(',"");
-    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(')',"");
-    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('-',"");
-    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll('+',"");
-    guardianPhoneDeformated = guardianPhoneDeformated.replaceAll(' ',"");
-    studentPhoneDeformated = newStudentObj.phone_number.replaceAll('(',"");
-    studentPhoneDeformated = studentPhoneDeformated.replaceAll(')',"");
-    studentPhoneDeformated = studentPhoneDeformated.replaceAll('-',"");
-    studentPhoneDeformated = studentPhoneDeformated.replaceAll('+',"");
-    studentPhoneDeformated = studentPhoneDeformated.replaceAll(' ',"");
+    guradianPhoneDeformated = studentObj.guardianPhone
+    studentPhoneDeformated = studentObj.phone_number
+    replace_chars = ["(", ")", "-"];
+    foreach (char in replace_chars) {
+      guradianPhoneDeformated.replaceAll(char, "");
+    }
+    replace_chars = ["(", ")", "-"];
+    foreach (char in replace_chars) {
+      studentPhoneDeformated.replaceAll(char, "");
+    }
 
     newStudentObj['guardianPhone'] = guardianPhoneDeformated;
     newStudentObj['phone_number'] = studentPhoneDeformated;
