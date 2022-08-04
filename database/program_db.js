@@ -8,7 +8,6 @@ module.exports = {
     
     if (validateProgram(programObj)) {
       registration = false;
-      console.log(typeof(programObj.registration_required));
       if((typeof(programObj.registration_required)) == "undefined"){
         
         registration = false;
