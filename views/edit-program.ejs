@@ -5,6 +5,13 @@
 			let min_grade_level = document.getElementById('min_grade_level').value;
 			let max_grade_level = document.getElementById('max_grade_level').value;
 
+			let gradeElements = document.getElementById('min_grade_level').children;
+
+			let grades = []
+			for (let i = 0; i < gradeElements.length; i++) {
+				grades.push(gradeElements[i].value)
+			}
+
 			if (grades.indexOf(min_grade_level) <= grades.indexOf(max_grade_level)) {
 				return true;
 			} else {
