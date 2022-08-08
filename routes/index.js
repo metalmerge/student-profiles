@@ -78,12 +78,15 @@ module.exports = {
 	getProgramTitles: async function(activeStudents, activeRegistrations) {
 		let programTitles = []
 		for (let i = 0; i < activeStudents.length; i++) {
-			for (let j = 0; j < activeRegistrations.length; j++) { 
-				if (activeRegistrations[j].student == activeStudents[i].id) { 
-					let programObj =  await program_db.getProgramById(activeRegistrations[j].program)
-					programTitles.push(programObj.title)
-				}
-			} 
+			let registrations = await registration_db.getRegistrationsByParams({
+				status: 'active',
+				student: activeStudents[i].id
+			})
+
+			for (let j = 0; j < registrations.length; j++) {
+				let programObj = await program_db.getProgramById(registrations[j].program)
+				programTitles.push(programObj.title)
+			}
 		}
 		return programTitles
 	},

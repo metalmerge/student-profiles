@@ -38,5 +38,8 @@ module.exports = {
           return await Registration.find({
             student: studentId,
             status: 'active'});
-      },  
+      },
+      getRegistrationsByParams: async function(params) {
+        return await Registration.find(params);
+      }
 }
