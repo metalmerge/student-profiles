@@ -3,6 +3,7 @@ const programFile = require("./program")
 const registrationFile = require("./registration")
 const program_db = require("../database/program_db")
 const constants = require("./constants")
+const registration_db = require("../database/registration_db")
 
 module.exports = {
 	getHomePage: async function (request, response) {
@@ -81,7 +82,7 @@ module.exports = {
 				if (activeRegistrations[j].student == activeStudents[i].id) { 
 					let programObj =  await program_db.getProgramById(activeRegistrations[j].program)
 					programTitles.push(programObj.title)
-				} 
+				}
 			} 
 		}
 		return programTitles
