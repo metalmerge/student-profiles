@@ -7,40 +7,34 @@ const d = new Date();
 
 module.exports = {
 	addProgram: async function(programObj) {
-    if (validateProgram(programObj)) {
-      registration = false;
-      if((typeof(programObj.isRegistrationRequired)) == "undefined"){  
-        registration = false;
-      }
-      if(((typeof programObj.isRegistrationRequired)) == "string" ){
-        registration = true;
-      }      
+    if (validateProgram(programObj)) {   
+      isRegistrationRequired = !!programObj.registration_required;
       let year = d.getFullYear();
       let month = d.getMonth();
-      title = (programObj.title + " (" + month + " - " + year + ")" )
+
       const newProgram = new Program({
-        title: title,
+        title: programObj.title,
         description: programObj.description,
         location: programObj.location,
         start_date: programObj.start_date,
         end_date: programObj.end_date,
         min_grade_level: programObj.min_grade_level,
         max_grade_level: programObj.max_grade_level,
-        isRegistrationRequired: registration,
+        registration_required: isRegistrationRequired,
         program_id: `${programObj.title}.${ await module.exports.getTitleCount(programObj.title)}`,
         status: "active"
       })
       await newProgram.save()
-      let student_list = programObj.student_list
+      let student_list = programObj.student_list;
       if(student_list !== undefined) {
-        if(student_list.length == 24) {
-          await registration_db.addRegistration(student_list, newProgram.id)
+        if(student_list instanceof Array) {
+          for(let i = 0; i < student_list.length; i++) {
+            await registration_db.addRegistration(student_list[i], newProgram.id);
+           }
         } else {
-      for(let i = 0; i < student_list.length; i++) {
-       await registration_db.addRegistration(student_list[i], newProgram.id)
+          await registration_db.addRegistration(student_list, newProgram.id);
+        }
       }
-    }
-  }
     }
 	},
   getTitleCount: async function(currentTitle) {
@@ -56,12 +50,9 @@ module.exports = {
 	},
 	editProgramById: async function(programId, newprogramObj) {
     if (validateProgram(newprogramObj)) {
-      registration = false;
-      if(((typeof newprogramObj.isRegistrationRequired)) == "string" ){
-        registration = true;
-      }  
+      isRegistrationRequired = !!newprogramObj.registration_required
 
-      newprogramObj['isRegistrationRequired'] = registration
+      newprogramObj['registration_required'] = isRegistrationRequired;
       await Program.findOneAndUpdate({
         _id: programId
       },
