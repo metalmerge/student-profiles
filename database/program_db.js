@@ -8,16 +8,13 @@ const d = new Date();
 module.exports = {
 	addProgram: async function(programObj) {
     if (validateProgram(programObj)) {
-      registration = false;
-      if((typeof(programObj.registration_required)) == "undefined"){  
-        registration = false;
-      }
-      if(((typeof programObj.registration_required)) == "string" ){
-        registration = true;
-      }      
+      isRegistrationRequired = !!programObj.registration_required;
       let year = d.getFullYear();
       let month = d.getMonth();
-      title = (programObj.title + " (" + month + " - " + year + ")" )
+      var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+           "Jul", "Aug", "Sep", "Oct", "Nov", "dec" ];
+      title = (programObj.title + " (" + months[month] + " - " + year + ")" )
+      console.log(title)
       const newProgram = new Program({
         title: title,
         description: programObj.description,
