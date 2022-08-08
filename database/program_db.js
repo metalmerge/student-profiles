@@ -8,25 +8,19 @@ const d = new Date();
 module.exports = {
 	addProgram: async function(programObj) {
     if (validateProgram(programObj)) {
-      registration = false;
-      if((typeof(programObj.registration_required)) == "undefined"){  
-        registration = false;
-      }
-      if(((typeof programObj.registration_required)) == "string" ){
-        registration = true;
-      }      
+      isRegistrationRequired = !!programObj.registration_required;
       let year = d.getFullYear();
       let month = d.getMonth();
-      title = (programObj.title + " (" + month + " - " + year + ")" )
+
       const newProgram = new Program({
-        title: title,
+        title: programObj.title,
         description: programObj.description,
         location: programObj.location,
         start_date: programObj.start_date,
         end_date: programObj.end_date,
         min_grade_level: programObj.min_grade_level,
         max_grade_level: programObj.max_grade_level,
-        registration_required: registration,
+        registration_required: isRegistrationRequired,
         program_id: `${programObj.title}.${ await module.exports.getTitleCount(programObj.title)}`,
         status: "active"
       })
@@ -56,12 +50,9 @@ module.exports = {
 	},
 	editProgramById: async function(programId, newprogramObj) {
     if (validateProgram(newprogramObj)) {
-      registration = false;
-      if(((typeof newprogramObj.registration_required)) == "string" ){
-        registration = true;
-      }  
+      isRegistrationRequired = !!newprogramObj.registration_required
 
-      newprogramObj['registration_required'] = registration
+      newprogramObj['registration_required'] = isRegistrationRequired;
       await Program.findOneAndUpdate({
         _id: programId
       },
