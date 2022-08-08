@@ -11,12 +11,9 @@ module.exports = {
       isRegistrationRequired = !!programObj.registration_required;
       let year = d.getFullYear();
       let month = d.getMonth();
-      var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-           "Jul", "Aug", "Sep", "Oct", "Nov", "dec" ];
-      title = (programObj.title + " (" + months[month] + " - " + year + ")" )
-      console.log(title)
+
       const newProgram = new Program({
-        title: title,
+        title: programObj.title,
         description: programObj.description,
         location: programObj.location,
         start_date: programObj.start_date,
