@@ -31,16 +31,16 @@ module.exports = {
         status: "active"
       })
       await newProgram.save()
-      let student_list = programObj.student_list
+      let student_list = programObj.student_list;
       if(student_list !== undefined) {
-        if(student_list.length == 24) {
-          await registration_db.addRegistration(student_list, newProgram.id)
+        if(student_list instanceof Array) {
+          for(let i = 0; i < student_list.length; i++) {
+            await registration_db.addRegistration(student_list[i], newProgram.id);
+           }
         } else {
-      for(let i = 0; i < student_list.length; i++) {
-       await registration_db.addRegistration(student_list[i], newProgram.id)
+          await registration_db.addRegistration(student_list, newProgram.id);
+        }
       }
-    }
-  }
     }
 	},
   getTitleCount: async function(currentTitle) {

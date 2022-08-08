@@ -76,24 +76,20 @@ module.exports = {
 	},
 	
 	editStudent: async function (request, response) {
-		
-		let studentId = request.params.id
-		let programIds = []
-		await registration_db.deleteRegistrationByStudentId(studentId)
-		if(request.body.program_list !== undefined) {
-		for(let i = 0; i < request.body.program_list.length; i++) {
-			programIds.push(request.body.program_list)
-		}
-		if(request.body.program_list.length == 24) {
-			await registration_db.addRegistration(studentId, mongoose.Types.ObjectId(request.body.program_list))
-		} else {
-			for(let i = 0; i < request.body.program_list.length; i++) {
-				await registration_db.addRegistration(studentId, mongoose.Types.ObjectId(request.body.program_list[i]))
-			}	
-		}
+		let studentId = request.params.id;
+		await registration_db.deleteRegistrationByStudentId(studentId);
+		let program_list = request.body.program_list;
+		if(program_list !== undefined) {
+			if(program_list instanceof Array) {
+				for(let i = 0; i < program_list.length; i++) {
+					await registration_db.addRegistration(studentId, mongoose.Types.ObjectId(program_list[i]));
+				}	
+			} else {
+				await registration_db.addRegistration(studentId, mongoose.Types.ObjectId(program_list));
+			}
 		}
 		await db.editStudentById(studentId, request.body);
-		await module.exports.viewStudentPage(request, response)
+		await module.exports.viewStudentPage(request, response);
 	},
 
 	deleteStudent: async function (request, response) {

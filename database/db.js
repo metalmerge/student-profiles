@@ -34,14 +34,14 @@ module.exports = {
       });
       await newStudent.save();
       
-      let program_list = studentObj.program_list
+      let program_list = studentObj.program_list;
       if(program_list !== undefined) {
-        if(program_list.length == 24) {
-          await registration_db.addRegistration(newStudent.id,program_list)
-        } else {
+        if(program_list instanceof Array) {
           for(let i = 0; i < program_list.length; i++) {
-            await registration_db.addRegistration(newStudent.id, program_list[i])
+            await registration_db.addRegistration(newStudent.id, program_list[i]);
           }
+        } else {
+          await registration_db.addRegistration(newStudent.id,program_list);
         }
      }
     }
