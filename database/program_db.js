@@ -9,10 +9,10 @@ module.exports = {
 	addProgram: async function(programObj) {
     if (validateProgram(programObj)) {
       registration = false;
-      if((typeof(programObj.registration_required)) == "undefined"){  
+      if((typeof(programObj.isRegistrationRequired)) == "undefined"){  
         registration = false;
       }
-      if(((typeof programObj.registration_required)) == "string" ){
+      if(((typeof programObj.isRegistrationRequired)) == "string" ){
         registration = true;
       }      
       let year = d.getFullYear();
@@ -26,7 +26,7 @@ module.exports = {
         end_date: programObj.end_date,
         min_grade_level: programObj.min_grade_level,
         max_grade_level: programObj.max_grade_level,
-        registration_required: registration,
+        isRegistrationRequired: registration,
         program_id: `${programObj.title}.${ await module.exports.getTitleCount(programObj.title)}`,
         status: "active"
       })
@@ -57,11 +57,11 @@ module.exports = {
 	editProgramById: async function(programId, newprogramObj) {
     if (validateProgram(newprogramObj)) {
       registration = false;
-      if(((typeof newprogramObj.registration_required)) == "string" ){
+      if(((typeof newprogramObj.isRegistrationRequired)) == "string" ){
         registration = true;
       }  
 
-      newprogramObj['registration_required'] = registration
+      newprogramObj['isRegistrationRequired'] = registration
       await Program.findOneAndUpdate({
         _id: programId
       },
