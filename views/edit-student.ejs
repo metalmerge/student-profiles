@@ -84,7 +84,7 @@
 						<% for (let j = 0; j < registrations.length; j++) { %>
 							<% if(registrations[j].program == programs[i].id && registrations[j].student == student.id) {match = true;}  %> 
 						<% } %>
-						<option value="<%= programs[i].id %>" <% if(!add && !view) {if (match) { %> selected <% } } %>><%= programs[i].title %></option>
+						<option value="<%= programs[i].id %>" <% if(!add && !view) {if (match) { %> selected <% } } %>><%= formatedProgramList[i] %></option>
 					<% } %>
 				</select>
 			</div>
