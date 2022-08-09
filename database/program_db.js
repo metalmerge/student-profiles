@@ -31,9 +31,7 @@ module.exports = {
         status: "active"
       })
       await newProgram.save()
-
       let student_list = programObj.student_list
-      
       if(student_list !== undefined) {
         if(student_list.length == 24) {
           await registration_db.addRegistration(student_list, newProgram.id)
@@ -43,25 +41,27 @@ module.exports = {
       }
     }
   }
-
     }
 	},
   getTitleCount: async function(currentTitle) {
 	  return await Program.find({title : currentTitle}).countDocuments() + 1 
 	},
-  
 	getProgramsList: async function() {
 	  return await Program.find({})
 	},
-
 	getProgramById: async function(programId) {
     return await Program.findOne({
       _id: programId
     })
 	},
-
 	editProgramById: async function(programId, newprogramObj) {
     if (validateProgram(newprogramObj)) {
+      registration = false;
+      if(((typeof newprogramObj.registration_required)) == "string" ){
+        registration = true;
+      }  
+
+      newprogramObj['registration_required'] = registration
       await Program.findOneAndUpdate({
         _id: programId
       },
@@ -71,8 +71,10 @@ module.exports = {
       })
     }
 	},
+  getProgramsByParams: async function(params) {
+    return await Program.find(params);
+  }
 }
-
 function validateProgram(program) {
   if (!(grades.indexOf(program.min_grade_level) <= grades.indexOf(program.max_grade_level))) {
     return false;
@@ -80,6 +82,5 @@ function validateProgram(program) {
   if (!program.title || !program.description || !program.location || !program.start_date || !program.end_date || !program.min_grade_level || !program.max_grade_level) {
     return false;
   }
-
   return true;
 }
