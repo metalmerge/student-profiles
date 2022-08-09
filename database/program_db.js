@@ -7,7 +7,7 @@ const d = new Date();
 
 module.exports = {
 	addProgram: async function(programObj) {
-    if (validateProgram(programObj)) {
+    if (validateProgram(programObj)) {   
       isRegistrationRequired = !!programObj.registration_required;
       let year = d.getFullYear();
       let month = d.getMonth();
