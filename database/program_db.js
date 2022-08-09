@@ -8,7 +8,6 @@ const d = new Date();
 module.exports = {
 	addProgram: async function(programObj) {
     if (validateProgram(programObj)) {   
-      isRegistrationRequired = !!programObj.registration_required;
       let year = d.getFullYear();
       let month = d.getMonth();
 
@@ -20,10 +19,10 @@ module.exports = {
         end_date: programObj.end_date,
         min_grade_level: programObj.min_grade_level,
         max_grade_level: programObj.max_grade_level,
-        registration_required: isRegistrationRequired,
+        isRegistrationRequired: !!programObj.isRegistrationRequired,
         program_id: `${programObj.title}.${ await module.exports.getTitleCount(programObj.title)}`,
         status: "active"
-      })
+      });
       await newProgram.save()
       let student_list = programObj.student_list;
       if(student_list !== undefined) {
@@ -50,9 +49,8 @@ module.exports = {
 	},
 	editProgramById: async function(programId, newprogramObj) {
     if (validateProgram(newprogramObj)) {
-      isRegistrationRequired = !!newprogramObj.registration_required
 
-      newprogramObj['registration_required'] = isRegistrationRequired;
+      newprogramObj['isRegistrationRequired'] = !!newprogramObj.isRegistrationRequired;
       await Program.findOneAndUpdate({
         _id: programId
       },
