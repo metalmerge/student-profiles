@@ -10,14 +10,15 @@ module.exports = {
     
     if (validateProgram(programObj)) {
       registration = false;
-      if((typeof(programObj.registration_required)) == "undefined"){
-        
+      if((typeof(programObj.registration_required)) == "undefined"){  
         registration = false;
       }
       if(((typeof programObj.registration_required)) == "string" ){
-        
         registration = true;
       }      
+      let year = d.getFullYear();
+      let month = d.getMonth();
+      title = (programObj.title + " (" + month + " - " + year + ")" )
       const newProgram = new Program({
         title: title,
         description: programObj.description,
