@@ -7,9 +7,7 @@ const d = new Date();
 
 module.exports = {
 	addProgram: async function(programObj) {
-    if (validateProgram(programObj)) {   
-      let year = d.getFullYear();
-      let month = d.getMonth();
+    if (validateProgram(programObj)) {
 
       const newProgram = new Program({
         title: programObj.title,
