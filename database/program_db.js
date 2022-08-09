@@ -62,6 +62,9 @@ module.exports = {
       })
     }
 	},
+  getProgramsByParams: async function(params) {
+    return await Program.find(params);
+  },
 }
 function validateProgram(program) {
   if (!(grades.indexOf(program.min_grade_level) <= grades.indexOf(program.max_grade_level))) {
